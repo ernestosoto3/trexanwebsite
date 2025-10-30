@@ -1,11 +1,15 @@
 import { defineType, defineField } from 'sanity'
-export default defineType({
-  name: 'certificacion',     
-  title: 'Certificaciones',
+
+const certificaciones = defineType({
+  name: 'certificacion',
+  title: 'Certificación',
   type: 'document',
   fields: [
-    defineField({ name: 'titulo', title: 'Título', type: 'string' }),
-    defineField({ name: 'entidad', title: 'Entidad', type: 'string' }),
-    defineField({ name: 'fecha', title: 'Fecha', type: 'date' }),
+    defineField({ name: 'titulo', type: 'string', title: 'Título', validation: r => r.required() }),
+    defineField({ name: 'emisor', type: 'string', title: 'Emisor' }),
+    defineField({ name: 'fecha', type: 'date', title: 'Fecha' }),
+    defineField({ name: 'descripcion', type: 'text', title: 'Descripción' }),
   ],
-})
+});
+
+export default certificaciones;

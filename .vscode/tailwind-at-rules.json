@@ -1,0 +1,7 @@
+{
+  "atDirectives": [
+    { "name": "@theme", "description": "Tailwind v4 theme inline block." }
+  ],
+  "css.customData": [".vscode/tailwind-at-rules.json"],
+  "editor.quickSuggestions": { "strings": true }
+}

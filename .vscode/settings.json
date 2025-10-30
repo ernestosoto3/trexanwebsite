@@ -1,0 +1,12 @@
+{
+  // Load the custom at-rule metadata
+  "css.customData": [".vscode/tailwind-at-rules.json"],
+
+  // Treat your Tailwind entry as PostCSS so the language service is less strict about custom at-rules
+  "files.associations": {
+    "app/globals.css": "postcss"
+  },
+
+  // Quality of life (optional)
+  "editor.quickSuggestions": { "strings": true }
+}

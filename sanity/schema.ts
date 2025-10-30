@@ -6,5 +6,5 @@ import certificaciones from './schemaTypes/certificaciones'
 import ubicaciones from './schemaTypes/ubicaciones'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [noticias, industrias, certificaciones, ubicaciones], 
+  types: [noticias, industrias, certificaciones, ubicaciones],
 }
