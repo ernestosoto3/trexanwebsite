@@ -1,8 +1,29 @@
 'use client'
 import { useState } from 'react'
+import Seccion from "../(componentes)/Seccion";
+import Link from "next/link";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  <Seccion titulo="Contact" subtitulo="Formulario, info directa y mapa de plantas.">
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="rounded-2xl p-6 ring-1 ring-foreground/10">
+            <div className="text-sm text-foreground/70">Email</div>
+            <div className="font-medium">contact@trexan.example</div>
+            <div className="mt-4 text-sm text-foreground/70">Teléfono</div>
+            <div className="font-medium">+52 (000) 000 0000</div>
+            <div className="mt-6">
+              <Link href="/" className="underline underline-offset-4">Volver al Home</Link>
+            </div>
+          </div>
+          <div className="rounded-2xl p-6 ring-1 ring-foreground/10">
+            <div className="text-sm text-foreground/70">Formulario (placeholder)</div>
+            <div className="mt-2 text-foreground/50">En Fase 4 agregamos el form con validación y API route.</div>
+          </div>
+        </div>
+      </Seccion>
+     
+     
+     const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle'|'sending'|'ok'|'error'>('idle')
 
   async function onSubmit(e: React.FormEvent) {
@@ -54,3 +75,5 @@ export default function ContactPage() {
     </main>
   )
 }
+
+
