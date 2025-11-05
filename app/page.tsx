@@ -1,10 +1,28 @@
 import Link from "next/link";
 import Seccion from "./(componentes)/Seccion";
+import Script from "next/script";
 
 export const revalidate = 60;
 
+
 export default function HomePage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Trexan",
+    "url": process.env.NEXT_PUBLIC_SITE_URL ?? "https://trexan.com",
+    "logo": "/logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/trexan" // add if exists
+    ]
+  };
   return (
+    <>
+    <Script
+        id="org-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <main>
       <section className="relative isolate">
         <div className="mx-auto max-w-6xl px-4 py-20 md:py-28">
@@ -158,5 +176,6 @@ export default function HomePage() {
         </div>
       </Seccion>
     </main>
+    </>
   );
 }

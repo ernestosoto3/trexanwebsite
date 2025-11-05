@@ -8,5 +8,9 @@
   },
 
   // Quality of life (optional)
-  "editor.quickSuggestions": { "strings": true }
+  "css.validate": false,
+  "editor.quickSuggestions": { "strings": true },
+  "tailwindCSS.emmetCompletions": true
+
+  
 }
