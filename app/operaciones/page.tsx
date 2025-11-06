@@ -1,12 +1,69 @@
 import Seccion from "../(componentes)/Seccion";
-export const revalidate = 60;
 
-export default function OperationsPage() {
+const servicios = [
+  {
+    titulo: "Recolección y Acopio de RAEE",
+    bullets: [
+      "Gestión integral del acopio, clasificación y recolección de residuos electrónicos.",
+      "Recepción de equipos obsoletos y scrap bajo control documental.",
+      "Registro y trazabilidad con Manifiestos de Recolección (SEMARNAT/SEGAM)."
+    ],
+    evidencia: "Autorizaciones de recolección y transporte (SEMARNAT / SEGAM)."
+  },
+  {
+    titulo: "Transporte Ecológico",
+    bullets: [
+      "Traslado seguro y regulado con unidades autorizadas.",
+      "Cumplimiento de normas para residuos industriales no peligrosos.",
+      "Rutas optimizadas y vehículos certificados para reducir emisiones."
+    ],
+    evidencia: "Permiso de Transporte Ambiental y Registro ante SEGAM."
+  },
+  {
+    titulo: "Reciclaje y Tratamiento de RAEE",
+    bullets: [
+      "Desmantelamiento, trituración y molienda de componentes.",
+      "Producción de concentrados metálicos para fundición/refinación.",
+      "Operación certificada R2v3, ISO 14001 e ISO 45001."
+    ],
+    evidencia: "Certificados R2v3, ISO, IMMEX."
+  },
+  {
+    titulo: "Manifiestos y Certificación Ambiental",
+    bullets: [
+      "Manifiestos de Recolección, Transporte, Destrucción y Disposición Final (SEMARNAT).",
+      "Certificados de Destrucción y Constancias de Economía Circular.",
+      "Cumplimiento ambiental y fiscal (SAT, SEMARNAT, SEGAM)."
+    ],
+    evidencia: "Manifiestos oficiales y contratos de refinación."
+  },
+  {
+    titulo: "Asesoría y Soporte Técnico",
+    bullets: [
+      "Diagnóstico personalizado de gestión responsable de RAEE.",
+      "Capacitación y acompañamiento en cumplimiento y auditorías.",
+      "Soporte en acopio, clasificación y valorización de materiales."
+    ],
+    evidencia: "Respaldo de especialistas certificados en manejo de RAEE."
+  }
+];
+
+export default function OperacionesPage() {
   return (
-    <main>
-      <Seccion titulo="Operations" subtitulo="Recibásicos (fríos) + EWR (calientes).">
-        <p className="text-foreground/70">Aquí iremos con servicios, flujos y clientes atendidos.</p>
-      </Seccion>
-    </main>
+    <Seccion titulo="Operaciones" subtitulo="Procesos fríos (Recibásicos) y calientes (EWR)">
+      <div className="grid md:grid-cols-2 gap-6">
+        {servicios.map((s) => (
+          <div key={s.titulo} className="rounded-2xl p-6 ring-1 ring-foreground/10">
+            <h3 className="text-lg font-semibold">{s.titulo}</h3>
+            <ul className="mt-3 list-disc ms-5 space-y-1">
+              {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
+            </ul>
+            <div className="mt-3 text-sm text-foreground/70">
+              <span className="font-medium">Evidencia:</span> {s.evidencia}
+            </div>
+          </div>
+        ))}
+      </div>
+    </Seccion>
   );
 }

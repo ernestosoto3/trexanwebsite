@@ -12,5 +12,10 @@ model ContactSubmission {
   name      String
   email     String
   message   String
+  company   String?    // NEW
+  phone     String?    // NEW
+  service   String?    // NEW
   createdAt DateTime @default(now())
 }
+
+

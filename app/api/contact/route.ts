@@ -6,19 +6,20 @@ import nodemailer from "nodemailer";
 
 const prisma = new PrismaClient();
 
-// --- 1) Zod schema (server-side validation)
+// 1) Validación con Zod (incluye campos nuevos opcionales)
 const ContactSchema = z.object({
   name: z.string().min(1).max(100),
   email: z.string().email().max(200),
   message: z.string().min(1).max(5000),
-  // honeypot: if this has any content, it's a bot
-  website: z.string().optional(), // hidden field on the form
+  website: z.string().optional(), // honeypot
+  company: z.string().max(200).optional(),
+  phone: z.string().max(50).optional(),
+  service: z.enum(["recibasicos", "ewr", "certifications", "other"]).optional(),
 });
 
-// --- 2) Tiny in-memory rate limiter (per IP)
-//    NOTE: Good enough to start; for production use Upstash/Redis.
-const windowMs = 60 * 1000;     // 1 minute
-const maxPerWindow = 5;         // 5 requests per minute per IP
+// 2) Rate limit básico en memoria (por IP)
+const windowMs = 60 * 1000; // 1 min
+const maxPerWindow = 5;     // 5 req/min/IP
 const hits = new Map<string, number[]>();
 
 function rateLimit(ip: string) {
@@ -30,7 +31,7 @@ function rateLimit(ip: string) {
 }
 
 export async function POST(req: NextRequest) {
-  // Get client IP from common reverse-proxy headers (works on Vercel/NGINX/etc.)
+  // IP a partir de headers comunes de proxy
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     req.headers.get("x-real-ip") ??
@@ -40,39 +41,65 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 
+  // 3) Parseo + validación
   const body = await req.json().catch(() => null);
   const parsed = ContactSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
 
-  const { name, email, message, website } = parsed.data;
+  // 4) Honeypot
+  const { name, email, message, website, company, phone, service } = parsed.data;
   if (website && website.trim().length > 0) {
+    // Bot: respondemos "ok" para no dar señales
     return NextResponse.json({ ok: true });
   }
 
-  await prisma.contactSubmission.create({ data: { name, email, message } });
+  // 5) Guardado mínimo (ajusta si quieres persistir los extras)
+  await prisma.contactSubmission.create({
+    data: { name, email, message },
+    // Si actualizas el schema de Prisma, aquí puedes añadir: company, phone, service
+  });
 
+  // 6) Envío de correo si hay SMTP configurado
   const {
-    SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, CONTACT_TO, CONTACT_FROM,
-  } = process.env;
+    SMTP_HOST,
+    SMTP_PORT,
+    SMTP_USER,
+    SMTP_PASS,
+    CONTACT_TO,
+    CONTACT_FROM,
+  } = process.env as Record<string, string | undefined>;
 
-  if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS && CONTACT_TO && CONTACT_FROM) {
+  if (
+    SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS &&
+    CONTACT_TO && CONTACT_FROM
+  ) {
     const transporter = nodemailer.createTransport({
       host: SMTP_HOST,
       port: Number(SMTP_PORT),
-      secure: Number(SMTP_PORT) === 465,
+      secure: Number(SMTP_PORT) === 465, // 465 = SSL
       auth: { user: SMTP_USER, pass: SMTP_PASS },
     });
+
+    const lines = [
+      `Nombre: ${name}`,
+      `Empresa: ${company ?? "-"}`,
+      `Email: ${email}`,
+      `Teléfono: ${phone ?? "-"}`,
+      `Servicio: ${service ?? "-"}`,
+      "",
+      "Mensaje:",
+      message,
+    ].join("\n");
 
     await transporter.sendMail({
       to: CONTACT_TO,
       from: CONTACT_FROM,
-      subject: `New contact from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      subject: `Nuevo contacto de ${name}`,
+      text: lines,
     });
   }
 
   return NextResponse.json({ ok: true });
 }
-
