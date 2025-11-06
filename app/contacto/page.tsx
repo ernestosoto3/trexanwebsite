@@ -65,7 +65,7 @@ export default function ContactPage() {
               required
             />
 
-            {/* 🔒 Honeypot — keep the name EXACTLY "website" */}
+
             <input
               type="text"
               name="website"
