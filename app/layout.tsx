@@ -1,6 +1,8 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import "./globals.css"; // keep if you have global CSS
+import "./globals.css"; 
+import Header from "./(componentes)/ui/Header";
+import Footer from "./(componentes)/ui/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://trexan.com"),
@@ -27,7 +29,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <Header />
       <body>{children}</body>
+      <Footer />
     </html>
   );
 }
