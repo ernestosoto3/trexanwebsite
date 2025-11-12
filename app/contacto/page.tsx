@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Seccion from "../(componentes)/Seccion";
+import Seccion from "../(componentes)/ui/Seccion";
 import Link from "next/link";
 
 export default function ContactPage() {
@@ -47,7 +47,7 @@ export default function ContactPage() {
             <div className="font-medium">gpizzutoa@trexan.co</div>
           </div>
           <div>
-            <div className="text-sm text-foreground/70">Teléfono</div>
+            <div className="text-sm text-zinc-600">Teléfono</div>
             <div className="font-medium">+52 (444) 219 7673</div>
           </div>
           <div className="pt-2">

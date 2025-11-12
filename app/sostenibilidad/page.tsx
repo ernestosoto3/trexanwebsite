@@ -1,4 +1,4 @@
-import Seccion from "../(componentes)/Seccion";
+import Seccion from "../(componentes)/ui/Seccion";
 
 const kpis = [
   "RAEE gestionado (kg o toneladas por mes).",

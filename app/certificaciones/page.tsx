@@ -1,4 +1,4 @@
-import Seccion from "../(personas)/../(componentes)/Seccion"; // ajusta el path si hace falta
+import Seccion from "../(componentes)/ui/Seccion"; 
 
 const certs = [
   { nombre: "R2v3 (Responsible Recycling)", emisor: "SERI", detalle: "Gestión, reciclaje y destrucción segura de RAEE." },
@@ -17,7 +17,7 @@ export default function CertificacionesPage() {
         {certs.map((c) => (
           <div key={c.nombre} className="rounded-2xl p-6 ring-1 ring-foreground/10">
             <h3 className="text-lg font-semibold">{c.nombre}</h3>
-            <div className="text-sm text-foreground/70">{c.emisor}</div>
+            <div className="text-sm text-zinc-600">{c.emisor}</div>
             <p className="mt-2">{c.detalle}</p>
           </div>
         ))}

@@ -1,4 +1,4 @@
-import Seccion from "../(componentes)/Seccion";
+import Seccion from "../(componentes)/ui/Seccion";
 
 export default function NosotrosPage() {
   return (

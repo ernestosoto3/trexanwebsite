@@ -1,4 +1,4 @@
-import Seccion from "../(componentes)/Seccion";
+import Seccion from "../(componentes)/ui/Seccion";
 
 const servicios = [
   {
@@ -58,7 +58,7 @@ export default function OperacionesPage() {
             <ul className="mt-3 list-disc ms-5 space-y-1">
               {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
             </ul>
-            <div className="mt-3 text-sm text-foreground/70">
+            <div className="mt-3 text-sm text-zinc-600">
               <span className="font-medium">Evidencia:</span> {s.evidencia}
             </div>
           </div>
