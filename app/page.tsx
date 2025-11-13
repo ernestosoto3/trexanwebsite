@@ -37,18 +37,25 @@ export default function HomePage() {
 
       {/* INTRO + QUOTE */}
       <Seccion>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 items-start">
           <div>
-            <h2 className="text-3xl font-bold text-[--color-secondary]">Quiénes somos</h2>
-            <p className="mt-3 text-neutral-900 dark:text-neutral-100">
-              Recibásicos S.A. de C.V., parte de Trexan Recycling Group, gestiona el ciclo completo de RAEE:
-              acopio, clasificación, transporte y tratamiento para producir concentrados metálicos de alto valor,
+            <h2 className="text-3xl font-bold text-zinc-900">
+              Quiénes somos
+            </h2>
+            <p className="mt-3 text-base text-zinc-600 leading-relaxed">
+              Recibásicos S.A. de C.V., parte de Trexan Recycling Group, gestiona
+              el ciclo completo de RAEE: acopio, clasificación, transporte y
+              tratamiento para producir concentrados metálicos de alto valor,
               cumpliendo SEMARNAT/SEGAM y estándares internacionales.
             </p>
           </div>
-          <QuotePanel quote="Transformamos desafíos ambientales en oportunidades sustentables mediante soluciones de reciclaje electrónico certificadas." />
+          <QuotePanel
+            quote="Transformamos desafíos ambientales en oportunidades sustentables mediante soluciones de reciclaje electrónico certificadas."
+          />
         </div>
       </Seccion>
+
+
 
       {/* INDUSTRIAS – cards con overlay */}
       <Seccion titulo="Industrias que atendemos" subtitulo="Soluciones para sector público y privado">
@@ -98,29 +105,6 @@ export default function HomePage() {
           </div>
         </div>
       </Seccion>
-
-      {/* FOOTER SIMPLE (placeholder) */}
-      <footer className="bg-[--color-secondary] text-white">
-        <div className="section grid md:grid-cols-3 gap-8">
-          <div>
-            <div className="font-semibold">Recibásicos · Trexan Recycling Group</div>
-            <div className="mt-2 text-white/80">Eje 132 No. 120, Zona Industrial del Potosí, SLP, México</div>
-          </div>
-          <div>
-            <div className="font-semibold">Contacto</div>
-            <div className="mt-2 text-white/80">+52 (444) 219 7673 · info@trexan.co</div>
-          </div>
-          <div>
-            <div className="font-semibold">Enlaces</div>
-            <div className="mt-2 flex gap-4 text-white/80">
-              <a href="/operaciones">Servicios</a>
-              <a href="/industrias">Industrias</a>
-              <a href="/sostenibilidad">Sostenibilidad</a>
-              <a href="/certificaciones">Certificaciones</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }

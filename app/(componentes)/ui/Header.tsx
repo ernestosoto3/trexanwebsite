@@ -20,7 +20,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-zinc-200">
+    <header className="bg-white/90 backdrop-blur border-b border-zinc-200">
       {/* Top strip */}
       <div className="bg-emerald-900 text-emerald-50 text-xs md:text-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2">

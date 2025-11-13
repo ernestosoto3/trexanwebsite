@@ -1,13 +1,16 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import "./globals.css"; 
+import "./globals.css";
 import Header from "./(componentes)/ui/Header";
 import Footer from "./(componentes)/ui/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://trexan.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://trexan.com"
+  ),
   title: "Trexan — Sustainable Metals from E-Waste",
-  description: "Trexan transforms electronic waste into a sustainable source of metals.",
+  description:
+    "Trexan transforms electronic waste into a sustainable source of metals.",
   openGraph: {
     title: "Trexan — Sustainable Metals from E-Waste",
     description: "Investor-ready circularity: metals recovered responsibly.",
@@ -26,12 +29,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
-      <Header />
-      <body>{children}</body>
-      <Footer />
+    <html lang="es">
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
