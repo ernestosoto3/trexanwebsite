@@ -1,10 +1,9 @@
 // app/api/contact/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { PrismaClient } from "@prisma/client";
 import nodemailer from "nodemailer";
+import { prisma } from "@/lib/prisma";
 
-const prisma = new PrismaClient();
 
 // 1) Validación con Zod (incluye campos nuevos opcionales)
 const ContactSchema = z.object({

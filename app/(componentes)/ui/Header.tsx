@@ -13,7 +13,6 @@ const navLinks = [
   { href: "/certificaciones", label: "Certificaciones" },
   { href: "/sostenibilidad", label: "Sostenibilidad" },
   { href: "/noticias", label: "Noticias" },
-  { href: "/contacto", label: "Contacto" },
 ];
 
 export default function Header() {
@@ -81,7 +80,7 @@ export default function Header() {
             href="/contacto"
             className="rounded-full px-4 py-2 text-sm font-semibold bg-emerald-700 text-white hover:bg-emerald-800 transition-colors"
           >
-            Pide una cotización
+            Contacto
           </Link>
         </div>
 
