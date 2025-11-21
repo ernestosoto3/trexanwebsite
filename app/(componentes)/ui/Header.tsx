@@ -12,7 +12,7 @@ const navLinks = [
   { href: "/industrias", label: "Industrias" },
   { href: "/certificaciones", label: "Certificaciones" },
   { href: "/sostenibilidad", label: "Sostenibilidad" },
-  { href: "/noticias", label: "Noticias" },
+  { href: "/noticias", label: "Noticias" }
 ];
 
 export default function Header() {

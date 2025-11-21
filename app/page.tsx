@@ -1,110 +1,288 @@
-// import Link from "next/link";
-// import Script from "next/script";
 import Seccion from "./(componentes)/ui/Seccion";
 import Button from "./(componentes)/ui/Button";
 import CardOverlay from "./(componentes)/ui/CardOverlay";
-import QuotePanel from "./(componentes)/ui/QuotePanel";
 import BadgeRow from "./(componentes)/ui/BadgeRow";
 
 export const revalidate = 60;
 
 export default function HomePage() {
   return (
-    <main className="min-h-dvh bg-[--color-bg] text-[--color-fg]">
+    <main className="min-h-dvh bg-white">
 
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <img src="/hero-recibasicos.jpg" alt="" className="h-[70vh] w-full object-cover" />
-          <div className="absolute inset-0 bg-black/40" />
+      {/* HERO WITH VIDEO */}
+      <section className="relative overflow-hidden h-[70vh]">
+        <div className="absolute inset-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="h-full w-full object-cover"
+          >
+            <source src="/videos/solution-video-2.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/60" />
         </div>
-        <div className="section grid md:grid-cols-2 items-center text-white">
-          <div className="max-w-xl">
-            <div className="kicker">Recibásicos · Procesos Fríos</div>
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+
+        <div className="section h-full flex items-center">
+          <div className="max-w-3xl text-white relative z-10">
+            <p className="text-sm uppercase tracking-wider mb-4" style={{ color: '#16a34a' }}>
+              Recibásicos · Trexan Recycling Group
+            </p>
+            
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
               Gestión Responsable de RAEE con Trazabilidad Total
             </h1>
-            <p className="mt-4 text-white/90">
-              Acopio, recolección, desmantelamiento y valorización de residuos electrónicos bajo R2v3, ISO 14001 e ISO 45001.
+            
+            <p className="text-xl mb-8 text-white/90">
+              Acopio, recolección, desmantelamiento y valorización de residuos 
+              electrónicos bajo certificaciones R2v3, ISO 14001 e ISO 45001.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button href="/contacto">Solicitar Cotización</Button>
-              <Button href="/operaciones" variant="outline">Ver Servicios</Button>
+            
+            <div className="flex gap-4">
+              <Button href="/contacto" variant="primary">
+                Solicitar Cotización
+              </Button>
+              <Button href="/operaciones" variant="outline">
+                Ver Servicios
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* INTRO + QUOTE */}
-      <Seccion>
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          <div>
-            <h2 className="text-3xl font-bold text-zinc-900">
-              Quiénes somos
+      {/* QUIENES SOMOS */}
+      <section className="py-20 bg-gray-50">
+        <div className="section">
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <p className="text-sm uppercase tracking-wider mb-3" style={{ color: '#16a34a' }}>
+                Sobre Nosotros
+              </p>
+              <h2 className="text-4xl font-bold mb-6" style={{ color: '#0a0a0a' }}>
+                ¿Quiénes Somos?
+              </h2>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: '#52525b' }}>
+                Somos una empresa mexicana ubicada en San Luis Potosí, socialmente sustentable 
+                enfocada al acopio, recolección, almacenamiento, transporte, reutilización, 
+                tratamiento, reciclaje y disposición final de los residuos de aparatos eléctricos 
+                y electrónicos (RAEE) en México.
+              </p>
+              <p className="text-lg leading-relaxed" style={{ color: '#52525b' }}>
+                Parte del <strong>Grupo Trexan</strong>, única empresa en América con una red de 
+                centros integrados de reciclaje electrónico que cubren toda la cadena de valor: 
+                desde la recolección hasta la refinación de metales.
+              </p>
+            </div>
+            
+            <div className="bg-white p-8 border-l-4" style={{ borderColor: '#16a34a' }}>
+              <h3 className="text-xl font-bold mb-4" style={{ color: '#0a0a0a' }}>
+                Nuestra Misión
+              </h3>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: '#52525b' }}>
+                Reciclar residuos electrónicos con eficiencia, transparencia y responsabilidad, 
+                formalizando el mercado y creando valor cerca de los generadores.
+              </p>
+              
+              <h3 className="text-xl font-bold mb-4" style={{ color: '#0a0a0a' }}>
+                Nuestra Visión
+              </h3>
+              <p className="text-lg leading-relaxed" style={{ color: '#52525b' }}>
+                Replicar nuestro modelo de centros de reciclaje integrados, reduciendo el 
+                transporte innecesario y maximizando la recuperación de materiales.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICIOS */}
+      <section className="py-20 bg-white">
+        <div className="section">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-wider mb-3" style={{ color: '#16a34a' }}>
+              Nuestros Servicios
+            </p>
+            <h2 className="text-4xl font-bold mb-4" style={{ color: '#0a0a0a' }}>
+              Servicios Integrales
             </h2>
-            <p className="mt-3 text-base text-zinc-600 leading-relaxed">
-              Recibásicos S.A. de C.V., parte de Trexan Recycling Group, gestiona
-              el ciclo completo de RAEE: acopio, clasificación, transporte y
-              tratamiento para producir concentrados metálicos de alto valor,
-              cumpliendo SEMARNAT/SEGAM y estándares internacionales.
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: '#52525b' }}>
+              Cubrimos toda la cadena de valor del reciclaje electrónico
             </p>
           </div>
-          <QuotePanel
-            quote="Transformamos desafíos ambientales en oportunidades sustentables mediante soluciones de reciclaje electrónico certificadas."
-          />
-        </div>
-      </Seccion>
-
-
-
-      {/* INDUSTRIAS – cards con overlay */}
-      <Seccion titulo="Industrias que atendemos" subtitulo="Soluciones para sector público y privado">
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <CardOverlay title="Telecomunicaciones" />
-          <CardOverlay title="Data Centers" />
-          <CardOverlay title="Gobierno y Educación"/>
-          <CardOverlay title="Manufactura"/>
-          <CardOverlay title="TI Corporativo"/>
-        </div>
-      </Seccion>
-
-      {/* EXPERTISE / SERVICIOS */}
-      <Seccion titulo="Nuestro Expertise">
-        <div className="grid md:grid-cols-4 gap-6">
-          {[
-            {t:"Recolección y Acopio",d:"Manifiestos SEMARNAT/SEGAM, trazabilidad y control documental."},
-            {t:"Desmantelamiento y Tratamiento",d:"Trituración, molienda y separación para valorización."},
-            {t:"Concentrados Metálicos",d:"Material base cobre y metales preciosos para refinación."},
-            {t:"Manifiestos y Certificados",d:"Destrucción, disposición final y constancias de economía circular."},
-          ].map((x,i)=>(
-            <div key={i} className="card p-6">
-              <h3 className="text-xl font-semibold">{x.t}</h3>
-              <p className="mt-2 text-zinc-600">{x.d}</p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="border p-6" style={{ borderColor: '#e5e7eb' }}>
+              <h3 className="text-xl font-bold mb-3" style={{ color: '#0a0a0a' }}>
+                Recolección y Acopio
+              </h3>
+              <p style={{ color: '#52525b' }}>
+                Recolección de equipos electrónicos obsoletos y tarjetas con manifiestos ambientales.
+              </p>
             </div>
-          ))}
-        </div>
-      </Seccion>
-
-      {/* CERTIFICACIONES */}
-      <Seccion titulo="Certificaciones y Permisos">
-        <BadgeRow items={[
-          {src:"/badges/r2v3.png", alt:"R2v3"},
-          {src:"/badges/iso14001.png", alt:"ISO 14001"},
-          {src:"/badges/iso45001.png", alt:"ISO 45001"},
-          {src:"/badges/immex.png", alt:"IMMEX"}
-        ]}/>
-      </Seccion>
-
-      {/* CTA FINAL */}
-      <Seccion>
-        <div className="card p-8 md:p-12 text-center">
-          <h3 className="text-3xl font-bold text-[--color-secondary]">¿Listos para una gestión responsable de RAEE?</h3>
-          <p className="mt-3 text-zinc-600">Contáctanos para una evaluación y propuesta en 24–48h hábiles.</p>
-          <div className="mt-6 flex justify-center">
-            <Button href="/contacto">Contáctanos</Button>
+            
+            <div className="border p-6" style={{ borderColor: '#e5e7eb' }}>
+              <h3 className="text-xl font-bold mb-3" style={{ color: '#0a0a0a' }}>
+                Desmantelamiento
+              </h3>
+              <p style={{ color: '#52525b' }}>
+                Desmantelamiento y trituración de RAEE para producción de concentrados.
+              </p>
+            </div>
+            
+            <div className="border p-6" style={{ borderColor: '#e5e7eb' }}>
+              <h3 className="text-xl font-bold mb-3" style={{ color: '#0a0a0a' }}>
+                Transporte Ecológico
+              </h3>
+              <p style={{ color: '#52525b' }}>
+                Transporte certificado de residuos con autorización SEGAM y SEMARNAT.
+              </p>
+            </div>
+            
+            <div className="border p-6" style={{ borderColor: '#e5e7eb' }}>
+              <h3 className="text-xl font-bold mb-3" style={{ color: '#0a0a0a' }}>
+                Certificación
+              </h3>
+              <p style={{ color: '#52525b' }}>
+                Certificado de destrucción y constancia de contribución a la economía circular.
+              </p>
+            </div>
           </div>
         </div>
-      </Seccion>
+      </section>
+
+      {/* SECTORES */}
+      <section className="py-20 bg-gray-900 text-white">
+        <div className="section">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-wider mb-3" style={{ color: '#16a34a' }}>
+              Sectores que Atendemos
+            </p>
+            <h2 className="text-4xl font-bold mb-4">
+              Nuestros Clientes
+            </h2>
+            <p className="text-white/80">
+              Englobamos el sector público y privado para una contribución integral
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="bg-gray-800 p-6 border" style={{ borderColor: '#374151' }}>
+              <h3 className="text-xl font-bold mb-2">Empresas</h3>
+              <p className="text-sm text-white/70">Manufactura y corporativos</p>
+            </div>
+            
+            <div className="bg-gray-800 p-6 border" style={{ borderColor: '#374151' }}>
+              <h3 className="text-xl font-bold mb-2">Instituciones Educativas</h3>
+              <p className="text-sm text-white/70">Escuelas y universidades</p>
+            </div>
+            
+            <div className="bg-gray-800 p-6 border" style={{ borderColor: '#374151' }}>
+              <h3 className="text-xl font-bold mb-2">Instituciones Públicas</h3>
+              <p className="text-sm text-white/70">Gobierno municipal y estatal</p>
+            </div>
+            
+            <div className="bg-gray-800 p-6 border" style={{ borderColor: '#374151' }}>
+              <h3 className="text-xl font-bold mb-2">Fundaciones</h3>
+              <p className="text-sm text-white/70">Movimientos sociales</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BENEFICIOS */}
+      <section className="py-20 bg-white">
+        <div className="section">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-wider mb-3" style={{ color: '#16a34a' }}>
+              Por Qué Elegirnos
+            </p>
+            <h2 className="text-4xl font-bold" style={{ color: '#0a0a0a' }}>
+              Beneficios de Trabajar con Nosotros
+            </h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
+                   style={{ backgroundColor: '#16a34a' }}>✓</div>
+              <div>
+                <h3 className="font-bold mb-2" style={{ color: '#0a0a0a' }}>Contribuyes a la Economía Circular</h3>
+                <p style={{ color: '#52525b' }}>Ayuda al planeta reciclando y minimizando el cambio climático</p>
+              </div>
+            </div>
+            
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
+                   style={{ backgroundColor: '#16a34a' }}>✓</div>
+              <div>
+                <h3 className="font-bold mb-2" style={{ color: '#0a0a0a' }}>Genera Empleos Formales</h3>
+                <p style={{ color: '#52525b' }}>Ayudas a la generación de empleos formales en México</p>
+              </div>
+            </div>
+            
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
+                   style={{ backgroundColor: '#16a34a' }}>✓</div>
+              <div>
+                <h3 className="font-bold mb-2" style={{ color: '#0a0a0a' }}>Certificaciones Internacionales</h3>
+                <p style={{ color: '#52525b' }}>Estamos certificados con R2v3, ISO 14001 e ISO 45001</p>
+              </div>
+            </div>
+            
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
+                   style={{ backgroundColor: '#16a34a' }}>✓</div>
+              <div>
+                <h3 className="font-bold mb-2" style={{ color: '#0a0a0a' }}>Cumplimiento Legal Total</h3>
+                <p style={{ color: '#52525b' }}>Permisos SEMARNAT, SEGAM e IMMEX</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CERTIFICACIONES */}
+      <section className="py-20 bg-gray-50">
+        <div className="section">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-wider mb-3" style={{ color: '#16a34a' }}>
+              Cumplimiento Total
+            </p>
+            <h2 className="text-4xl font-bold" style={{ color: '#0a0a0a' }}>
+              Certificaciones y Permisos
+            </h2>
+          </div>
+          <BadgeRow items={[
+            {src:"/badges/r2v3.png", alt:"R2v3"},
+            {src:"/badges/iso14001.png", alt:"ISO 14001"},
+            {src:"/badges/iso45001.png", alt:"ISO 45001"},
+            {src:"/badges/immex.png", alt:"IMMEX"}
+          ]}/>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 text-white" style={{ backgroundColor: '#16a34a' }}>
+        <div className="section text-center">
+          <h2 className="text-4xl font-bold mb-6">
+            ¿Listos para Reciclar de Forma Responsable?
+          </h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Llámanos al (444) 219 7673 o contáctanos para más información
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button href="/contacto" variant="outline">
+              Solicitar Cotización
+            </Button>
+            <a href="mailto:gpizzutoa@trexan.co" 
+               className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-lg border-2 transition-all"
+               style={{ borderColor: 'white', color: 'white' }}>
+              gpizzutoa@trexan.co
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
