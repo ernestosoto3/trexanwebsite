@@ -49,7 +49,7 @@ export default function HomePage() {
               <Button
                 href="/operaciones"
                 variant="outline"
-                className="border-white text-white hover:border-[--color-primary] hover:text-[--color-primary]"
+                className="border-white text-white hover:bg-white/90 hover:text-black hover:border-white/80"
               >
                 Conoce Nuestros Servicios
               </Button>
@@ -58,17 +58,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SERVICES OVER IMAGE BAND */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0">
-          <img
-            src="/images/home/aerial-facility.png"
-            alt="Operaciones Trexan"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-white/92" />
-        </div>
-
+      {/* SERVICES BAND */}
+      <section className="relative overflow-hidden" style={{ backgroundColor: '#f4f2ec' }}>
         <div className="section py-16 relative space-y-10">
           <div className="text-center space-y-3">
             <p
@@ -151,13 +142,13 @@ export default function HomePage() {
 
       {/* QUIENES SOMOS */}
       <section className="relative overflow-hidden bg-[#f3f5f0]">
-        <div className="absolute inset-0 opacity-80" aria-hidden>
+        <div className="absolute inset-0 opacity-100" aria-hidden>
           <img
-            src="/images/home/processing-line.png"
+            src="/home/DJI_0410.JPG"
             alt="Línea de procesamiento"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#f3f5f0] via-white/90 to-white" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#f3f5f0] via-white/30 to-white" />
         </div>
 
         <div className="section relative py-20">
