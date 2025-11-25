@@ -97,8 +97,7 @@ export default function Footer() {
             Certificaciones
           </h4>
           <p className="text-sm text-zinc-400">
-            R2v3, ISO 14001, ISO 45001, permisos SEMARNAT e IMMEX respaldan
-            nuestras operaciones responsables.
+              R2v3, ISO 14001, ISO 45001, permisos de SEMARNAT e IMMEX.
           </p>
         </div>
 
@@ -117,19 +116,19 @@ export default function Footer() {
             <p>
               Teléfono:{" "}
               <a
-                href="tel:+524442197673"
+                href="tel:+524448292422"
                 className="font-medium text-emerald-400 hover:underline"
               >
-                +52 (444) 219 7673
+                +52 (444) 829 2422
               </a>
             </p>
             <p>
               Email:{" "}
               <a
-                href="mailto:recibasicos@trexan.co"
+                href="mailto:contacto@recibasicos.com"
                 className="font-medium text-emerald-400 hover:underline"
               >
-                recibasicos@trexan.co
+                contacto@recibasicos.com
               </a>
             </p>
           </div>

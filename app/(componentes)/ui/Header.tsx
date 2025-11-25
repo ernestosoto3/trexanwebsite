@@ -24,14 +24,14 @@ export default function Header() {
       <div className="bg-emerald-900 text-emerald-50 text-xs md:text-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2">
           <p className="hidden sm:block">
-            San Luis Potosí, México · +52 (444) 219 7673
+            San Luis Potosí, México · +52 (444) 829 2422
           </p>
           <div className="flex flex-1 items-center justify-between sm:justify-end gap-4">
             <a
-              href="mailto:recibasicos@trexan.co"
+              href="mailto:contacto@recibasicos.com"
               className="hover:underline"
             >
-              recibasicos@trexan.co
+              contacto@recibasicos.com
             </a>
             <span className="hidden md:inline text-emerald-100">
               Parte del Grupo Trexan

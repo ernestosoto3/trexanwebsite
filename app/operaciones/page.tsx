@@ -5,10 +5,8 @@ const servicios = [
     titulo: "Recolección y Acopio de RAEE",
     bullets: [
       "Gestión integral del acopio, clasificación y recolección de residuos electrónicos.",
-      "Recepción de equipos obsoletos y scrap bajo control documental.",
-      "Registro y trazabilidad con Manifiestos de Recolección (SEMARNAT/SEGAM)."
+      "Recepción de equipos obsoletos y scrap bajo control documental."
     ],
-    evidencia: "Autorizaciones de recolección y transporte (SEMARNAT / SEGAM)."
   },
   {
     titulo: "Transporte Ecológico",
@@ -17,7 +15,6 @@ const servicios = [
       "Cumplimiento de normas para residuos industriales no peligrosos.",
       "Rutas optimizadas y vehículos certificados para reducir emisiones."
     ],
-    evidencia: "Permiso de Transporte Ambiental y Registro ante SEGAM."
   },
   {
     titulo: "Reciclaje y Tratamiento de RAEE",
@@ -26,7 +23,6 @@ const servicios = [
       "Producción de concentrados metálicos para fundición/refinación.",
       "Operación certificada R2v3, ISO 14001 e ISO 45001."
     ],
-    evidencia: "Certificados R2v3, ISO, IMMEX."
   },
   {
     titulo: "Manifiestos y Certificación Ambiental",
@@ -35,7 +31,6 @@ const servicios = [
       "Certificados de Destrucción y Constancias de Economía Circular.",
       "Cumplimiento ambiental y fiscal (SAT, SEMARNAT, SEGAM)."
     ],
-    evidencia: "Manifiestos oficiales y contratos de refinación."
   },
   {
     titulo: "Asesoría y Soporte Técnico",
@@ -44,13 +39,12 @@ const servicios = [
       "Capacitación y acompañamiento en cumplimiento y auditorías.",
       "Soporte en acopio, clasificación y valorización de materiales."
     ],
-    evidencia: "Respaldo de especialistas certificados en manejo de RAEE."
   }
 ];
 
 export default function OperacionesPage() {
   return (
-    <Seccion titulo="Operaciones" subtitulo="Procesos fríos (Recibásicos) y calientes (EWR)">
+    <Seccion titulo="Operaciones" subtitulo="Preparando residuos electronicos para un reciclaje seguro, trazable y sostenible">
       <div className="grid md:grid-cols-2 gap-6">
         {servicios.map((s) => (
           <div key={s.titulo} className="rounded-2xl p-6 ring-1 ring-foreground/10">
@@ -58,9 +52,6 @@ export default function OperacionesPage() {
             <ul className="mt-3 list-disc ms-5 space-y-1">
               {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
             </ul>
-            <div className="mt-3 text-sm text-zinc-600">
-              <span className="font-medium">Evidencia:</span> {s.evidencia}
-            </div>
           </div>
         ))}
       </div>

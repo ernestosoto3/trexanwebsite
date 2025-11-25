@@ -5,18 +5,27 @@ export default function NosotrosPage() {
     <Seccion titulo="Quiénes Somos" subtitulo="Recibásicos · Trexan Recycling Group">
       <div className="prose prose-neutral max-w-3xl">
         <p>
-          Trexan Recycling Group es una empresa mexicana especializada en el acopio, recolección,
-          almacenamiento, transporte, reutilización, tratamiento, reciclaje y disposición final de
-          Residuos de Aparatos Eléctricos y Electrónicos (RAEE). A través de nuestras divisiones
-          Recibásicos (procesos fríos) y EWR (procesos calientes), gestionamos toda la cadena de
-          valor del reciclaje electrónico —desde la recepción de equipos obsoletos hasta la
-          refinación de metales— bajo estrictos estándares de seguridad, trazabilidad y
-          sustentabilidad.
+                    Recibásicos es una empresa mexicana especializada en el acopio,
+          recolección, almacenamiento, desmontaje y tratamiento de Residuos de
+          Aparatos Eléctricos y Electrónicos (RAEE). Como parte de Trexan Recycling
+          Group, operamos la etapa de procesos fríos dentro de la cadena de reciclaje
+          electrónico, preparando y clasificando los materiales antes de su envío a la
+          división de procesos calientes {" "}
+          <a
+          href="https://ewr.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "#1a73e8", textDecoration: "underline" }}
+          >
+           EWR
+          </a>
+          , donde se realiza la refinación final de metales.
         </p>
         <p>
-          Contamos con certificaciones R2v3, ISO 14001, ISO 45001 e IMMEX, garantizando operaciones
-          responsables, cumplimiento normativo y el máximo aprovechamiento de los materiales
-          recuperados, contribuyendo activamente a la economía circular en México y Latinoamérica.
+           Contamos con un grupo de especialistas con más de 40 años de experiencia 
+          acumulada en el reciclaje y la transformación de metales, 
+          desde la operación de plantas en México hasta proyectos internacionales de 
+          valorización contribuyendo activamente a la economía circular en México y Latinoamérica.
         </p>
       </div>
     </Seccion>
