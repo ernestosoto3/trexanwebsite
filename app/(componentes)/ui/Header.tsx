@@ -8,7 +8,6 @@ import { useState } from "react";
 const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/nosotros", label: "Nosotros" },
-  { href: "/operaciones", label: "Operaciones" },
   { href: "/industrias", label: "Industrias" },
   { href: "/certificaciones", label: "Certificaciones" },
   { href: "/sostenibilidad", label: "Sostenibilidad" },
@@ -45,11 +44,11 @@ export default function Header() {
         {/* Logo + text */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/logo-recibasicos.png"
+            src="/logos/RecisbasicosLogo.png"
             alt="Logotipo de Recibásicos"
-            width={40}
-            height={40}
-            className="h-10 w-10"
+            width={56}
+            height={56}
+            className="h-12 w-12"
           />
           <div className="hidden sm:flex flex-col leading-tight">
             <span className="text-sm font-semibold tracking-tight uppercase">
