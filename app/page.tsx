@@ -1,5 +1,7 @@
 import Button from "./(componentes)/ui/Button";
 import BadgeRow from "./(componentes)/ui/BadgeRow";
+import CountUpDispositivos from "./(componentes)/ui/CountUpDispositivos";
+
 
 export const revalidate = 60;
 
@@ -95,7 +97,7 @@ export default function HomePage() {
               <div className="grid md:grid-cols-2 gap-5">
                 {[
                   "Recolección y Acopio",
-                  "Desmantelamiento",
+                  "Destruccion de Datos",
                   "Transporte Ecológico",
                   "Certificación",
                 ].map((title, index) => (
@@ -122,12 +124,7 @@ export default function HomePage() {
                     {index === 0 && (
                       <p style={{ color: "#4b5563" }}>
                         Recolección de equipos obsoletos, acopio seguro para cualquier volumen.
-                      </p>
-                    )}
-                    {index === 1 && (
-                      <p style={{ color: "#4b5563" }}>
-                         Desmantelamiento y trituración asegurando la destruccióny la recuperación de todos los materiales.
-                      </p>
+                     </p>
                     )}
                     {index === 2 && (
                       <p style={{ color: "#4b5563" }}>
@@ -331,10 +328,10 @@ export default function HomePage() {
             <h2 className="text-4l font-bold">
               Reduciendo el impacto ambiental con procesos claros
             </h2>
-            <p className="text-lg text-white/80">
-              Operamos conequipos capacitados, monitoreo constante y evidencias para que
-              cada auditoría resulte sencilla.
-            </p>
+            
+            {/* COUNT-UP DE DISPOSITIVOS RECICLADOS */}
+            <CountUpDispositivos />
+
           </div>
 
           <div className="mt-10 grid md:grid-cols-2 gap-8">
