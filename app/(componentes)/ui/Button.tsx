@@ -19,9 +19,9 @@ export default function Button({
 
   const variantClasses = {
     primary:
-      "bg-[--color-primary] text-white border border-[--color-primary] hover:bg-[#15803d] focus-visible:ring-[--color-primary] focus-visible:ring-offset-white",
+      "bg-[--color-primary] border border-[--color-primary] hover:bg-[#15803d] focus-visible:ring-[--color-primary] focus-visible:ring-offset-white",
     outline:
-      "border border-white text-white bg-transparent hover:bg-white hover:text-[--color-primary] focus-visible:ring-white focus-visible:ring-offset-[--color-primary]",
+      "border border-white text-white hover:bg-white hover:text-[--color-primary] focus-visible:ring-white focus-visible:ring-offset-[--color-primary]",
     orange:
       "bg-[--color-secondary] text-white border border-[--color-secondary] hover:bg-[#c2410c] focus-visible:ring-[--color-secondary] focus-visible:ring-offset-white",
   } as const;
