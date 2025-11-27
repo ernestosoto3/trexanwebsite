@@ -26,7 +26,7 @@ export default function HomePage() {
 
         <div className="section h-[70vh] flex items-center relative">
           <div className="max-w-4xl text-white space-y-6">
-            <span className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 text-sm uppercase tracking-wider ">
+            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider ">
               <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
               Trexan Recycling Group
             </span>
@@ -39,14 +39,14 @@ export default function HomePage() {
               <Button
                 href="/contacto"
                 variant="primary"
-                className="shadow-[0_10px_30px_rgba(22,163,74,0.25)] rounded-none"
+                className="border-green-700/90 text-white bg-green-700/90 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
               >
                 Solicitar Cotización
               </Button>
               <Button
                 href="/operaciones"
-                variant="outline"
-                className="border-white/80 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
+                variant="primary"
+                className="border-green-700/90 text-white bg-green-700/90 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
               >
                 Conoce Nuestros Servicios
               </Button>
