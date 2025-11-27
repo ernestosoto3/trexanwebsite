@@ -46,9 +46,9 @@ export default function Header() {
           <Image
             src="/logos/RecisbasicosLogo2.png"
             alt="Logotipo de Recibásicos"
-            width={40}
+            width={60}
             height={40}
-            className="h-12 w-12"
+            className="h-12 w-auto"
           />
           <div className="hidden sm:flex flex-col leading-tight">
             <span className="text-sm font-semibold tracking-tight uppercase">

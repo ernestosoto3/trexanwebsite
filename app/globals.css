@@ -5,7 +5,7 @@
   --radius-lg: 1rem;
   --shadow-card: 0 10px 25px rgba(0,0,0,.1);
 
-  /* 🎨 NEW TREXAN COLOR PALETTE */
+  /*COLOR PALETTE */
   --color-primary: #16a34a;      /* Vibrant Green */
   --color-secondary: #ea580c;    /* Bold Orange */
   --color-accent: #f97316;       /* Bright Orange */
@@ -17,7 +17,7 @@
   --font-sans: var(--font-geist-sans);
 }
 
-/* 🔥 Updated Button Styles with New Colors */
+/*Button Styles with New Colors */
 .btn {
   @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition-all duration-300;
 }
@@ -37,7 +37,7 @@
   @apply bg-[--color-secondary] text-white hover:bg-[#c2410c] hover:scale-105 transition-all duration-300;
 }
 
-/* 🎴 Card Styles with Color */
+/*  Card Styles with Color */
 .card {
   @apply rounded-2xl bg-white ring-1 ring-zinc-200 shadow-lg hover:shadow-xl transition-shadow duration-300;
 }
@@ -54,7 +54,7 @@
   @apply rounded-2xl bg-gradient-to-br from-[--color-secondary] to-[#c2410c] text-white shadow-lg;
 }
 
-/* 📐 Utility Classes */
+/*Utility Classes */
 .section { 
   @apply mx-auto w-full max-w-6xl px-6 py-10 md:py-5; 
 }
@@ -63,7 +63,7 @@
   @apply text-sm uppercase tracking-widest font-semibold text-[--color-secondary]; 
 }
 
-/* 🎯 Gradient Backgrounds */
+/*  Gradient Backgrounds */
 .gradient-green {
   background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
 }
