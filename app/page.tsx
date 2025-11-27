@@ -1,6 +1,7 @@
 import Button from "./(componentes)/ui/Button";
 import BadgeRow from "./(componentes)/ui/BadgeRow";
 import CountUpDispositivos from "./(componentes)/ui/CountUpDispositivos";
+import BloquesAprendeMas from "./(componentes)/ui/BloqueAprendeMas";
 
 
 export const revalidate = 60;
@@ -34,12 +35,6 @@ export default function HomePage() {
               Soluciones Sustentables para Residuos Electrónicos
             </h1>
 
-            <p className="text-xl text-white/90 max-w-3xl">
-              Recolección, desmantelamiento y valorización con trazabilidad
-              completa y certificaciones internacionales para proteger tu cadena
-              de suministro.
-            </p>
-
             <div className="flex flex-wrap gap-4">
               <Button
                 href="/contacto"
@@ -60,6 +55,28 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/*TEXTO INTRODUCTORIO*/}
+      <section className="py-16 bg-gray-50">
+        <div className="section">
+          <div className="text-center mb-10">
+            <h2
+              className="text-4xl font-bold"
+              style={{ color: "#0a0a0a" }}
+            >
+               Recibásicos es líder en acopio de residuos electrónicos, transformando pasivos 
+               ambientales en economía circular segura.
+            </h2>
+             <p
+                className="text-2xl leading-relaxed"
+                style={{ color: "#4b5563" }}
+              >
+                Ofrecemos trazabilidad total y certificaciones globales que permiten a las empresas proteger
+                 su cadena de suministro mientras avanzan hacia sus objetivos de economía circular.
+              </p>
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES BAND */}
       <section
         className="relative overflow-hidden"
@@ -75,95 +92,24 @@ export default function HomePage() {
             <div className="space-y-7">
               <div className="space-y-3">
                 <p
-                  className="text-sm uppercase tracking-wider"
+                  className="text-sm uppercase tracking-wider text-center"
                   style={{ color: "#166534" }}
                 >
                   Soluciones Integrales de Reciclaje Para
                 </p>
                 <h2
-                  className="text-4xl font-bold"
+                  className="text-4xl font-bold text-center"
                   style={{ color: "#0a0a0a" }}
                 >
                   Industria, PYMES, Gobiernos y Hogares
                 </h2>
-                <p
-                  className="text-lg max-w-4xl"
+                 <p
+                  className="text-lg text-center"
                   style={{ color: "#4b5563" }}
                 >
                   Gestionamos residuos electrónicos con rutas seguras, permisos completos y procesos sustentables.
                 </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-5">
-                {[
-                  "Recolección y Acopio",
-                  "Destruccion de Datos",
-                  "Transporte Ecológico",
-                  "Certificación",
-                ].map((title, index) => (
-                  <div
-                    key={title}
-                    className="bg-white border shadow-sm p-6 h-full flex flex-col gap-3 hover:shadow-md transition-shadow"
-                    style={{ borderColor: "#e5e7eb" }}
-                  >
-                    <span
-                      className="inline-flex w-fit rounded-full bg-[#ecfdf3] px-3 py-1 text-xs font-semibold"
-                      style={{ color: "#166534" }}
-                    >
-                      {index === 0 && "Inicio"}
-                      {index === 1 && "Procesos"}
-                      {index === 2 && "Logística"}
-                      {index === 3 && "Cierre"}
-                    </span>
-                    <h3
-                      className="text-xl font-semibold"
-                      style={{ color: "#0a0a0a" }}
-                    >
-                      {title}
-                    </h3>
-                    {index === 0 && (
-                      <p style={{ color: "#4b5563" }}>
-                        Recolección de equipos obsoletos, acopio seguro para cualquier volumen.
-                     </p>
-                    )}
-                    {index === 2 && (
-                      <p style={{ color: "#4b5563" }}>
-                        Transporte ecologicos certificados para 
-                        una cadena logística transparente.
-                      </p>
-                    )}
-                    {index === 3 && (
-                      <p style={{ color: "#4b5563" }}>
-                        Certificados de destrucción y documentacion 
-                        para auditorías y cumplimiento.
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Image card */}
-            <div className="relative h-full">
-              <div
-                className="absolute inset-4 border border-[#d1d5db] rounded-[28px]"
-                aria-hidden
-              />
-              <div className="relative rounded-[28px] overflow-hidden shadow-lg border border-[#e5e7eb] bg-white">
-                <img
-                  src="/home/main-img-2.jpeg"
-                  alt="Equipo en línea de procesamiento"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/50 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-2">
-                  <p className="text-sm uppercase tracking-wider text-white/80">
-                    Operación en sitio
-                  </p>
-                  <p className="text-lg font-semibold">
-                    Procesos cuidados para resguardar cada componente
-                  </p>
-                </div>
+                <BloquesAprendeMas/>
               </div>
             </div>
           </div>
