@@ -24,7 +24,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/65 to-black/60" />
         </div>
 
-        <div className="section h-[70vh] flex items-center relative">
+        <div className="section h-[60vh] flex items-center relative">
           <div className="max-w-4xl text-white space-y-6">
             <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider ">
               <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
@@ -78,43 +78,42 @@ export default function HomePage() {
       </section>
 
       {/* SERVICES BAND */}
-      <section
-        className="relative overflow-hidden"
-        style={{ backgroundColor: "#f4f2ec" }}
-      >
-        <div
-          className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent pointer-events-none"
-          aria-hidden
+      <section className="py-45 bg-white relative">
+        {/* Background image behind the text */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
+          style={{
+            backgroundImage: "url('./images/industrias/GRUPO TREXAN-2.jpg')",
+          }}
         />
-        <div className="section py-14 relative">
-          <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-8 items-start">
-            {/* Text + service cards */}
-            <div className="space-y-7">
-              <div className="space-y-3">
-                <p
-                  className="text-sm uppercase tracking-wider text-center"
-                  style={{ color: "#166534" }}
-                >
-                  Soluciones Integrales de Reciclaje Para
-                </p>
-                <h2
-                  className="text-4xl font-bold text-center"
-                  style={{ color: "#0a0a0a" }}
-                >
-                  Industria, PYMES, Gobiernos y Hogares
-                </h2>
-                 <p
-                  className="text-lg text-center"
-                  style={{ color: "#4b5563" }}
-                >
-                  Gestionamos residuos electrónicos con rutas seguras, permisos completos y procesos sustentables.
-                </p>
-                <BloquesAprendeMas/>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </section>
+
+      {/* BloquesAprendeMas with proper spacing */}
+      <div className="relative z-20 -mt-20">
+        <BloquesAprendeMas />
+      </div>
+      {/* <div className="relative z-20 mt-2">
+         <p
+          className="text-sm uppercase tracking-wider text-center"
+          style={{ color: "#166534" }}
+        >
+          Soluciones Integrales de Reciclaje Para
+        </p>
+        <h2
+          className="text-4xl font-bold text-center"
+          style={{ color: "#0a0a0a" }}
+        >
+          Industria, PYMES, Gobiernos y Hogares
+        </h2>
+        <p
+          className="text-lg text-center"
+          style={{ color: "#4b5563" }}
+        >
+          Gestionamos residuos electrónicos con rutas seguras, permisos completos y procesos sustentables.
+        </p>
+      </div> */}
+
       
       {/* SECTORES */}
       <section className="py-20 bg-[#1a3d2b] text-white">
