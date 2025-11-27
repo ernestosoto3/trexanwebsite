@@ -44,10 +44,10 @@ export default function Header() {
         {/* Logo + text */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/logos/RecisbasicosLogo.png"
+            src="/logos/RecisbasicosLogo2.png"
             alt="Logotipo de Recibásicos"
-            width={56}
-            height={56}
+            width={100}
+            height={40}
             className="h-12 w-12"
           />
           <div className="hidden sm:flex flex-col leading-tight">

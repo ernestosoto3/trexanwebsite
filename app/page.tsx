@@ -56,9 +56,9 @@ export default function HomePage() {
       </section>
 
       {/*TEXTO INTRODUCTORIO*/}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 flex items-center justify-center min-h-[35vh]">
         <div className="section">
-          <div className="text-center mb-10">
+          <div className="text-center">
             <h2
               className="text-4xl font-bold"
               style={{ color: "#0a0a0a" }}
