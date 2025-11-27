@@ -8,15 +8,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://trexan.com"
   ),
-  title: "Trexan — Sustainable Metals from E-Waste",
+  title: "Recibasicos - Trexan Recycling Group",
   description:
-    "Trexan transforms electronic waste into a sustainable source of metals.",
+    "Recibasicos soluciones sustentables para residuos electrónicos",
   openGraph: {
-    title: "Trexan — Sustainable Metals from E-Waste",
-    description: "Investor-ready circularity: metals recovered responsibly.",
+    title: "Recibasicos - Trexan Recycling Group",
+    description: "Circularidad certificada en metales para inversionistas responsables.",
     url: "/",
-    siteName: "Trexan",
-    images: [{ url: "/og.jpg" }],
+    siteName: "Recibasicos",
+    images: [{ url: "./logos/RecisbasicosLogo.png" }],
     locale: "en_US",
     type: "website",
   },
