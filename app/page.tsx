@@ -88,33 +88,44 @@ export default function HomePage() {
         />
         
       </section>
-
       {/* BloquesAprendeMas with proper spacing */}
       <div className="relative z-20 -mt-20">
         <BloquesAprendeMas />
       </div>
-      {/* <div className="relative z-20 mt-2">
-         <p
-          className="text-sm uppercase tracking-wider text-center"
-          style={{ color: "#166534" }}
-        >
-          Soluciones Integrales de Reciclaje Para
-        </p>
-        <h2
-          className="text-4xl font-bold text-center"
-          style={{ color: "#0a0a0a" }}
-        >
-          Industria, PYMES, Gobiernos y Hogares
-        </h2>
-        <p
-          className="text-lg text-center"
-          style={{ color: "#4b5563" }}
-        >
-          Gestionamos residuos electrónicos con rutas seguras, permisos completos y procesos sustentables.
-        </p>
-      </div> */}
 
-      
+      {/* VIDEO SECTION WITH TEXT OVERLAY */}
+     <section className="relative h-[65vh] overflow-hidden flex items-center justify-center">
+        {/* Video Background */}
+        <div className="absolute inset-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="h-full w-full object-cover"
+          >
+            <source src="/videos/enviormentvid.mp4" type="video/mp4" />
+          </video>  
+        </div>
+        
+        {/* Text Content Centered */}
+        <div className="bg-green-800 p-8 md:p-12 mx-auto max-w-7xl w-full border border-white/10 relative z-10">
+          <div className="text-center text-white space-y-6">
+            <h2 className="text-4xl md:text-3xl font-bold leading-tight">
+              Comprometidos con la Reducción del Impacto Ambiental
+            </h2>
+            <p className="text-xl md:text-xl leading-relaxed">
+              Nuestro compromiso ambiental se materializa al mantener los residuos 
+              electrónicos fuera de vertederos y mediante el diseño meticuloso de 
+              todos nuestros procesos. Desde la recolección hasta la valorización 
+              final, aplicamos certificaciones internacionales R2v3 e ISO 14001 para 
+              anticipar impactos, minimizar nuestra huella ecológica y garantizar una 
+              economía circular real en México.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* SECTORES */}
       <section className="py-20 bg-[#1a3d2b] text-white">
         <div className="section">
