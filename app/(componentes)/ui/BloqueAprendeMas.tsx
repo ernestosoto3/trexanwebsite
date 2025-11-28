@@ -5,28 +5,28 @@ const sectores = [
   {
     nombre: "Recolección y Acopio",
     descripcion:
-      "Recolección de equipos obsoletos, acopio seguro para cualquier volumen.",
+      "Gestionamos recolección nacional y acopio seguro de residuos electrónicos para cualquier volumen, con trazabilidad documental desde el primer contacto y protocolos certificados.",
     href: "/contacto",
     icon: "./images/iconos/dumpstericon.jpg.webp" // Path to your icon image
   },
   {
     nombre: "Destruccion de Datos",
     descripcion:
-      "Destrucción segura de datos con certificación para protección de información.",
+      "Implementamos destrucción segura de datos con métodos certificados que garantizan eliminación irreversible y generan evidencia documental para auditorías y cumplimiento normativo.",
     href: "/contacto",
     icon: "./images/iconos/furnaceicon.jpg" // Path to your icon image
   },
   {
     nombre: "Transporte Ecológico",
     descripcion:
-      "Transporte ecologicos certificados para una cadena logística transparente.",
+      "Operamos transporte ecológico certificado con rutas optimizadas, permisos SEMARNAT y rastreo satelital para una cadena logística transparente y segura de residuos electrónicos.",
     href: "/contacto",
     icon: "./images/iconos/truckicon-3.jpg" // Path to your icon image
   },
   {
     nombre: "Certificación",
     descripcion:
-      "Certificados de destrucción y documentacion para auditorías y cumplimiento.",
+      "Emitimos certificados de destrucción y documentación completa respaldada por normas R2v3 e ISO para cumplimiento ante autoridades y demostrar manejo responsable de RAEE.",
     href: "/contacto",
     icon: "./images/iconos/certifcateicon.png.jpeg" // Path to your icon image
   },
