@@ -1,6 +1,7 @@
 import Seccion from "./Seccion";
 import Link from "next/link";
 
+
 const sectores = [
   {
     nombre: "Recolección y Acopio",
