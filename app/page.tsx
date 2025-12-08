@@ -2,6 +2,8 @@ import Button from "./(componentes)/ui/Button";
 import BadgeRow from "./(componentes)/ui/BadgeRow";
 import CountUpDispositivos from "./(componentes)/ui/CountUpDispositivos";
 import BloquesAprendeMas from "./(componentes)/ui/BloqueAprendeMas";
+import ComoTrabajamosComoAyudamos from "./(componentes)/ui/ComoTrabajamosComoAyudamos"
+
 
 
 export const revalidate = 60;
@@ -126,8 +128,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* CÓMO TRABAJAMOS / CÓMO AYUDAMOS */}
+      <ComoTrabajamosComoAyudamos/>
+
       {/* SECTORES */}
-      <section className="py-20 bg-green-800 text-white">
+      <section className="py-10 bg-green-800 text-white">
         <div className="section">
           {/* Encabezado */}
           <div className="border-t border-emerald-300/70 pt-6">
@@ -144,7 +149,7 @@ export default function HomePage() {
                 variant="primary"
                 className="border-emerald-300/70 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none"
               >
-                Nuestros Sectores
+                Nuestros Sectores →
               </Button>
             </div>
           </div>
