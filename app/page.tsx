@@ -39,14 +39,14 @@ export default function HomePage() {
               <Button
                 href="/contacto"
                 variant="primary"
-                className="border-green-700/90 text-white bg-green-700/90 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
+                className="border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
               >
                 Solicitar Cotización
               </Button>
               <Button
-                href="/operaciones"
+                href="/nosotros"
                 variant="primary"
-                className="border-green-700/90 text-white bg-green-700/90 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
+                className="border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
               >
                 Conoce Nuestros Servicios
               </Button>
@@ -127,48 +127,56 @@ export default function HomePage() {
       </section>
 
       {/* SECTORES */}
-      <section className="py-20 bg-[#1a3d2b] text-white">
+      <section className="py-20 bg-green-800 text-white">
         <div className="section">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <div className="space-y-4">
-              <p
-                className="text-sm uppercase tracking-wider"
-                style={{ color: "#86efac" }}
-              >
-                Sectores que servimos
-              </p>
-              <h2 className="text-4xl font-bold">
-                Resolvemos retos en múltiples industrias
-              </h2>
-              <p className="text-white/80">
-                Atendemos desde plantas industriales hasta instituciones
-                educativas, ajustando procesos y permisos a las normas de cada
-                cliente.
-              </p>
-            </div>
+          {/* Encabezado */}
+          <div className="border-t border-emerald-300/70 pt-6">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-emerald-300">
+              Industrias
+            </p>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              {[
-                "Automotriz",
-                "Manufactura",
-                "Gobierno",
-                "Electrónica",
-                "Tecnología",
-                "Salud",
-                "Retail",
-                "Educación",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="border border-white/15 rounded-lg px-4 py-3 bg-white/5"
-                >
-                  <p className="font-semibold">{item}</p>
-                </div>
-              ))}
+            <div className="mt-3 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+                Confiados en muchos sectores
+              </h2>
+              <Button
+                href="/industrias"
+                variant="primary"
+                className="border-emerald-300/70 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none"
+              >
+                Nuestros Sectores
+              </Button>
             </div>
+          </div>
+
+          {/* Lista de sectores */}
+          <div className="mt-8 border-y border-white/10 divide-y divide-white/10">
+            {[
+              "Automotriz",
+              "Manufactura",
+              "Gobierno",
+              "Electrónica",
+              "Tecnología",
+              "Salud",
+              "Retail",
+              "Educación",
+            ].map((item) => (
+              <button
+                key={item}
+                className="flex w-full items-center justify-between py-3 text-left group"
+              >
+                <span className="text-base md:text-lg">
+                  {item}
+                </span>
+                <span className="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition">
+                  ↗
+                </span>
+              </button>
+            ))}
           </div>
         </div>
       </section>
+
 
       {/* QUIENES SOMOS */}
       <section className="relative overflow-hidden bg-[#eef4ec]">
