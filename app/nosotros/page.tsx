@@ -94,8 +94,6 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-
-
       {/* SECCIÓN 2x2: NUESTRA TRAYECTORIA + IMÁGENES */}
       <section className="bg-zinc-50 py-7 md:py-8">
         <div className="mx-auto max-w-7xl px-0 md:px-4"> 

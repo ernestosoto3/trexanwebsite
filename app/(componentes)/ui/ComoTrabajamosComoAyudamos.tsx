@@ -16,20 +16,23 @@ function ComoTrabajamosColumn() {
 
       {/* Texto */}
       <p className="text-sm md:text-base text-white/80">
-        Nuestro equipo combina disciplina industrial con conocimiento profundo de
-        residuos electrónicos. Trabajamos desde la recepción y clasificación hasta
-        la refinación de metales, integrando procesos claros y trazables en cada etapa.
+        Nuestro equipo combina disciplina industrial con conocimiento profundo en
+         la gestión integral de residuos electrónicos. Trabajamos desde la recepción 
+         y clasificación hasta la refinación de metales, integrando procesos claros, 
+         trazables y auditables en cada etapa.
       </p>
       <p className="text-sm md:text-base text-white/80">
-        Tratamos cada relación como una alianza: entendemos tus requisitos
-        operativos, diseñamos rutas de retiro seguras y alineamos la operación con
-        tus metas de cumplimiento y sostenibilidad.
+        Tratamos cada relación como una alianza estratégica:
       </p>
+      <ul className="text-sm md:text-base text-white/80">
+        <li>• Diseñamos rutas de retiro seguras y alineamos la operación con tus metas de cumplimiento y sostenibilidad.</li>
+        <li>• Operamos con transparencia, generando evidencia fotográfica y documental respaldada por certificaciones como R2v3, ISO 14001 e ISO 45001.</li>
+      </ul>
 
       {/* Imagen */}
-      <div className="relative overflow-hidden rounded-lg border border-white/15">
+      <div className="relative overflow-hidden border border-white/15">
         <img
-          src="/images/home/processing-line.png"
+          src="/images/industrias/GRUPO TREXAN-18.jpg"
           alt="Línea de procesamiento"
           className="w-full h-full object-cover"
         />
@@ -46,7 +49,7 @@ function ComoTrabajamosColumn() {
       {/* Botón full width */}
       <div className="mt-auto pt-2">
         <Button
-          href="/quienes-somos"
+          href="/nosotros"
           variant="primary"
           className="w-full border-emerald-300/70 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
         >
@@ -72,20 +75,21 @@ function ComoAyudamosColumn() {
 
       {/* Texto */}
       <p className="text-sm md:text-base text-white/80">
-        Reducimos el impacto ambiental con procesos documentados: recepción y
-        clasificación detallada, desmantelamiento controlado y rutas con
-        manifiestos certificados. Todo pensado para simplificar tus auditorías.
+        Reducimos el impacto ambiental con procesos documentados: recepción y 
+        clasificación detallada, desmantelamiento controlado y rutas con manifiestos 
+        certificados. Todo pensado para simplificar y blindar tus auditorías.
       </p>
       <p className="text-sm md:text-base text-white/80">
-        Ya sea que operes una planta industrial, un corporativo o una red de
-        sucursales, adaptamos la logística para minimizar interrupciones y
-        maximizar la recuperación de materiales valiosos.
+        Ya sea que operes una planta industrial, un corporativo o una red de sucursales, 
+        adaptamos la logística para minimizar interrupciones y maximizar la recuperación 
+        de materiales valiosos. Nuestras cuadrillas especializadas mantienen siempre 
+        altos estándares de seguridad y control documental en cualquier sitio.
       </p>
 
       {/* Imagen */}
-      <div className="relative overflow-hidden rounded-lg border border-white/15">
+      <div className="relative overflow-hidden border border-white/15">
         <img
-          src="/images/home/recycling-yard.png"
+          src="/images/industrias/GRUPO TREXAN-73.jpg"
           alt="Patio de reciclaje"
           className="w-full h-full object-cover"
         />
@@ -115,7 +119,7 @@ function ComoAyudamosColumn() {
 
 export default function HowWeWorkHelpSection() {
   return (
-    <section className="py-10 bg-green-800 text-white">
+    <section className="py-8 bg-green-800 text-white">
       <div className="section">
         <div className="grid lg:grid-cols-2 gap-12">
           <ComoTrabajamosColumn />

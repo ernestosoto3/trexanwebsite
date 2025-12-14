@@ -2,9 +2,10 @@ import Button from "./(componentes)/ui/Button";
 import BadgeRow from "./(componentes)/ui/BadgeRow";
 import CountUpDispositivos from "./(componentes)/ui/CountUpDispositivos";
 import BloquesAprendeMas from "./(componentes)/ui/BloqueAprendeMas";
-import ComoTrabajamosComoAyudamos from "./(componentes)/ui/ComoTrabajamosComoAyudamos"
+import ComoTrabajamosComoAyudamos from "./(componentes)/ui/ComoTrabajamosComoAyudamos";
+import Image from "next/image";
 
-
+const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
 
 export const revalidate = 60;
 
@@ -14,26 +15,20 @@ export default function HomePage() {
       {/* HERO WITH VIDEO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="h-full w-full object-cover"
-          >
+          <video autoPlay loop muted playsInline className="h-full w-full object-cover">
             <source src="/videos/solution-video-2.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/65 to-black/60" />
+          <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/65 to-black/60" />
         </div>
 
-        <div className="section h-[60vh] flex items-center relative">
+        <div className="section relative flex min-h-[70vh] items-center py-16 md:py-20">
           <div className="max-w-4xl text-white space-y-6">
-            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider ">
+            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
               <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
               Trexan Recycling Group
             </span>
 
-            <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
+            <h1 className="text-4xl md:text-6xl font-semibold leading-tight">
               Soluciones Sustentables para Residuos Electrónicos
             </h1>
 
@@ -57,84 +52,75 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*TEXTO INTRODUCTORIO*/}
-      <section className="py-16 bg-white">
+      {/* TEXTO INTRODUCTORIO */}
+      <section className="py-16 md:py-20 bg-white">
         <div className="section">
-          <div className="text-center max-w-6xl mx-auto">
-            <h2
-              className="text-4xl font-bold"
-              style={{ color: "#0a0a0a" }}
-            >
-               Recibásicos es líder en acopio de residuos electrónicos, transformando pasivos 
-               ambientales en economía circular segura.
+          <div className="text-center max-w-5xl mx-auto space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
+              Recibásicos es líder en acopio y valorización de residuos electrónicos,
+              transformando pasivos ambientales en una economía circular segura.
             </h2>
-             <p
-                className="text-2xl leading-relaxed"
-                style={{ color: "#4b5563" }}
-              >
-                Ofrecemos trazabilidad total y certificaciones globales que permiten a las empresas proteger
-                 su cadena de suministro mientras avanzan hacia sus objetivos de economía circular.
-              </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES BAND */}
-      <section className="py-45 bg-white relative">
-        {/* Background image behind the text */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
-          style={{
-            backgroundImage: "url('./images/industrias/GRUPO TREXAN-2.jpg')",
-          }}
-        />
-        
-      </section>
-      {/* BloquesAprendeMas with proper spacing */}
-      <div className="relative z-20 -mt-20">
-        <BloquesAprendeMas />
-      </div>
-
-      {/* VIDEO SECTION WITH TEXT OVERLAY */}
-     <section className="relative h-[65vh] overflow-hidden flex items-center justify-center">
-        {/* Video Background */}
-        <div className="absolute inset-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="h-full w-full object-cover"
-          >
-            <source src="/videos/enviormentvid.mp4" type="video/mp4" />
-          </video>  
-        </div>
-        
-        {/* Text Content Centered */}
-        <div className="bg-green-800 p-8 md:p-12 mx-auto max-w-7xl w-full border border-white/10 relative z-10">
-          <div className="text-center text-white space-y-6">
-            <h2 className="text-4xl md:text-3xl font-bold leading-tight">
-              Comprometidos con la Reducción del Impacto Ambiental
-            </h2>
-            <p className="text-xl md:text-xl leading-relaxed">
-              Nuestro compromiso ambiental se materializa al mantener los residuos 
-              electrónicos fuera de vertederos y mediante el diseño meticuloso de 
-              todos nuestros procesos. Desde la recolección hasta la valorización 
-              final, aplicamos certificaciones internacionales R2v3 e ISO 14001 para 
-              anticipar impactos, minimizar nuestra huella ecológica y garantizar una 
-              economía circular real en México.
+            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
+              Ofrecemos Trazabilidad total y certificaciones globales (R2v3, ISO) que permiten a su empresa
+              proteger su cadena de suministro, asegurar el cumplimiento normativo y avanzar eficazmente hacia
+              sus objetivos de sostenibilidad.
             </p>
           </div>
         </div>
       </section>
 
+      {/* SERVICES BAND (BACKGROUND IMAGE) */}
+      <section className="relative bg-white">
+        <div
+          className="h-[22rem] md:h-[28rem] bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/industrias/GRUPO TREXAN-2.jpg')" }}
+        />
+      </section>
+
+      {/* BloquesAprendeMas (CONTROLLED OVERLAP) */}
+      <section className="relative md:-mt-65">
+        <div className="section">
+          <BloquesAprendeMas />
+        </div>
+      </section>
+
+      {/* VIDEO SECTION WITH TEXT OVERLAY */}
+      <section className="relative overflow-hidden">
+        <div className="relative min-h-[26rem] md:min-h-[32rem] flex items-center justify-center">
+          {/* Video Background */}
+          <div className="absolute inset-0">
+            <video autoPlay loop muted playsInline className="h-full w-full object-cover">
+              <source src="/videos/enviormentvid.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-black/25" />
+          </div>
+
+          {/* Text Content */}
+          <div className="section relative z-10">
+            <div className="bg-green-800 p-8 md:p-12 w-full border border-white/10">
+              <div className="text-center text-white space-y-6 max-w-5xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+                  Comprometidos con la Reducción del Impacto Ambiental
+                </h2>
+                <p className="text-base md:text-lg leading-relaxed text-white/90">
+                  Nuestro compromiso ambiental se materializa al mantener los residuos electrónicos fuera de
+                  vertederos y mediante el diseño meticuloso de todos nuestros procesos. Desde la recolección
+                  hasta la valorización final, aplicamos certificaciones internacionales R2v3 e ISO 14001 para
+                  anticipar impactos, minimizar nuestra huella ecológica y garantizar una economía circular real
+                  en México.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CÓMO TRABAJAMOS / CÓMO AYUDAMOS */}
-      <ComoTrabajamosComoAyudamos/>
+      <ComoTrabajamosComoAyudamos />
 
       {/* SECTORES */}
-      <section className="py-10 bg-green-800 text-white">
+      <section className="py-8 md:py-8 bg-green-800 text-white">
         <div className="section">
-          {/* Encabezado */}
           <div className="border-t border-emerald-300/70 pt-6">
             <p className="text-sm font-medium tracking-[0.2em] uppercase text-emerald-300">
               Industrias
@@ -149,12 +135,11 @@ export default function HomePage() {
                 variant="primary"
                 className="border-emerald-300/70 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none"
               >
-                Nuestros Sectores →
+                Industrias →
               </Button>
             </div>
           </div>
 
-          {/* Lista de sectores */}
           <div className="mt-8 border-y border-white/10 divide-y divide-white/10">
             {[
               "Automotriz",
@@ -168,9 +153,9 @@ export default function HomePage() {
             ].map((item) => (
               <button
                 key={item}
-                className="flex w-full items-center justify-between py-3 text-left group"
+                className="flex w-full items-center justify-between py-4 text-left group"
               >
-                <span className="text-base md:text-lg">
+                <span className="text-base md:text-lg opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition">
                   {item}
                 </span>
                 <span className="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition">
@@ -182,288 +167,60 @@ export default function HomePage() {
         </div>
       </section>
 
-
-      {/* QUIENES SOMOS */}
-      <section className="relative overflow-hidden bg-[#eef4ec]">
-        <div className="absolute inset-0 opacity-85" aria-hidden>
-          <img
-            src="public/home/DJI_0410.JPG"
-            alt="Línea de procesamiento"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#eef4ec] via-white/90 to-white" />
-        </div>
-
-        <div
-          className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#f4f2ec] via-[#eef4ec] to-transparent pointer-events-none"
-          aria-hidden
-        />
-
-        <div className="section relative py-14">
-          <div className="grid md:grid-cols-2 gap-10 items-start">
-            <div className="space-y-5">
-              <p
-                className="text-sm uppercase tracking-wider"
-                style={{ color: "#166534" }}
-              >
-                Sobre Nosotros
-              </p>
-              <h2
-                className="text-4xl font-bold"
-                style={{ color: "#0a0a0a" }}
-              >
-                Reciclaje con disciplina industrial
-              </h2>
-              <p
-                className="text-lg leading-relaxed"
-                style={{ color: "#4b5563" }}
-              >
-                Somos una empresa mexicana con base en San Luis Potosí, parte
-                del Grupo Trexan, que articula centros integrados de reciclaje
-                electrónico para cubrir toda la cadena de valor, desde la
-                recolección hasta la refinación de metales.
-              </p>
-              <p
-                className="text-lg leading-relaxed"
-                style={{ color: "#4b5563" }}
-              >
-                Nuestro compromiso es operar con transparencia, trazabilidad y
-                cercanía al generador, certificando cada paso y minimizando la
-                huella ambiental.
-              </p>
-              <div className="flex gap-3 flex-wrap">
-                <Button href="/contacto" variant="primary">
-                  Hablar con un asesor
-                </Button>
-                <Button
-                  href="/quienes-somos"
-                  variant="outline"
-                  className="text-[--color-primary] border-[--color-primary] hover:text-white"
-                >
-                  Conoce nuestra historia
-                </Button>
-              </div>
-            </div>
-
-            <div className="bg-white shadow-md border border-[#e5e7eb] p-8 space-y-6">
-              <div className="space-y-2">
-                <h3
-                  className="text-xl font-semibold"
-                  style={{ color: "#0a0a0a" }}
-                >
-                  Nuestra Misión
-                </h3>
-                <p
-                  className="text-base leading-relaxed"
-                  style={{ color: "#4b5563" }}
-                >
-                  Reciclar residuos electrónicos con eficiencia y
-                  responsabilidad, formalizando el mercado mexicano mientras
-                  creamos valor y seguridad para nuestros clientes.
-                </p>
-              </div>
-              <div className="h-px bg-[#e5e7eb]" />
-              <div className="space-y-2">
-                <h3
-                  className="text-xl font-semibold"
-                  style={{ color: "#0a0a0a" }}
-                >
-                  Nuestra Visión
-                </h3>
-                <p
-                  className="text-base leading-relaxed"
-                  style={{ color: "#4b5563" }}
-                >
-                  Ser el estándar nacional en recolección, clasificación y pre-procesamiento 
-                  de e-waste. Construyendo la infraestructura que hace posible un reciclaje
-                  responsable desde la fuente hasta el metal
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* PROCESOS DESTACADOS */}
-      <section className="py-18 bg-[#0b1a12] text-white">
+      {/* ¿POR QUÉ? */}
+      <section className="py-8 md:py-8 bg-white">
         <div className="section">
-          <div className="text-center max-w-4xl mx-auto space-y-4">
-            <p
-              className="text-sm uppercase tracking-wider"
-              style={{ color: "#86efac" }}
-            >
-              Nuestro Método
-            </p>
-            <h2 className="text-4l font-bold">
-              Reduciendo el impacto ambiental con procesos claros
-            </h2>
-            
-            {/* COUNT-UP DE DISPOSITIVOS RECICLADOS */}
-            <CountUpDispositivos />
-
-          </div>
-
-          <div className="mt-10 grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              {[
-                "Recepción y clasificación detallada",
-                "Desmantelamiento controlado",
-                "Rutas y manifiestos certificados",
-                "Evidencias para tus auditorías",
-              ].map((item, idx) => (
-                <div key={item} className="flex gap-4 items-start">
-                  <span className="mt-1 h-6 w-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-sm font-semibold">
-                    {idx + 1}
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-1">{item}</h3>
-                    <p className="text-white/80">
-                      {idx === 0 &&
-                        "Inventariamos y clasificamos cada equipo para asegurar trazabilidad desde el primer movimiento."}
-                      {idx === 1 &&
-                        "Procesamos los RAEE con seguridad industrial para recuperar materiales aprovechables."}
-                      {idx === 2 &&
-                        "Transportamos con permisos vigentes y control documental en cada punto."}
-                      {idx === 3 &&
-                        "Entregamos reportes, fotografías y certificados para cerrar el ciclo con total respaldo."}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="relative h-full">
-              <img
-                src="/images/home/recycling-yard.png"
-                alt="Patio de reciclaje"
-                className="w-full rounded-lg shadow-xl border border-white/10"
-              />
-              <div
-                className="absolute -bottom-6 -right-6 w-40 h-40 bg-[--color-primary] opacity-20 rounded-full"
-                aria-hidden
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* BENEFICIOS */}
-      <section className="relative py-16 bg-white overflow-hidden">
-        <div
-          className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-[#1a3d2b] via-white to-transparent pointer-events-none"
-          aria-hidden
-        />
-        <div className="section relative">
           <div className="text-center mb-10 space-y-3">
-            <p
-              className="text-sm uppercase tracking-wider"
-              style={{ color: "#166534" }}
-            >
-              Beneficios
-            </p>
-            <h2
-              className="text-4xl font-bold"
-              style={{ color: "#0a0a0a" }}
-            >
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">
               ¿Por qué las empresas trabajan con nosotros?
             </h2>
-            <p
-              className="text-lg max-w-3xl mx-auto"
-              style={{ color: "#4b5563" }}
-            >
-              Cumplimos con normativas, cuidamos la seguridad y mantenemos
-              evidencia clara de cada retiro.
+            <p className="text-base md:text-lg max-w-3xl mx-auto text-zinc-600">
+              Cumplimos con normativas, cuidamos la seguridad y mantenemos evidencia clara de cada retiro.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              "Economía circular",
-              "Evidencias y certificaciones",
-              "Equipo especializado",
-              "Cobertura nacional",
-            ].map((item, idx) => (
-              <div key={item} className="flex gap-4">
-                <div
-                  className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
-                  style={{ backgroundColor: "#166534" }}
-                >
-                  ✓
-                </div>
-                <div>
-                  <h3
-                    className="font-bold mb-2"
-                    style={{ color: "#0a0a0a" }}
-                  >
-                    {item}
-                  </h3>
-                  <p style={{ color: "#4b5563" }}>
-                    {idx === 0 &&
-                      "Reducimos transporte innecesario y maximizamos la recuperación de materiales."}
-                    {idx === 1 &&
-                      "R2v3, ISO 14001 e ISO 45001 respaldan cada operación con informes claros."}
-                    {idx === 2 &&
-                      "Cuadrillas capacitadas y equipadas para intervenir en sitios industriales y oficinas."}
-                    {idx === 3 &&
-                      "Red de centros integrados que agilizan la logística y bajan tiempos de respuesta."}
-                  </p>
-                </div>
-              </div>
+              {
+                title: "Economía circular",
+                desc: "Reducimos transporte innecesario y maximizamos la recuperación de materiales.",
+              },
+              {
+                title: "Evidencias y certificaciones",
+                desc: "R2v3, ISO 14001 e ISO 45001 respaldan cada operación con informes claros.",
+              },
+              {
+                title: "Equipo especializado",
+                desc: "Cuadrillas capacitadas y equipadas para intervenir en sitios industriales y oficinas.",
+              },
+              {
+                title: "Cobertura nacional",
+                desc: "Red de centros integrados que agilizan la logística y bajan tiempos de respuesta.",
+              },
+            ].map((item) => (
+              <article
+                key={item.title}
+                className="relative bg-zinc-50 border border-zinc-200 shadow-sm p-6 overflow-hidden
+                           transition-shadow duration-200 hover:shadow-md"
+              >
+                <div className="absolute top-0 left-0 w-full h-2 bg-orange-600" />
+                <h3 className="mt-3 text-lg font-semibold text-zinc-900">{item.title}</h3>
+                <p className="mt-3 text-sm md:text-base text-zinc-600 leading-relaxed">{item.desc}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CERTIFICACIONES */}
-      <section className="py-16 bg-gray-50">
-        <div className="section">
-          <div className="text-center mb-10">
-            <p
-              className="text-sm uppercase tracking-wider mb-3"
-              style={{ color: "#16a34a" }}
-            >
-              Cumplimiento Total
-            </p>
-            <h2
-              className="text-4xl font-bold"
-              style={{ color: "#0a0a0a" }}
-            >
-              Certificaciones y Permisos
-            </h2>
-          </div>
-          <BadgeRow
-            items={[
-              { src: "/badges/r2v3.png", alt: "R2v3" },
-              { src: "/badges/iso14001.png", alt: "ISO 14001" },
-              { src: "/badges/iso45001.png", alt: "ISO 45001" },
-              { src: "/badges/immex.png", alt: "IMMEX" },
-            ]}
-          />
-        </div>
-      </section>
-
       {/* NEWS STYLE CARDS */}
-      <section className="py-14 bg-[#f7f7f5]">
-        <div className="section space-y-7">
+      <section className="py-8 md:py-8 bg-[#f7f7f5]">
+        <div className="section space-y-10">
           <div className="text-center space-y-3">
-            <p
-              className="text-sm uppercase tracking-wider"
-              style={{ color: "#166534" }}
-            >
-              Operación en imágenes
-            </p>
-            <h2
-              className="text-4xl font-bold"
-              style={{ color: "#0a0a0a" }}
-            >
-              Historias que respaldan nuestro servicio
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">
+              Noticias que Respaldan Nuestro Servicio
             </h2>
-            <p
-              className="text-lg max-w-3xl mx-auto"
-              style={{ color: "#4b5563" }}
-            >
-              Tres momentos de nuestra operación que muestran logística,
-              seguridad y control en sitio.
+            <p className="text-base md:text-lg max-w-3xl mx-auto text-zinc-600">
+              Tres momentos de nuestra operación que muestran logística, seguridad y control en sitio.
             </p>
           </div>
 
@@ -490,7 +247,7 @@ export default function HomePage() {
             ].map((card) => (
               <article
                 key={card.title}
-                className="bg-white border border-[#e5e7eb] shadow-sm h-full flex flex-col"
+                className="bg-white border border-zinc-200 shadow-sm h-full flex flex-col transition-shadow duration-200 hover:shadow-md"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -500,24 +257,20 @@ export default function HomePage() {
                   />
                   <div className="absolute inset-0 bg-black/10" />
                 </div>
-                <div className="p-5 space-y-3 flex-1 flex flex-col">
-                  <h3
-                    className="text-xl font-semibold"
-                    style={{ color: "#0a0a0a" }}
-                  >
+
+                <div className="p-6 space-y-3 flex-1 flex flex-col">
+                  <h3 className="text-lg md:text-xl font-semibold text-zinc-900">
                     {card.title}
                   </h3>
-                  <p
-                    className="text-base"
-                    style={{ color: "#4b5563" }}
-                  >
+                  <p className="text-sm md:text-base text-zinc-600 leading-relaxed">
                     {card.description}
                   </p>
+
                   <div className="mt-auto pt-4">
                     <Button
                       href="/operaciones"
                       variant="outline"
-                      className="text-[--color-primary] border-[--color-primary] hover:text-white"
+                      className="text-black border-[--color-primary] hover:text-white"
                     >
                       Ver más
                     </Button>
@@ -530,39 +283,37 @@ export default function HomePage() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="relative overflow-hidden">
-        <img
-          src="/images/home/processing-line.png"
-          alt="Camino sustentable"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/70 to-black/70" />
+      <section className="relative">
+        <div className="relative min-h-[26rem] md:min-h-[32rem] overflow-hidden">
+          <Image
+            src={mountainsImage}
+            alt="Paisaje que representa un futuro más limpio"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/55" />
 
-        <div className="section relative py-16 text-white text-center space-y-4">
-          <p
-            className="text-sm uppercase tracking-wider"
-            style={{ color: "#bbf7d0" }}
-          >
-            Hablemos
-          </p>
-          <h2 className="text-4xl font-bold">
-            ¿Listos para trabajar con trazabilidad y seguridad?
-          </h2>
-          <p className="text-lg max-w-2xl mx-auto text-white/85">
-            Nuestro equipo está listo para programar tu próximo retiro de RAEE
-            con permisos completos y reportes detallados.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/contacto" variant="primary">
-              Solicitar Cotización
-            </Button>
-            <a
-              href="mailto:contacto@recibasicos.com"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-lg border-2 transition-all"
-              style={{ borderColor: "white", color: "white" }}
-            >
-              contacto@recibasicos.com
-            </a>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="section">
+              <div className="max-w-3xl mx-auto bg-white px-6 py-10 md:px-10 md:py-12 text-center shadow-xl">
+                <p className="text-xs font-semibold tracking-[0.25em] uppercase text-emerald-700">
+                  Da el siguiente paso
+                </p>
+                <h2 className="mt-3 text-2xl md:text-3xl font-semibold text-zinc-900">
+                  ¿Listos para trabajar con trazabilidad y seguridad?
+                </h2>
+                <p className="mt-4 text-sm md:text-base text-zinc-600 leading-relaxed">
+                  Conversemos sobre cómo estructurar un esquema de recolección, trazabilidad y valorización
+                  alineado a tus procesos, auditorías y objetivos de sostenibilidad.
+                </p>
+                <a
+                  href="/contacto"
+                  className="mt-8 inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold bg-emerald-700 text-white hover:bg-emerald-800 transition-colors"
+                >
+                  Solicitar Cotización
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

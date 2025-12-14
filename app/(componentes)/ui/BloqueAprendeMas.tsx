@@ -35,7 +35,7 @@ const sectores = [
 
 export default function BloquesAprendeMas() {
   return (
-    <div className="relative z-50"> {/* Wrapper with high z-index */}
+    <div className="relative z-50 py-15"> {/* Wrapper with high z-index */}
       <Seccion>
         <div className="grid md:grid-cols-4 gap-6">
           {sectores.map((s) => (
