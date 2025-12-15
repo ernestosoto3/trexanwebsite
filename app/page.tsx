@@ -1,6 +1,4 @@
 import Button from "./(componentes)/ui/Button";
-import BadgeRow from "./(componentes)/ui/BadgeRow";
-import CountUpDispositivos from "./(componentes)/ui/CountUpDispositivos";
 import BloquesAprendeMas from "./(componentes)/ui/BloqueAprendeMas";
 import ComoTrabajamosComoAyudamos from "./(componentes)/ui/ComoTrabajamosComoAyudamos";
 import Image from "next/image";
@@ -8,6 +6,87 @@ import Image from "next/image";
 const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
 
 export const revalidate = 60;
+
+// Extracted constants for maintainability
+const INDUSTRIES = [
+  "Automotriz",
+  "Manufactura",
+  "Gobierno",
+  "Electrónica",
+  "Tecnología",
+  "Salud",
+  "Retail",
+  "Educación",
+] as const;
+
+const FEATURES = [
+  {
+    title: "Economía circular",
+    desc: "Reducimos transporte innecesario y maximizamos la recuperación de materiales.",
+  },
+  {
+    title: "Evidencias y certificaciones",
+    desc: "R2v3, ISO 14001 e ISO 45001 respaldan cada operación con informes claros.",
+  },
+  {
+    title: "Equipo especializado",
+    desc: "Cuadrillas capacitadas y equipadas para intervenir en sitios industriales y oficinas.",
+  },
+  {
+    title: "Cobertura nacional",
+    desc: "Red de centros integrados que agilizan la logística y bajan tiempos de respuesta.",
+  },
+] as const;
+
+const NEWS_CARDS = [
+  {
+    title: "Toma aérea de instalaciones",
+    description: "Centros integrados que permiten controlar cada etapa del reciclaje.",
+    image: "/images/home/aerial-facility.png",
+    alt: "Vista aérea de las instalaciones de reciclaje Trexan con áreas de procesamiento organizadas",
+  },
+  {
+    title: "Línea de procesamiento",
+    description: "Trituración y separación con estándares internacionales.",
+    image: "/images/home/processing-line.png",
+    alt: "Línea de procesamiento industrial con maquinaria de trituración y separación de materiales",
+  },
+  {
+    title: "Patio y logística",
+    description: "Organización en patios para resguardar y clasificar materiales.",
+    image: "/images/home/recycling-yard.png",
+    alt: "Patio de logística con materiales clasificados y organizados para reciclaje",
+  },
+] as const;
+
+// Reusable component for consistent styling
+const SectionHeader = ({ 
+  label, 
+  title, 
+  description 
+}: { 
+  label?: string; 
+  title: string; 
+  description?: string;
+}) => (
+  <div className="text-center space-y-3">
+    {label && (
+      <p className="text-xs font-semibold tracking-[0.25em] uppercase text-emerald-700">
+        {label}
+      </p>
+    )}
+    <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">{title}</h2>
+    {description && (
+      <p className="text-base md:text-lg max-w-3xl mx-auto text-zinc-600">
+        {description}
+      </p>
+    )}
+  </div>
+);
+
+// Shared button classes as constants
+const PRIMARY_BUTTON_CLASSES = "border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none";
+const SECONDARY_BUTTON_CLASSES = "border-emerald-300/70 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none";
 
 export default function HomePage() {
   return (
@@ -18,7 +97,7 @@ export default function HomePage() {
           <video autoPlay loop muted playsInline className="h-full w-full object-cover">
             <source src="/videos/solution-video-2.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/65 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/65 to-black/60" />
         </div>
 
         <div className="section relative flex min-h-[70vh] items-center py-16 md:py-20">
@@ -36,14 +115,14 @@ export default function HomePage() {
               <Button
                 href="/contacto"
                 variant="primary"
-                className="border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
+                className={PRIMARY_BUTTON_CLASSES}
               >
                 Solicitar Cotización
               </Button>
               <Button
                 href="/nosotros"
                 variant="primary"
-                className="border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
+                className={PRIMARY_BUTTON_CLASSES}
               >
                 Conoce Nuestros Servicios
               </Button>
@@ -74,11 +153,13 @@ export default function HomePage() {
         <div
           className="h-[22rem] md:h-[28rem] bg-cover bg-center"
           style={{ backgroundImage: "url('/images/industrias/GRUPO TREXAN-2.jpg')" }}
+          role="img"
+          aria-label="Instalaciones de procesamiento de Trexan"
         />
       </section>
 
       {/* BloquesAprendeMas (CONTROLLED OVERLAP) */}
-      <section className="relative md:-mt-65">
+      <section className="relative md:-mt-64">
         <div className="section">
           <BloquesAprendeMas />
         </div>
@@ -119,7 +200,7 @@ export default function HomePage() {
       <ComoTrabajamosComoAyudamos />
 
       {/* SECTORES */}
-      <section className="py-8 md:py-8 bg-green-800 text-white">
+      <section className="py-8 bg-green-800 text-white">
         <div className="section">
           <div className="border-t border-emerald-300/70 pt-6">
             <p className="text-sm font-medium tracking-[0.2em] uppercase text-emerald-300">
@@ -133,7 +214,7 @@ export default function HomePage() {
               <Button
                 href="/industrias"
                 variant="primary"
-                className="border-emerald-300/70 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none"
+                className={SECONDARY_BUTTON_CLASSES}
               >
                 Industrias →
               </Button>
@@ -141,24 +222,16 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 border-y border-white/10 divide-y divide-white/10">
-            {[
-              "Automotriz",
-              "Manufactura",
-              "Gobierno",
-              "Electrónica",
-              "Tecnología",
-              "Salud",
-              "Retail",
-              "Educación",
-            ].map((item) => (
+            {INDUSTRIES.map((item) => (
               <button
                 key={item}
                 className="flex w-full items-center justify-between py-4 text-left group"
+                aria-label={`Ver más sobre la industria ${item}`}
               >
                 <span className="text-base md:text-lg opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition">
                   {item}
                 </span>
-                <span className="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition">
+                <span className="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition" aria-hidden="true">
                   ↗
                 </span>
               </button>
@@ -168,40 +241,20 @@ export default function HomePage() {
       </section>
 
       {/* ¿POR QUÉ? */}
-      <section className="py-8 md:py-8 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="section">
-          <div className="text-center mb-10 space-y-3">
-            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">
-              ¿Por qué las empresas trabajan con nosotros?
-            </h2>
-            <p className="text-base md:text-lg max-w-3xl mx-auto text-zinc-600">
-              Cumplimos con normativas, cuidamos la seguridad y mantenemos evidencia clara de cada retiro.
-            </p>
+          <div className="mb-10">
+            <SectionHeader
+              title="¿Por qué las empresas trabajan con nosotros?"
+              description="Cumplimos con normativas, cuidamos la seguridad y mantenemos evidencia clara de cada retiro."
+            />
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "Economía circular",
-                desc: "Reducimos transporte innecesario y maximizamos la recuperación de materiales.",
-              },
-              {
-                title: "Evidencias y certificaciones",
-                desc: "R2v3, ISO 14001 e ISO 45001 respaldan cada operación con informes claros.",
-              },
-              {
-                title: "Equipo especializado",
-                desc: "Cuadrillas capacitadas y equipadas para intervenir en sitios industriales y oficinas.",
-              },
-              {
-                title: "Cobertura nacional",
-                desc: "Red de centros integrados que agilizan la logística y bajan tiempos de respuesta.",
-              },
-            ].map((item) => (
+            {FEATURES.map((item) => (
               <article
                 key={item.title}
-                className="relative bg-zinc-50 border border-zinc-200 shadow-sm p-6 overflow-hidden
-                           transition-shadow duration-200 hover:shadow-md"
+                className="relative bg-zinc-50 border border-zinc-200 shadow-sm p-6 overflow-hidden transition-shadow duration-200 hover:shadow-md"
               >
                 <div className="absolute top-0 left-0 w-full h-2 bg-orange-600" />
                 <h3 className="mt-3 text-lg font-semibold text-zinc-900">{item.title}</h3>
@@ -213,38 +266,15 @@ export default function HomePage() {
       </section>
 
       {/* NEWS STYLE CARDS */}
-      <section className="py-8 md:py-8 bg-[#f7f7f5]">
+      <section className="py-16 md:py-20 bg-[#f7f7f5]">
         <div className="section space-y-10">
-          <div className="text-center space-y-3">
-            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">
-              Noticias que Respaldan Nuestro Servicio
-            </h2>
-            <p className="text-base md:text-lg max-w-3xl mx-auto text-zinc-600">
-              Tres momentos de nuestra operación que muestran logística, seguridad y control en sitio.
-            </p>
-          </div>
+          <SectionHeader
+            title="Noticias que Respaldan Nuestro Servicio"
+            description="Tres momentos de nuestra operación que muestran logística, seguridad y control en sitio."
+          />
 
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Toma aérea de instalaciones",
-                description:
-                  "Centros integrados que permiten controlar cada etapa del reciclaje.",
-                image: "/images/home/aerial-facility.png",
-              },
-              {
-                title: "Línea de procesamiento",
-                description:
-                  "Trituración y separación con estándares internacionales.",
-                image: "/images/home/processing-line.png",
-              },
-              {
-                title: "Patio y logística",
-                description:
-                  "Organización en patios para resguardar y clasificar materiales.",
-                image: "/images/home/recycling-yard.png",
-              },
-            ].map((card) => (
+            {NEWS_CARDS.map((card) => (
               <article
                 key={card.title}
                 className="bg-white border border-zinc-200 shadow-sm h-full flex flex-col transition-shadow duration-200 hover:shadow-md"
@@ -252,7 +282,7 @@ export default function HomePage() {
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={card.image}
-                    alt={card.title}
+                    alt={card.alt}
                     className="h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/10" />
