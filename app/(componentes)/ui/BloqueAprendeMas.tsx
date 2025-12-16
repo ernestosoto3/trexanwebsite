@@ -1,7 +1,6 @@
 import Seccion from "./Seccion";
 import Link from "next/link";
 
-
 const sectores = [
   {
     nombre: "Recolección y Acopio",
@@ -41,8 +40,11 @@ export default function BloquesAprendeMas() {
           {sectores.map((s) => (
             <div
               key={s.nombre}
-              className="bg-white shadow-sm border border-zinc-200 overflow-hidden flex flex-col"
+              className="relative bg-white shadow-2xl overflow-hidden flex flex-col"
             >
+              {/* Orange strip at the top - ADDED */}
+              <div className="absolute top-0 left-0 w-full h-2 bg-orange-600 z-10" />
+              
               <div className="h-32 w-full bg-white relative p-5">
                 <div className="absolute top-4 left-4">
                   <img 
@@ -52,14 +54,11 @@ export default function BloquesAprendeMas() {
                   />
                 </div>
               </div>
-
               <div className="p-5 flex flex-col flex-1 bg-white">
                 <h3 className="text-lg font-semibold text-zinc-900">
                   {s.nombre}
                 </h3>
-
                 <p className="text-zinc-600 mt-1 flex-1">{s.descripcion}</p>
-
                 <div className="mt-3">
                   <Link
                     href={s.href}

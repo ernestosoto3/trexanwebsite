@@ -162,12 +162,12 @@ export default function Header() {
           {/* Nosotros dropdown */}
           <div className="relative group">
             <Link
-              href="/nosotros"
+              href="/nuestraempresa"
               className={cn("inline-flex items-center gap-1.5", linkClass(isInAboutSection))}
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Nosotros
+              Nuestra Empresa
               <ChevronDown className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
             </Link>
 
@@ -187,7 +187,7 @@ export default function Header() {
                   role="menuitem"
                   className={dropdownItemClass(isActive("/nosotros"))}
                 >
-                  Sobre nosotros
+                  Sobre Nosotros
                 </Link>
                 {aboutDropdown.map((item) => (
                   <Link

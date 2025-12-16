@@ -2,6 +2,7 @@ import Button from "./(componentes)/ui/Button";
 import BloquesAprendeMas from "./(componentes)/ui/BloqueAprendeMas";
 import ComoTrabajamosComoAyudamos from "./(componentes)/ui/ComoTrabajamosComoAyudamos";
 import Image from "next/image";
+import Link from "next/link";
 
 const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
 
@@ -38,24 +39,31 @@ const FEATURES = [
   },
 ] as const;
 
+// Updated NEWS_CARDS with filler content matching the inspiration
 const NEWS_CARDS = [
   {
-    title: "Toma aérea de instalaciones",
-    description: "Centros integrados que permiten controlar cada etapa del reciclaje.",
+    title: "Trexan Reconocida con Premio de Sustentabilidad Nacional",
+    date: "Diciembre 15, 2025",
+    excerpt: "Trexan ha sido seleccionada para recibir el Premio Nacional de Sustentabilidad, un reconocimiento anual otorgado a empresas que demuestran excelencia en prácticas ambientales y economía circular...",
     image: "/images/home/aerial-facility.png",
     alt: "Vista aérea de las instalaciones de reciclaje Trexan con áreas de procesamiento organizadas",
+    href: "/noticias/premio-sustentabilidad-2025"
   },
   {
-    title: "Línea de procesamiento",
-    description: "Trituración y separación con estándares internacionales.",
+    title: "Transformando Residuos Industriales en Activos Estratégicos: Economía Circular",
+    date: "Noviembre 19, 2025",
+    excerpt: "Los residuos industriales representan más que un desafío de disposición. Son una oportunidad sin explotar esperando ser desbloqueada. Las empresas con visión de futuro en manufactura, energía y tecnología...",
     image: "/images/home/processing-line.png",
     alt: "Línea de procesamiento industrial con maquinaria de trituración y separación de materiales",
+    href: "/noticias/residuos-a-activos-estrategicos"
   },
   {
-    title: "Patio y logística",
-    description: "Organización en patios para resguardar y clasificar materiales.",
+    title: "Fortaleciendo Relaciones con Clientes del Sector Electrónico: Ventaja Estratégica",
+    date: "Octubre 2, 2025",
+    excerpt: "En el mundo competitivo de la gestión de residuos electrónicos, tu éxito depende no solo de lo que recolectas, sino de hacia dónde va. Como fabricante de componentes electrónicos...",
     image: "/images/home/recycling-yard.png",
     alt: "Patio de logística con materiales clasificados y organizados para reciclaje",
+    href: "/noticias/relaciones-sector-electronico"
   },
 ] as const;
 
@@ -63,13 +71,15 @@ const NEWS_CARDS = [
 const SectionHeader = ({ 
   label, 
   title, 
-  description 
+  description,
+  align = "center"
 }: { 
   label?: string; 
   title: string; 
   description?: string;
+  align?: "left" | "center";
 }) => (
-  <div className="text-center space-y-3">
+  <div className={`space-y-3 ${align === "center" ? "text-center" : "text-left"}`}>
     {label && (
       <p className="text-xs font-semibold tracking-[0.25em] uppercase text-emerald-700">
         {label}
@@ -77,7 +87,7 @@ const SectionHeader = ({
     )}
     <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">{title}</h2>
     {description && (
-      <p className="text-base md:text-lg max-w-3xl mx-auto text-zinc-600">
+      <p className={`text-base md:text-lg text-zinc-600 ${align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl"}`}>
         {description}
       </p>
     )}
@@ -103,8 +113,8 @@ export default function HomePage() {
         <div className="section relative flex min-h-[70vh] items-center py-16 md:py-20">
           <div className="max-w-4xl text-white space-y-6">
             <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-              <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
-              Trexan Recycling Group
+              <span className="h-2 w-2 bg-[--color-primary]" />
+              Recibasicos - Trexan Recycling Group
             </span>
 
             <h1 className="text-4xl md:text-6xl font-semibold leading-tight">
@@ -148,8 +158,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SERVICES BAND (BACKGROUND IMAGE) */}
-      <section className="relative bg-white">
+      {/* SERVICES BAND (BACKGROUND IMAGE) - WITH ORANGE STRIP */}
+      <section className="relative bg-white overflow-hidden">
+        {/* Orange strip at the top */}
+        <div className="absolute top-0 left-0 w-full h-2 bg-orange-600 z-10" />
         <div
           className="h-[22rem] md:h-[28rem] bg-cover bg-center"
           style={{ backgroundImage: "url('/images/industrias/GRUPO TREXAN-2.jpg')" }}
@@ -240,13 +252,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ¿POR QUÉ? */}
+      {/* ¿POR QUÉ? - LEFT ALIGNED */}
       <section className="py-16 md:py-20 bg-white">
         <div className="section">
           <div className="mb-10">
             <SectionHeader
               title="¿Por qué las empresas trabajan con nosotros?"
               description="Cumplimos con normativas, cuidamos la seguridad y mantenemos evidencia clara de cada retiro."
+              align="left"
             />
           </div>
 
@@ -265,48 +278,69 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEWS STYLE CARDS */}
-      <section className="py-16 md:py-20 bg-[#f7f7f5]">
+      {/* NEWS STYLE CARDS - WITH BUTTON IN HEADER */}
+      <section className="pt-8 pb-16 md:pt-12 md:pb-20 bg-[#f7f7f5]">
         <div className="section space-y-10">
-          <SectionHeader
-            title="Noticias que Respaldan Nuestro Servicio"
-            description="Tres momentos de nuestra operación que muestran logística, seguridad y control en sitio."
-          />
+          {/* Header with Button on Right */}
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+            {/* Title and Description */}
+            <div className="space-y-3 text-left flex-1">
+              <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">
+                Noticias y Actualizaciones
+              </h2>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+            {/* Button on Right */}
+          <div className="text-left pt-4">
+            <Link
+              href="/noticias"
+              className="inline-flex items-center gap-2 text-emerald-700 font-semibold hover:text-emerald-800 transition-colors"
+            >
+              Ver todas las noticias
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          </div>
+
+          {/* News Cards Grid */}
+          <div className="grid md:grid-cols-3 gap-8">
             {NEWS_CARDS.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="bg-white border border-zinc-200 shadow-sm h-full flex flex-col transition-shadow duration-200 hover:shadow-md"
+                href={card.href}
+                className="relative group bg-white border border-zinc-200 h-full flex flex-col transition-all duration-300 hover:shadow-lg overflow-hidden"
               >
-                <div className="relative h-48 overflow-hidden">
+                {/* Orange strip at the top */}
+                <div className="absolute top-0 left-0 w-full h-2 bg-orange-600 z-10" />
+                
+                {/* Image Section */}
+                <div className="relative h-56 overflow-hidden">
                   <img
                     src={card.image}
                     alt={card.alt}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/10" />
+                  <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors duration-300" />
                 </div>
 
+                {/* Content Section */}
                 <div className="p-6 space-y-3 flex-1 flex flex-col">
-                  <h3 className="text-lg md:text-xl font-semibold text-zinc-900">
+                  {/* Date */}
+                  <time className="text-xs md:text-sm text-emerald-700 font-medium">
+                    {card.date}
+                  </time>
+
+                  {/* Title */}
+                  <h3 className="text-lg md:text-xl font-semibold text-zinc-900 leading-snug group-hover:text-emerald-700 transition-colors duration-200">
                     {card.title}
                   </h3>
-                  <p className="text-sm md:text-base text-zinc-600 leading-relaxed">
-                    {card.description}
-                  </p>
 
-                  <div className="mt-auto pt-4">
-                    <Button
-                      href="/operaciones"
-                      variant="outline"
-                      className="text-black border-[--color-primary] hover:text-white"
-                    >
-                      Ver más
-                    </Button>
-                  </div>
+                  {/* Excerpt */}
+                  <p className="text-sm md:text-base text-zinc-600 leading-relaxed line-clamp-3 flex-1">
+                    {card.excerpt}
+                  </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
