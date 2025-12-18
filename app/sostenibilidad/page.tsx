@@ -123,7 +123,7 @@ export default function SostenibilidadPage() {
             <div className="flex justify-center md:justify-start">
               <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
                 <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
-                Trexan Recycling Group
+                Sostenibilidad
               </span>
             </div>
             <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
