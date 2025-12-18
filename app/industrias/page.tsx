@@ -1,4 +1,5 @@
 import Seccion from "../(componentes)/ui/Seccion";
+import Link from "next/link";
 import Image from "next/image";
 import Button from "../(componentes)/ui/Button";
 
@@ -9,16 +10,6 @@ interface IconProps {
   name: string; // or a more specific type like 'facebook' | 'twitter' if known
   color: string;
 }
-
-const IconComponent = ({ name, color }: IconProps) => (
-  <div
-    className="w-10 h-10 flex items-center justify-center rounded-full"
-    style={{ backgroundColor: color, color: 'white' }}
-  >
-    {/* Replace '🌟' with an actual icon component like <Star /> or <FaStar /> */}
-    <span className="text-xl">🌟</span> 
-  </div>
-);
 
 const sectores = [
   {
@@ -54,7 +45,7 @@ const sectores = [
     descripcion:
       "Ofrecemos retiro y reciclaje seguro de hardware con destrucción certificada de datos para empresas de TI y data centers.",
     img: "/images/industrias/gobierno.jpg",
-    href: "/industrias/tecnología",
+    href: "/industrias/tecnologia",
   },
   {
     nombre: "Salud",
@@ -146,10 +137,10 @@ export default function IndustriasPage() {
                   <div className="max-w-4xl text-white space-y-6">
                     <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider ">
                       <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
-                          Trexan Recycling Group
+                          Industrias
                       </span>
                       <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
-                          Liderando la Transformación Circular de los Residuos Electrónicos
+                          Soluciones Sustentables para Cada Industria
                       </h1>
                   </div>
                 </div>        
@@ -213,13 +204,25 @@ export default function IndustriasPage() {
                   </p>
                   {/* Button area: mt-auto pt-4 */}
                   <div className="mt-auto pt-4">
-                    <Button
+                    <Link
                       href={s.href}
-                      variant="outline"
-                      className="text-black border-emerald-700 hover:text-white hover:bg-emerald-700" 
+                      className="inline-flex items-center gap-2 border-2 border-[#0d5745] text-[#0d5745] px-6 py-3 font-semibold hover:bg-[#0d5745] hover:text-white transition-all duration-300"
                     >
                       Ver Más
-                    </Button>
+                      <svg
+                        className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </article>
@@ -279,17 +282,6 @@ export default function IndustriasPage() {
                   >
                     {s.descripcion}
                   </p>
-                  
-                  {/* Button area: mt-auto pt-4 */}
-                  <div className="mt-auto pt-4">
-                    <Button
-                      href={s.href}
-                      variant="outline"
-                      className="text-black border-emerald-700 hover:text-white hover:bg-emerald-700" 
-                    >
-                      Conoce las ventajas
-                    </Button>
-                  </div>
                 </div>
               </article>
             ))}

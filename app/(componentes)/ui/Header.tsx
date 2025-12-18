@@ -81,7 +81,7 @@ export default function Header() {
   };
 
   const isInAboutSection = useMemo(() => {
-    return ["/nosotros", "/sostenibilidad", "/certificaciones", "/noticias"].some(
+    return [ "/nuestraempresa", "/nosotros", "/sostenibilidad", "/certificaciones", "/noticias"].some(
       (path) => pathname === path || pathname.startsWith(path + "/")
     );
   }, [pathname]);
