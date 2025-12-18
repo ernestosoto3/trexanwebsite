@@ -1,19 +1,234 @@
-import { sanityClient } from '@/lib/sanity'
-import { qNoticias } from '@/lib/queries'
+// app/noticias/page.tsx
+import Link from "next/link";
+import Image from "next/image";
+import { sanityClient } from "@/lib/sanity";
+import { qNoticias } from "@/lib/queries";
+
+const IMAGES = {
+  hero: "/images/industrias/GRUPO TREXAN-74.jpg",
+} as const;
+
+const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
+
+// Fallback cards (si Sanity no trae 6 todavía)
+const FALLBACK_NEWS = [
+  {
+    title: "Trexan Reconocida con Premio de Sustentabilidad Nacional",
+    date: "Diciembre 15, 2025",
+    excerpt:
+      "Trexan ha sido seleccionada para recibir el Premio Nacional de Sustentabilidad, un reconocimiento anual otorgado a empresas que demuestran excelencia en sostenibilidad.",
+    href: "/noticias/trexan-premio-sustentabilidad",
+    image: "/images/noticias/placeholder-1.jpg",
+    alt: "Premio de sostenibilidad",
+  },
+  {
+    title: "Transformando Residuos Industriales en Activos Estratégicos: Economía Circular",
+    date: "Noviembre 19, 2025",
+    excerpt:
+      "Los residuos industriales representan más que un desafío de disposición. Son una oportunidad para recuperar valor, fortalecer cumplimiento y elevar desempeño ambiental.",
+    href: "/noticias/economia-circular-activos-estrategicos",
+    image: "/images/noticias/placeholder-2.jpg",
+    alt: "Economía circular",
+  },
+  {
+    title: "Fortaleciendo Relaciones con Clientes del Sector Electrónico: Ventaja Estratégica",
+    date: "Octubre 2, 2025",
+    excerpt:
+      "En un entorno competitivo de gestión de residuos electrónicos, el éxito depende también de trazabilidad, comunicación y consistencia en los procesos.",
+    href: "/noticias/sector-electronico-ventaja-estrategica",
+    image: "/images/noticias/placeholder-3.jpg",
+    alt: "Relaciones con clientes",
+  },
+  {
+    title: "Trazabilidad de Residuos: Cómo Prepararse para Auditorías y Requisitos ESG",
+    date: "Septiembre 18, 2025",
+    excerpt:
+      "La trazabilidad reduce riesgos, facilita auditorías y mejora la visibilidad de KPIs ambientales. Te explicamos cómo estructurar un flujo confiable de evidencia.",
+    href: "/noticias/trazabilidad-auditorias-esg",
+    image: "/images/noticias/placeholder-4.jpg",
+    alt: "Trazabilidad y auditoría",
+  },
+  {
+    title: "Buenas Prácticas en Recolección y Manejo de Residuos Electrónicos",
+    date: "Agosto 27, 2025",
+    excerpt:
+      "Desde clasificación hasta transporte seguro: un marco práctico para mejorar operaciones, reducir incidentes y aumentar la valorización.",
+    href: "/noticias/buenas-practicas-recoleccion-manejo",
+    image: "/images/noticias/placeholder-5.jpg",
+    alt: "Buenas prácticas operacionales",
+  },
+  {
+    title: "Valorización Responsable: De Disposición a Recuperación de Materiales",
+    date: "Julio 9, 2025",
+    excerpt:
+      "Cuando el proceso está bien diseñado, la valorización aumenta, el desperdicio baja y la cadena completa gana eficiencia y reputación.",
+    href: "/noticias/valorizacion-responsable-recuperacion",
+    image: "/images/noticias/placeholder-6.jpg",
+    alt: "Valorización y recuperación",
+  },
+];
+
+function formatDateSpanish(input?: string) {
+  if (!input) return "";
+  const d = new Date(input);
+  if (Number.isNaN(d.getTime())) return input;
+
+  return d.toLocaleDateString("es-PR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 export default async function NoticiasPage() {
-  const noticias = await sanityClient.fetch(qNoticias)
+  const noticias = await sanityClient.fetch(qNoticias);
+
+  const fromSanity = (Array.isArray(noticias) ? noticias : []).map((n: any) => {
+    const href = n?.slug?.current ? `/noticias/${n.slug.current}` : `/noticias/${n._id}`;
+    const image =
+      n?.imagen?.asset?.url ||
+      n?.image?.asset?.url ||
+      n?.imageUrl ||
+      "/images/noticias/placeholder-1.jpg";
+
+    return {
+      title: n?.titulo ?? "Noticia",
+      date: formatDateSpanish(n?.fecha),
+      excerpt: n?.resumen ?? n?.excerpt ?? "Lee más sobre esta actualización.",
+      href,
+      image,
+      alt: n?.titulo ?? "Noticia",
+    };
+  });
+
+  // Queremos siempre 6 tarjetas:
+  const NEWS_CARDS = [...fromSanity, ...FALLBACK_NEWS].slice(0, 6);
+
   return (
-    <main className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Noticias</h1>
-      <ul className="space-y-4">
-        {noticias.map((n:any) => (
-          <li key={n._id} className="p-4 rounded-xl border">
-            <h2 className="text-xl font-semibold">{n.titulo}</h2>
-            <p className="text-sm text-gray-500">{new Date(n.fecha).toLocaleString()}</p>
-          </li>
-        ))}
-      </ul>
+    <main>
+      {/* HERO */}
+      <section className="relative isolate overflow-hidden bg-black text-white">
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src={IMAGES.hero}
+            alt="Operaciones de reciclaje electrónico de Recibásicos"
+            fill
+            priority
+            className="object-cover opacity-70"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/45" />
+        </div>
+
+        <div className="section h-[60vh] flex items-center">
+          <div className="max-w-4xl space-y-6">
+            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
+              <span className="h-2 w-2 bg-[--color-primary]" />
+              Trexan Recycling Group
+            </span>
+            <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
+              Noticias y Actualizaciones
+            </h1>
+            <p className="max-w-2xl text-white/90 text-base md:text-lg leading-relaxed">
+              Conoce avances, reconocimientos y guías prácticas sobre trazabilidad, valorización y economía circular.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* NEWS STYLE CARDS - 6 CLICKABLE */}
+      <section className="pt-8 pb-16 md:pt-12 md:pb-20 bg-[#f7f7f5]">
+        <div className="section space-y-10">
+          {/* Header with Button on Right */}
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+            <div className="space-y-3 text-left flex-1">
+              <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">
+                Noticias y Actualizaciones
+              </h2>
+              <p className="text-zinc-600 max-w-2xl">
+                Publicaciones recientes sobre cumplimiento, procesos y resultados para apoyar a tu organización.
+              </p>
+            </div>
+          </div>
+
+          {/* News Cards Grid */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {NEWS_CARDS.map((card) => (
+              <Link
+                key={`${card.title}-${card.date}`}
+                href={card.href}
+                className="relative group bg-white border border-zinc-200 h-full flex flex-col transition-all duration-300 hover:shadow-lg overflow-hidden"
+              >
+                {/* Orange strip at the top */}
+                <div className="absolute top-0 left-0 w-full h-2 bg-orange-600 z-10" />
+
+                {/* Image Section */}
+                <div className="relative h-56 overflow-hidden">
+                  {/* Puedes cambiar a <Image /> si todas las URLs son compatibles con next/image */}
+                  <img
+                    src={card.image}
+                    alt={card.alt}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors duration-300" />
+                </div>
+
+                {/* Content Section */}
+                <div className="p-6 space-y-3 flex-1 flex flex-col">
+                  <time className="text-xs md:text-sm text-emerald-700 font-medium">
+                    {card.date}
+                  </time>
+
+                  <h3 className="text-lg md:text-xl font-semibold text-zinc-900 leading-snug group-hover:text-emerald-700 transition-colors duration-200">
+                    {card.title}
+                  </h3>
+
+                  <p className="text-sm md:text-base text-zinc-600 leading-relaxed line-clamp-3 flex-1">
+                    {card.excerpt}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="relative">
+        <div className="relative min-h-[26rem] md:min-h-[32rem] overflow-hidden">
+          <Image
+            src={mountainsImage}
+            alt="Paisaje que representa un futuro más limpio"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/55" />
+
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="section">
+              <div className="max-w-3xl mx-auto bg-white px-6 py-10 md:px-10 md:py-12 text-center shadow-xl">
+                <p className="text-xs font-semibold tracking-[0.25em] uppercase text-emerald-700">
+                  Da el siguiente paso
+                </p>
+                <h2 className="mt-3 text-2xl md:text-3xl font-semibold text-zinc-900">
+                  ¿Listos para trabajar con trazabilidad y seguridad?
+                </h2>
+                <p className="mt-4 text-sm md:text-base text-zinc-600 leading-relaxed">
+                  Conversemos sobre cómo estructurar un esquema de recolección, trazabilidad y valorización
+                  alineado a tus procesos, auditorías y objetivos de sostenibilidad.
+                </p>
+                <a
+                  href="/contacto"
+                  className="mt-8 inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold bg-emerald-700 text-white hover:bg-emerald-800 transition-colors"
+                >
+                  Solicitar Cotización
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-  )
+  );
 }
