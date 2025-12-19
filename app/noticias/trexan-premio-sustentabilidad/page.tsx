@@ -40,7 +40,6 @@ export default function NoticiaTrexanPremioPage() {
         </div>
       </section>
 
-      {/* Full width-ish image */}
       <section className="pb-10">
         <div className="section">
           <div className="relative w-full overflow-hidden border-zinc-200">

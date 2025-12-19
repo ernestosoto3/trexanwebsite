@@ -109,7 +109,7 @@ export default function SostenibilidadPage() {
       <section className="relative isolate overflow-hidden bg-black text-white">
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/images/industrias/GRUPO TREXAN-31.jpg"
+            src="/images/naturaleza/river-rafting.jpg"
             alt="Sostenibilidad y economía circular en Recibásicos"
             fill
             priority
@@ -171,7 +171,7 @@ export default function SostenibilidadPage() {
             </div>
 
             <ResponsiveImage
-              src="/images/industrias/GRUPO TREXAN-31.jpg"
+              src="/images/naturaleza/cactus.jpg"
               alt="Operaciones de Trexan"
             />
           </div>
@@ -179,7 +179,7 @@ export default function SostenibilidadPage() {
           {/* Row 2: Image Left, Text Right */}
           <div className="grid md:grid-cols-2">
             <ResponsiveImage
-              src="/images/home/aerial-facility.png"
+              src="/images/naturaleza/river-mexico.jpg"
               alt="Compromiso con la sostenibilidad"
             />
 
@@ -237,7 +237,7 @@ export default function SostenibilidadPage() {
       </section>
 
       {/* KPI INDICATORS SECTION */}
-      <section className="py-16 md:py-20 bg-green-800">
+      <section className="py-16 md:py-20 bg-emerald-700">
         <div className="section">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
@@ -284,7 +284,7 @@ export default function SostenibilidadPage() {
             {/* PDF Preview Container */}
             <div className="border border-zinc-300 rounded-lg overflow-hidden shadow-lg bg-zinc-50">
               {/* Placeholder for PDF */}
-              <div className="aspect-[16/9] bg-gradient-to-br from-emerald-100 to-green-50 flex flex-col items-center justify-center p-6">
+              <div className="aspect-video bg-linear-to-br from-emerald-100 to-green-50 flex flex-col items-center justify-center p-6">
                 <div className="max-w-md text-center space-y-4">
                   <div className="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-md">
                     <svg 
