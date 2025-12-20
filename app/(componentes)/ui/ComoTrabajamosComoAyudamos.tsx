@@ -51,7 +51,7 @@ function ComoTrabajamosColumn() {
         <Button
           href="/nosotros"
           variant="primary"
-          className="w-full border-emerald-300/70 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
+          className="w-full border-emerald-300/70 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
         >
           Conoce cómo trabajamos →
         </Button>
@@ -108,7 +108,7 @@ function ComoAyudamosColumn() {
         <Button
           href="/contacto"
           variant="primary"
-          className="w-full border-emerald-300/70 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
+          className="w-full border-emerald-300/70 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none"
         >
           Hablar con un asesor →
         </Button>
@@ -119,7 +119,7 @@ function ComoAyudamosColumn() {
 
 export default function HowWeWorkHelpSection() {
   return (
-    <section className="py-8 bg-green-800 text-white">
+    <section className="py-8 bg-emerald-700 text-white">
       <div className="section">
         <div className="grid lg:grid-cols-2 gap-12">
           <ComoTrabajamosColumn />

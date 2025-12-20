@@ -85,9 +85,9 @@ const SectionHeader = ({
         {label}
       </p>
     )}
-    <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">{title}</h2>
+    <h2 className=" text-center text-3xl md:text-4xl font-bold text-zinc-900">{title}</h2>
     {description && (
-      <p className={`text-base md:text-lg text-zinc-600 ${align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl"}`}>
+      <p className={`text-base text-center md:text-lg text-zinc-600`}>
         {description}
       </p>
     )}
@@ -95,8 +95,8 @@ const SectionHeader = ({
 );
 
 // Shared button classes as constants
-const PRIMARY_BUTTON_CLASSES = "border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none";
-const SECONDARY_BUTTON_CLASSES = "border-emerald-300/70 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none";
+const PRIMARY_BUTTON_CLASSES = "border-emerald-700 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none";
+const SECONDARY_BUTTON_CLASSES = "border-emerald-300/70 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none";
 
 export default function HomePage() {
   return (
@@ -190,7 +190,7 @@ export default function HomePage() {
 
           {/* Text Content */}
           <div className="section relative z-10">
-            <div className="bg-green-800 p-8 md:p-12 w-full border border-white/10">
+            <div className="bg-emerald-700 p-8 md:p-12 w-full border border-white/10">
               <div className="text-center text-white space-y-6 max-w-5xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold leading-tight">
                   Comprometidos con la Reducción del Impacto Ambiental
@@ -212,7 +212,7 @@ export default function HomePage() {
       <ComoTrabajamosComoAyudamos />
 
       {/* SECTORES */}
-      <section className="py-8 bg-green-800 text-white">
+      <section className="py-8 bg-emerald-700 text-white">
         <div className="section">
           <div className="border-t border-emerald-300/70 pt-6">
             <p className="text-sm font-medium tracking-[0.2em] uppercase text-emerald-300">
@@ -221,7 +221,7 @@ export default function HomePage() {
 
             <div className="mt-3 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-                Confiados en muchos sectores
+                Confiados en Diferentes Sectores
               </h2>
               <Button
                 href="/industrias"

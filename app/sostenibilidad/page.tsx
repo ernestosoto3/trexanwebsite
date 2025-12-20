@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import CountUpDispositivos from "../(componentes)/ui/CountUpDispositivos";
 
 // KPIs data
 const kpis = [
@@ -66,7 +67,7 @@ function ResponsiveImage({
 const SUSTAINABILITY_AREAS = [
   {
     icon: (
-      <svg className="w-12 h-12 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-12 h-12 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     ),
@@ -75,7 +76,7 @@ const SUSTAINABILITY_AREAS = [
   },
   {
     icon: (
-      <svg className="w-12 h-12 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-12 h-12 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -84,7 +85,7 @@ const SUSTAINABILITY_AREAS = [
   },
   {
     icon: (
-      <svg className="w-12 h-12 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-12 h-12 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
@@ -93,7 +94,7 @@ const SUSTAINABILITY_AREAS = [
   },
   {
     icon: (
-      <svg className="w-12 h-12 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-12 h-12 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     ),
@@ -122,7 +123,7 @@ export default function SostenibilidadPage() {
           <div className="max-w-4xl space-y-6 text-center md:text-left">
             <div className="flex justify-center md:justify-start">
               <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-                <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
+                <span className="h-2 w-2 bg-[--color-primary]" />
                 Sostenibilidad
               </span>
             </div>
@@ -216,7 +217,7 @@ export default function SostenibilidadPage() {
             {SUSTAINABILITY_AREAS.map((area) => (
               <div
                 key={area.title}
-                className="bg-white border border-zinc-200 p-8 space-y-4 hover:shadow-lg transition-shadow duration-200"
+                className="bg-white border border-zinc-200 p-8 space-y-4 hover:shadow-2xl transition-shadow duration-200"
               >
                 {/* Icon */}
                 <div className="mb-4">{area.icon}</div>
@@ -236,36 +237,49 @@ export default function SostenibilidadPage() {
         </div>
       </section>
 
-      {/* KPI INDICATORS SECTION */}
       <section className="py-16 md:py-20 bg-emerald-700">
         <div className="section">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-10">
+            
+            {/* Header */}
+            <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 Indicadores de Desempeño Ambiental
               </h2>
-              <div className="h-1 w-20 bg-orange-500 mx-auto" />
-              <p className="mt-6 text-lg text-white">
+
+              {/* CountUp */}
+              <div className="flex flex-col items-center gap-3">
+                <CountUpDispositivos />
+                <p className="text-white/90 text-base md:text-lg font-medium">
+                  Dispositivos reciclados desde el comienzo del 2025
+                </p>
+              </div>
+
+              <p className="mt-8 text-lg text-white">
                 Cumplimos con normativas internacionales (GHG Protocol, ISO 14064, GRI) y mantenemos 
                 evidencia clara de cada operación.
               </p>
             </div>
 
+            {/* KPIs */}
             <div className="grid md:grid-cols-2 gap-6">
               {kpis.map((kpi, index) => (
                 <div
                   key={index}
-                  className="bg-white border border-emerald-200 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+                  className="bg-white border border-emerald-700 p-6 shadow-sm hover:shadow-md transition-shadow duration-200"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-emerald-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                    <div className="flex-shrink-0 w-8 h-8 bg-emerald-700 text-white rounded-full flex items-center justify-center font-semibold text-sm">
                       {index + 1}
                     </div>
-                    <p className="text-zinc-700 leading-relaxed pt-1">{kpi}</p>
+                    <p className="text-zinc-700 leading-relaxed pt-1">
+                      {kpi}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </section>
@@ -282,13 +296,13 @@ export default function SostenibilidadPage() {
             </p>
             
             {/* PDF Preview Container */}
-            <div className="border border-zinc-300 rounded-lg overflow-hidden shadow-lg bg-zinc-50">
+            <div className="border border-zinc-300 overflow-hidden shadow-lg bg-zinc-50">
               {/* Placeholder for PDF */}
-              <div className="aspect-video bg-linear-to-br from-emerald-100 to-green-50 flex flex-col items-center justify-center p-6">
+              <div className="aspect-video bg-linear-to-br from-emerald-200 to-green-50 flex flex-col items-center justify-center p-6">
                 <div className="max-w-md text-center space-y-4">
                   <div className="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-md">
                     <svg 
-                      className="w-10 h-10 text-emerald-600" 
+                      className="w-10 h-10 text-emerald-700" 
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"
@@ -313,7 +327,7 @@ export default function SostenibilidadPage() {
                   <div className="pt-2">
                     <a
                       href="/contacto"
-                      className="inline-flex items-center justify-center px-5 py-2 text-sm font-semibold bg-emerald-700 text-white hover:bg-emerald-800 transition-colors rounded"
+                      className="inline-flex items-center justify-center px-5 py-2 text-sm font-semibold bg-emerald-700 text-white hover:bg-emerald-800 transition-colors"
                     >
                       Solicitar Reporte
                     </a>

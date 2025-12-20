@@ -27,12 +27,8 @@ export default function CountUpDispositivos() {
   }, []);
 
   return (
-    <p className="text-lg text-white/80 font-semibold">
-      Más de{" "}
-      <span className="text-[--color-primary] font-bold">
-        {count.toLocaleString()}
-      </span>{" "}
-      dispositivos reciclados desde el comienzo del 2025.
-    </p>
+    <span className="text-5xl md:text-6xl font-extrabold text-white tracking-tight">
+      {count.toLocaleString()}
+    </span>
   );
 }
