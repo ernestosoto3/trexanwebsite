@@ -3,6 +3,7 @@ import BloquesAprendeMas from "./(componentes)/ui/BloqueAprendeMas";
 import ComoTrabajamosComoAyudamos from "./(componentes)/ui/ComoTrabajamosComoAyudamos";
 import Image from "next/image";
 import Link from "next/link";
+import Hero from "./(componentes)/ui/Hero"
 
 const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
 
@@ -45,7 +46,7 @@ const NEWS_CARDS = [
     title: "Trexan Reconocida con Premio de Sustentabilidad Nacional",
     date: "Diciembre 15, 2025",
     excerpt: "Trexan ha sido seleccionada para recibir el Premio Nacional de Sustentabilidad, un reconocimiento anual otorgado a empresas que demuestran excelencia en prácticas ambientales y economía circular...",
-    image: "/images/home/aerial-facility.png",
+    image: "/images/industrias/GRUPO TREXAN-53.jpg",
     alt: "Vista aérea de las instalaciones de reciclaje Trexan con áreas de procesamiento organizadas",
     href: "/noticias/premio-sustentabilidad-2025"
   },
@@ -53,7 +54,7 @@ const NEWS_CARDS = [
     title: "Transformando Residuos Industriales en Activos Estratégicos: Economía Circular",
     date: "Noviembre 19, 2025",
     excerpt: "Los residuos industriales representan más que un desafío de disposición. Son una oportunidad sin explotar esperando ser desbloqueada. Las empresas con visión de futuro en manufactura, energía y tecnología...",
-    image: "/images/home/processing-line.png",
+    image: "/images/industrias/GRUPO TREXAN-22.jpg",
     alt: "Línea de procesamiento industrial con maquinaria de trituración y separación de materiales",
     href: "/noticias/residuos-a-activos-estrategicos"
   },
@@ -61,7 +62,7 @@ const NEWS_CARDS = [
     title: "Fortaleciendo Relaciones con Clientes del Sector Electrónico: Ventaja Estratégica",
     date: "Octubre 2, 2025",
     excerpt: "En el mundo competitivo de la gestión de residuos electrónicos, tu éxito depende no solo de lo que recolectas, sino de hacia dónde va. Como fabricante de componentes electrónicos...",
-    image: "/images/home/recycling-yard.png",
+    image: "/images/industrias/shaking-hands.jpg",
     alt: "Patio de logística con materiales clasificados y organizados para reciclaje",
     href: "/noticias/relaciones-sector-electronico"
   },
@@ -101,45 +102,26 @@ const SECONDARY_BUTTON_CLASSES = "border-emerald-300/70 text-white bg-emerald-70
 export default function HomePage() {
   return (
     <main className="min-h-dvh bg-white">
-      {/* HERO WITH VIDEO */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <video autoPlay loop muted playsInline className="h-full w-full object-cover">
-            <source src="/videos/solution-video-2.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/65 to-black/60" />
-        </div>
-
-        <div className="section relative flex min-h-[70vh] items-center py-16 md:py-20">
-          <div className="max-w-4xl text-white space-y-6">
-            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-              <span className="h-2 w-2 bg-[--color-primary]" />
-              Recibasicos - Trexan Recycling Group
-            </span>
-
-            <h1 className="text-4xl md:text-6xl font-semibold leading-tight">
-              Soluciones Sustentables para Residuos Electrónicos
-            </h1>
-
-            <div className="flex flex-wrap gap-4">
-              <Button
-                href="/contacto"
-                variant="primary"
-                className={PRIMARY_BUTTON_CLASSES}
-              >
-                Solicitar Cotización
-              </Button>
-              <Button
-                href="/nosotros"
-                variant="primary"
-                className={PRIMARY_BUTTON_CLASSES}
-              >
-                Conoce Nuestros Servicios
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero
+        bg={{ type: "video", src: "/videos/solution-video-2.mp4" }}
+        height="60vh"
+        badgeText="Recibasicos - Trexan Recycling Group"
+        title="Soluciones Sustentables para Residuos Electrónicos"
+        buttons={[
+          {
+            href: "/contacto",
+            label: "Solicitar Cotización",
+            variant: "primary",
+            className: "bg-emerald-700 border-emerald-700 hover:bg-emerald-800",
+          },
+          {
+            href: "/nosotros",
+            label: "Conoce Nuestros Servicios",
+            variant: "primary",
+            className: "bg-emerald-700 border-emerald-700 hover:bg-emerald-800",
+          },
+        ]}
+      />
 
       {/* TEXTO INTRODUCTORIO */}
       <section className="py-16 md:py-20 bg-white">
@@ -252,7 +234,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ¿POR QUÉ? - LEFT ALIGNED */}
+      {/* ¿POR QUÉ? */}
       <section className="py-16 md:py-20 bg-white">
         <div className="section">
           <div className="mb-10">

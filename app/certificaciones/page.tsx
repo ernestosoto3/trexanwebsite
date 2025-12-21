@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import Hero from "../(componentes)/ui/Hero"
 
 const IMAGES = {
-  hero: "/images/industrias/GRUPO TREXAN-74.jpg",
   mountains: "/images/industrias/GRUPO TREXAN-31.jpg",
 } as const;
 
@@ -123,37 +123,14 @@ function ArrowProcessBar({ steps }: { steps: Array<{ label: string; cls: string 
 export default function CertificacionesPage() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-black text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src={IMAGES.hero}
-            alt="Certificaciones y cumplimiento de Recibásicos"
-            fill
-            priority
-            className="object-cover opacity-70"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/45" />
-        </div>
+      <Hero
+        bg={{ type: "image", src: "/images/industrias/GRUPO TREXAN-74.jpg", alt: "Certificaciones" }}
+        height="60vh"
+        badgeText="Certificaciones"
+        title="Garantía de Cumplimiento y Certeza Jurídica"
+        subtitle="Operamos bajo los estándares globales más exigentes, proporcionando evidencia documental robusta para auditorías, reportes ESG y cumplimiento total ante autoridades ambientales y fiscales."
+      />
 
-        <div className="section h-[60vh] flex items-center">
-          <div className="max-w-4xl space-y-6">
-            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-              <span className="h-2 w-2 bg-[--color-primary]" />
-              Trexan Recycling Group
-            </span>
-
-            <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
-              Certificaciones, Permisos y Cumplimiento
-            </h1>
-
-            <p className="text-base md:text-lg text-white/90 max-w-3xl">
-              Operación trazable y documentada para la gestión responsable de RAEE,
-              con evidencia lista para auditorías y reportes ESG.
-            </p>
-          </div>
-        </div>
-      </section>
 
       <section className="bg-white py-10 md:py-16">
         <div className="section">

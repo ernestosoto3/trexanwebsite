@@ -3,10 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { sanityClient } from "@/lib/sanity";
 import { qNoticias } from "@/lib/queries";
+import Hero from "../(componentes)/ui/Hero";
 
-const IMAGES = {
-  hero: "/images/industrias/GRUPO TREXAN-74.jpg",
-} as const;
 
 const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
 
@@ -107,34 +105,13 @@ export default async function NoticiasPage() {
   return (
     <main>
       {/* HERO */}
-      <section className="relative isolate overflow-hidden bg-black text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src={IMAGES.hero}
-            alt="Operaciones de reciclaje electrónico de Recibásicos"
-            fill
-            priority
-            className="object-cover opacity-70"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/45" />
-        </div>
-
-        <div className="section h-[60vh] flex items-center">
-          <div className="max-w-4xl space-y-6">
-            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-              <span className="h-2 w-2 bg-[--color-primary]" />
-              Trexan Recycling Group
-            </span>
-            <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
-              Noticias y Actualizaciones
-            </h1>
-            <p className="max-w-2xl text-white/90 text-base md:text-lg leading-relaxed">
-              Conoce avances, reconocimientos y guías prácticas sobre trazabilidad, valorización y economía circular.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Hero
+        bg={{ type: "image", src: "/images/industrias/main-img-2-1.jpeg", alt: "Noticias" }}
+        height="60vh"
+        badgeText="Noticias"
+        title="Perspectivas sobre Economía Circular y Gestión de RAEE"
+        subtitle="Mantente al tanto de las últimas innovaciones, guías prácticas de cumplimiento y logros que están definiendo el futuro del reciclaje electrónico en México."
+      />
 
       {/* NEWS STYLE CARDS - 6 CLICKABLE */}
       <section className="pt-8 pb-16 md:pt-12 md:pb-20 bg-[#f7f7f5]">

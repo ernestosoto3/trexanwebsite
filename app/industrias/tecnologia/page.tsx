@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Hero from "@/app/(componentes)/ui/Hero";
 import ContactForm from "../../(componentes)/ui/ContactForm";
 
 export const metadata: Metadata = {
@@ -20,50 +21,13 @@ export default function TecnologiaPage() {
   return (
     <main className="min-h-dvh bg-white">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/industrias/tecnologia-hero.jpg"
-            alt="Infraestructura tecnológica y reciclaje responsable de hardware"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/65 to-black/60" />
-        </div>
-
-        <div className="section relative h-[60vh] flex items-center">
-          <div className="max-w-4xl text-white space-y-6">
-            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-              <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
-              Tecnología
-            </span>
-
-            <h1 className="text-4xl md:text-6xl font-semibold leading-tight">
-              Tecnología limpia: seguridad, cumplimiento y economía circular
-            </h1>
-
-            <p className="text-lg md:text-xl leading-relaxed text-white/90 max-w-3xl">
-              Retiro y reciclaje de infraestructura TI con destrucción certificada de datos y recuperación de valor.
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/contacto"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none transition-colors"
-              >
-                Solicitar Cotización
-              </Link>
-              <Link
-                href="/nosotros"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none transition-colors"
-              >
-                Conoce Nuestros Servicios
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero
+        bg={{ type: "image", src: "/images/industrias/industriatech.jpg", alt: "Industria Tecnología" }}
+        height="60vh"
+        badgeText="Tecnología"
+        title="Gestión Segura de Infraestructura TI y Datos Críticos"
+        subtitle="Brindamos soluciones de retiro, desmontaje y reciclaje de hardware para Data Centers y empresas tecnológicas, garantizando la destrucción certificada de información bajo los estándares de seguridad más estrictos de la industria."
+      />
 
       {/* INTRO TEXT */}
       <section className="py-16 md:py-20 bg-white">

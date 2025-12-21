@@ -1,10 +1,8 @@
-import Seccion from "../(componentes)/ui/Seccion";
 import Link from "next/link";
 import Image from "next/image";
-import Button from "../(componentes)/ui/Button";
+import Hero from "../(componentes)/ui/Hero";
 
 const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
-const heroImage = "/images/industrias/GRUPO TREXAN-74.jpg";
 
 interface IconProps {
   name: string; // or a more specific type like 'facebook' | 'twitter' if known
@@ -121,30 +119,13 @@ export default function IndustriasPage() {
   return (
     <>
       {/* HERO NOSOTROS */}
-      <section className="relative isolate overflow-hidden bg-black text-white">
-              <div className="absolute inset-0 -z-10">
-                <Image
-                  src={heroImage}
-                  alt="Operaciones de reciclaje electrónico de Recibásicos"
-                  fill
-                  priority
-                  className="object-cover opacity-70"
-                />
-                <div className="absolute inset-0 bg-black/45" />
-              </div>
-      
-                <div className="section h-[60vh] flex items-center relative">
-                  <div className="max-w-4xl text-white space-y-6">
-                    <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider ">
-                      <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
-                          Industrias
-                      </span>
-                      <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
-                          Soluciones Sustentables para Cada Industria
-                      </h1>
-                  </div>
-                </div>        
-        </section>
+      <Hero
+        bg={{ type: "image", src: "/images/industrias/GRUPO TREXAN-47-1.jpg", alt: "Industrias" }}
+        height="60vh"
+        badgeText="Industrias"
+        title="Soluciones de Gestión a la Medida de Cada Sector"
+        subtitle="Adaptamos nuestros procesos de valorización y cumplimiento normativo a las necesidades específicas de la industria automotriz, tecnológica, de salud y más, garantizando eficiencia operativa en todo México."
+      />
 
       {/* 1. SECTORES (Industry Cards with Image Top) */}
       <section className="py-14 bg-[#f7f7f5]">

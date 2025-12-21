@@ -1,13 +1,11 @@
 import Button from "../(componentes)/ui/Button";
 import Image from "next/image";
+import Hero from "../(componentes)/ui/Hero"
 
 export const revalidate = 60;
 
-const IMAGES = {
-  hero: "/images/industrias/GRUPO TREXAN-31.jpg",
-} as const;
 
-const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
+const paletteImage = "/images/industrias/GRUPO TREXAN-31.jpg";
 
 const CORE_VERTICALS = [
   {
@@ -56,28 +54,28 @@ const CONTENT_CARDS = [
   {
     title: "Sobre Nosotros",
     description: "Más de una década liderando el reciclaje de electrónicos en México",
-    image: "/images/home/aerial-facility.png",
+    image: "/images/industrias/DJI_0410-1.JPG",
     alt: "Instalaciones de Recibásicos mostrando infraestructura de reciclaje",
-    href: "/nosotros/historia",
+    href: "/nosotros",
   },
   {
     title: "Sostenibilidad",
     description: "Compromiso ambiental certificado en cada etapa del proceso",
-    image: "/images/industrias/GRUPO TREXAN-2.jpg",
+    image: "/images/naturaleza/river-rafting.jpg",
     alt: "Prácticas sostenibles en procesamiento de residuos electrónicos",
     href: "/sostenibilidad",
   },
   {
     title: "Certificaciones",
     description: "R2v3, ISO 14001 e ISO 45001 garantizan calidad y seguridad operacional",
-    image: "/images/home/processing-line.png",
+    image: "/images/industrias/GRUPO TREXAN-74.jpg",
     alt: "Certificaciones internacionales de calidad y medio ambiente",
     href: "/certificaciones",
   },
   {
     title: "Noticias",
     description: "Mantente informado sobre innovaciones y logros en reciclaje electrónico",
-    image: "/images/home/recycling-yard.png",
+    image: "/images/industrias/main-img-2-1.jpeg",
     alt: "Últimas noticias y actualizaciones de Recibásicos",
     href: "/noticias",
   },
@@ -111,39 +109,13 @@ export default function NosotrosPage() {
   return (
     <main className="min-h-dvh bg-white">
       {/* HERO SECTION (New style, same content) */}
-      <section className="relative isolate overflow-hidden bg-black text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src={IMAGES.hero}
-            alt="Equipo de Recibásicos trabajando en instalaciones"
-            fill
-            priority
-            className="object-cover opacity-70"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/45" />
-        </div>
-
-        <div className="section h-[60vh] flex items-center">
-          <div className="max-w-4xl space-y-6">
-
-            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-              <span className="h-2 w-2 bg-[--color-primary]" />
-              Recibásicos
-            </span>
-
-            <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
-              Nuestra Empresa
-            </h1>
-
-            <p className="text-lg md:text-xl text-white/90 max-w-3xl leading-relaxed">
-              Recibásicos es líder en gestión y valorización de residuos electrónicos,
-              transformando desafíos ambientales en oportunidades sostenibles con
-              trazabilidad total y certificaciones internacionales.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Hero
+        bg={{ type: "image", src: "/images/industrias/GRUPO TREXAN-42.jpg", alt: "Nuestra Empresa" }}
+        height="60vh"
+        badgeText="Nuestra Empresa"
+        title="Liderando el Futuro de la Valorización Electrónica"
+        subtitle="En Recibásicos transformamos desafíos ambientales en oportunidades sostenibles, garantizando trazabilidad total y certificaciones internacionales en cada proceso."
+      />
 
       {/* FOUR CORE VERTICALS */}
       <section className="py-16 md:py-20 bg-white">
@@ -238,7 +210,7 @@ export default function NosotrosPage() {
           </div>
 
           <div className="section relative z-10">
-            <div className="bg-green-800/95 backdrop-blur-sm p-8 md:p-12 w-full border border-white/10">
+            <div className="bg-emerald-700 backdrop-blur-sm p-8 md:p-12 w-full border border-white/10">
               <div className="text-center text-white space-y-6 max-w-4xl mx-auto">
                 <p className="text-xs font-semibold tracking-[0.25em] uppercase text-emerald-300">
                   Contribuimos a la Sostenibilidad
@@ -262,7 +234,7 @@ export default function NosotrosPage() {
       <section className="relative">
         <div className="relative h-80 md:h-[360px] overflow-hidden">
           <Image
-            src={mountainsImage}
+            src={paletteImage}
             alt="Paisaje que representa un futuro más limpio"
             fill
             className="object-cover"

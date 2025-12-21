@@ -1,13 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-
-import Seccion from "../(componentes)/ui/Seccion";
-import ComoOperamos from "../(componentes)/ui/ComoOperamos";
+import Hero from "../(componentes)/ui/Hero"
 
 // Centralized image paths for better maintainability
 const IMAGES = {
-  hero: "/images/industrias/GRUPO TREXAN-74.jpg",
   operations: "/images/industrias/GRUPO TREXAN-68.jpg",
   mountains: "/images/industrias/GRUPO TREXAN-31.jpg",
 } as const;
@@ -23,12 +20,8 @@ function ContentBlock({
   align?: "left" | "right";
 }) {
   return (
-    <div className="flex items-center p-6 md:p-8 lg:p-12">
-      <div
-        className={`max-w-lg mx-auto md:mx-0 text-center ${
-          align === "right" ? "md:text-right" : "md:text-left"
-        }`}
-      >
+    <div className="flex items-center justify-center px-6 md:px-12 lg:px-16 py-12 md:py-16">
+      <div className={`max-w-lg text-center ${align === "right" ? "md:text-right" : "md:text-left"}`}>
         <h2 className="text-3xl md:text-4xl font-semibold mb-4 md:mb-6">
           {title}
         </h2>
@@ -68,31 +61,13 @@ export default function NosotrosPage() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative isolate overflow-hidden bg-black text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src={IMAGES.hero}
-            alt="Operaciones de reciclaje electrónico de Recibásicos"
-            fill
-            priority
-            className="object-cover opacity-70"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/45" />
-        </div>
-
-        <div className="section h-[60vh] flex items-center">
-          <div className="max-w-4xl space-y-6">
-            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-              <span className="h-2 w-2 bg-[--color-primary]" />
-              Trexan Recycling Group
-            </span>
-            <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
-              Liderando la Transformación Circular de los Residuos Electrónicos
-            </h1>
-          </div>
-        </div>
-      </section>
+      <Hero
+        bg={{ type: "image", src: "/images/industrias/DJI_0410-1.JPG", alt: "Sobre Nosotros" }}
+        height="60vh"
+        badgeText="Sobre Nosotros"
+        title="Conectando los Residuos de Hoy con los Recursos del Mañana"
+        subtitle="Como parte de Trexan Recycling Group, combinamos ingeniería avanzada y cumplimiento normativo para transformar pasivos ambientales en recursos estratégicos para la industria global."
+      />
 
       {/* INTRODUCTION */}
       <section className="bg-white py-10 md:py-16">
@@ -106,11 +81,11 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* TWO-COLUMN CONTENT SECTIONS */}
-      <section className="bg-zinc-50 py-7 md:py-8">
-        <div className="mx-auto max-w-7xl px-0 md:px-4">
+      {/* TWO-COLUMN CONTENT SECTIONS - EDGE TO EDGE */}
+      <section className="bg-zinc-50 py-0">
+        <div className="w-full">
           {/* Row 1: Text Left, Image Right */}
-          <div className="grid md:grid-cols-2 md:items-stretch">
+          <div className="grid md:grid-cols-2">
             <ContentBlock title="Nuestra Trayectoria">
               <p>
                 Somos una empresa mexicana especializada en el acopio,
@@ -132,9 +107,9 @@ export default function NosotrosPage() {
           </div>
 
           {/* Row 2: Image Left, Text Right */}
-          <div className="grid md:grid-cols-2 md:items-stretch">
+          <div className="grid md:grid-cols-2">
             <ResponsiveImage
-              src={IMAGES.hero}
+              src= "/images/industrias/DJI_0410-1.JPG"
               alt="Operaciones industriales de valorización de metales"
             />
 
@@ -155,7 +130,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* ENHANCED CIRCULAR ECONOMY SECTION - MATCHING HOME PAGE STYLE */}
-      <section className="bg-[#0d5745] py-16 md:py-24 text-white">
+      <section className="bg-emerald-700 py-16 md:py-24 text-white">
         <div className="section">
           <div className="max-w-7xl mx-auto">
             {/* Section Header */}
@@ -269,33 +244,93 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* ENHANCED HOW WE OPERATE SECTION - MATCHING HOME PAGE STYLE */}
+      {/* ENHANCED HOW WE OPERATE SECTION - NEW TREXAN/RECIBASICOS/EWR SECTION */}
       <section className="bg-white py-16 md:py-24">
         <div className="section">
           <div className="max-w-7xl mx-auto">
             
-            {/* Two Column Layout - Matching Home Page */}
+            {/* TREXAN RECYCLING GROUP - INTRODUCTION PARAGRAPH */}
+            <div className="mb-16 text-center">
+              <div className="mb-8">
+                {/* Trexan Logo - HERO SIZE */}
+                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-[160px]">
+                  <Image
+                    src="/images/partners/trexan.png"
+                    alt="Trexan Recycling Group Logo"
+                    width={800}
+                    height={320}
+                    className="w-full h-auto"
+                    priority
+                  />
+                </div>
+                
+                <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6 mt-8">
+                  Trexan Recycling Group
+                </h2>
+              </div>
+              
+              <div className="max-w-4xl mx-auto space-y-4 text-base md:text-lg text-zinc-700 leading-relaxed mb-8">
+                <p>
+                  Trexan Recycling Group es un conglomerado líder en la gestión integral 
+                  de residuos electrónicos en México y Latinoamérica. Con más de 40 años 
+                  de experiencia acumulada en la industria del reciclaje y valorización de 
+                  metales, operamos bajo los más altos estándares internacionales.
+                </p>
+                <p>
+                  Nuestra misión es transformar los pasivos ambientales en recursos valiosos, 
+                  integrando tecnología, cumplimiento normativo y economía circular para 
+                  ofrecer soluciones completas desde el acopio hasta la refinación final de 
+                  metales preciosos.
+                </p>
+              </div>
+
+              <a
+                href="https://trexan.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border-2 border-[#0d5745] text-[#0d5745] px-6 py-3 font-semibold hover:bg-[#0d5745] hover:text-white transition-all duration-300"
+              >
+                Visitar sitio web de Trexan
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-zinc-300 mb-16"></div>
+
+            {/* Two Column Layout - Recibásicos & EWR */}
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
               
-              {/* Left Column - Como Trabajamos */}
+              {/* Left Column - Recibásicos */}
               <div>
-                <p className="text-sm uppercase tracking-wider text-[#0d5745] mb-2">
-                  CÓMO TRABAJAMOS
+                {/* Recibásicos Logo - LARGER */}
+                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-[160px]">
+                  <Image
+                    src="/images/partners/recibasicos.png"
+                    alt="Recibásicos Logo"
+                    width={600}
+                    height={220}
+                    className="w-full h-auto"
+                  />
+                </div>
+                <br></br>
+                <p className="text-sm uppercase tracking-wider text-[#0d5745] mb-2 text-center">
+                  ACOPIO Y PROCESOS FRÍOS
                 </p>
-                <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6">
-                  Nuestro equipo marca la diferencia
+                <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 text-center">
+                  Recibásicos
                 </h2>
                 
                 <div className="space-y-4 text-base md:text-lg text-zinc-700 leading-relaxed mb-6">
                   <p>
-                    Nuestro equipo combina disciplina industrial con conocimiento 
-                    profundo en la gestión integral de residuos electrónicos. 
-                    Trabajamos desde la recepción y clasificación hasta la 
-                    refinación de metales, integrando procesos claros, trazables 
-                    y auditables en cada etapa.
+                    Recibásicos es la división especializada en el acopio, recolección, 
+                    almacenamiento, clasificación y desmantelamiento de Residuos de 
+                    Aparatos Eléctricos y Electrónicos (RAEE).
                   </p>
                   <p className="font-medium text-zinc-900">
-                    Tratamos cada relación como una alianza estratégica:
+                    Nuestra especialidad:
                   </p>
                 </div>
 
@@ -303,16 +338,24 @@ export default function NosotrosPage() {
                   <li className="flex items-start gap-3">
                     <span className="text-[#0d5745] font-bold text-lg mt-0.5">•</span>
                     <span className="text-base text-zinc-700">
-                      Diseñamos rutas de retiro seguras y alineamos la operación 
-                      con tus metas de cumplimiento y sostenibilidad.
+                      Operamos los procesos fríos de desmantelamiento mecánico, 
+                      separación y clasificación de componentes electrónicos sin 
+                      procesos térmicos.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-[#0d5745] font-bold text-lg mt-0.5">•</span>
                     <span className="text-base text-zinc-700">
-                      Operamos con transparencia, generando evidencia fotográfica 
-                      y documental respaldada por certificaciones como R2v3, ISO 
-                      14001 e ISO 45001.
+                      Generamos evidencia documental completa respaldada por 
+                      certificaciones R2v3, ISO 14001 e ISO 45001 para garantizar 
+                      trazabilidad y cumplimiento normativo.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#0d5745] font-bold text-lg mt-0.5">•</span>
+                    <span className="text-base text-zinc-700">
+                      Preparamos concentrados metálicos clasificados y listos para 
+                      envío a la siguiente etapa de refinación en EWR.
                     </span>
                   </li>
                 </ul>
@@ -321,48 +364,61 @@ export default function NosotrosPage() {
                   href="/contacto"
                   className="inline-flex items-center gap-2 border-2 border-[#0d5745] text-[#0d5745] px-6 py-3 font-semibold hover:bg-[#0d5745] hover:text-white transition-all duration-300"
                 >
-                  Conoce cómo trabajamos
+                  Conoce más sobre Recibásicos
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
               </div>
 
-              {/* Right Column - Como Ayudamos */}
+              {/* Right Column - EWR */}
               <div>
-                <p className="text-sm uppercase tracking-wider text-[#0d5745] mb-2">
-                  CÓMO AYUDAMOS
+                {/* EWR Logo - LARGER */}
+                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-[160px]">
+                  <Image
+                    src="/images/partners/ewr.png"
+                    alt="EWR Logo"
+                    width={600}
+                    height={220}
+                    className="w-full h-auto"
+                  />
+                </div>
+                <br></br>
+                <p className="text-sm uppercase tracking-wider text-[#0d5745] mb-2 text-center">
+                  REFINACIÓN Y VALORIZACIÓN FINAL
                 </p>
-                <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6">
-                  Convertimos residuos en valor trazable
+                <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 text-center">
+                  EWR - Electronic Waste Recycling
                 </h2>
                 
                 <div className="space-y-4 text-base md:text-lg text-zinc-700 leading-relaxed mb-8">
                   <p>
-                    Reducimos el impacto ambiental con procesos documentados: 
-                    recepción y clasificación detallada, desmantelamiento 
-                    controlado y rutas con manifiestos certificados. Todo pensado 
-                    para simplificar y blindar tus auditorías.
+                    EWR es la división especializada en la refinación de metales 
+                    preciosos y la valorización final de materiales electrónicos. 
+                    Completamos el ciclo de economía circular mediante procesos 
+                    metalúrgicos de última generación.
                   </p>
                   <p>
-                    Ya sea que operes una planta industrial, un corporativo o una 
-                    red de sucursales, adaptamos la logística para minimizar 
-                    interrupciones y maximizar la recuperación de materiales 
-                    valiosos. Nuestras cuadrillas especializadas mantienen siempre 
-                    altos estándares de seguridad y control documental en cualquier 
-                    sitio.
+                    Recibimos los concentrados metálicos preparados por Recibásicos 
+                    y los transformamos en metales refinados de alta pureza listos 
+                    para su reintroducción en cadenas productivas globales. Operamos 
+                    con tecnología de punta y control de calidad riguroso para 
+                    maximizar la recuperación de oro, plata, cobre, paladio y otros 
+                    metales valiosos.
                   </p>
                 </div>
 
-                <Link
-                  href="/contacto"
+                <a
+                  href="https://ewr.com.mx/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 border-2 border-[#0d5745] text-[#0d5745] px-6 py-3 font-semibold hover:bg-[#0d5745] hover:text-white transition-all duration-300"
                 >
-                  Hablar con un asesor
+                  Visitar sitio web de EWR
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
-                </Link>
+                </a>
               </div>
 
             </div>

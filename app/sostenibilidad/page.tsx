@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import CountUpDispositivos from "../(componentes)/ui/CountUpDispositivos";
+import Hero from "../(componentes)/ui/Hero";
 
 // KPIs data
 const kpis = [
@@ -107,32 +108,13 @@ export default function SostenibilidadPage() {
   return (
     <main className="min-h-dvh bg-white">
       {/* HERO SECTION */}
-      <section className="relative isolate overflow-hidden bg-black text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/images/naturaleza/river-rafting.jpg"
-            alt="Sostenibilidad y economía circular en Recibásicos"
-            fill
-            priority
-            className="object-cover opacity-70"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/45" />
-        </div>
-        <div className="section h-[60vh] flex items-center justify-center">
-          <div className="max-w-4xl space-y-6 text-center md:text-left">
-            <div className="flex justify-center md:justify-start">
-              <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-                <span className="h-2 w-2 bg-[--color-primary]" />
-                Sostenibilidad
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
-              Transformando Residuos en Recursos para un Futuro Sostenible
-            </h1>
-          </div>
-        </div>
-      </section>
+      <Hero
+        bg={{ type: "image", src: "/images/naturaleza/river-rafting.jpg", alt: "Sostenibilidad" }}
+        height="60vh"
+        badgeText="Sostenibilidad"
+        title="Impulsando la Economía Circular con Resultados Medibles"
+        subtitle="En Recibásicos, transformamos el ingenio en soluciones sostenibles, gestionando más de 700 toneladas de residuos mensuales para acelerar la transición hacia un futuro con cero emisiones."
+      />
 
       {/*Introduction Statement */}
 

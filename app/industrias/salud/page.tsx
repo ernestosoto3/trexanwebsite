@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Hero from "@/app/(componentes)/ui/Hero";
 import ContactForm from "../../(componentes)/ui/ContactForm";
 
 export const metadata: Metadata = {
@@ -20,50 +21,13 @@ export default function SaludPage() {
   return (
     <main className="min-h-dvh bg-white">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/industrias/salud-hero.jpg"
-            alt="Sector salud y reciclaje seguro de equipos electrónicos"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/65 to-black/60" />
-        </div>
-
-        <div className="section relative h-[60vh] flex items-center">
-          <div className="max-w-4xl text-white space-y-6">
-            <span className="inline-flex items-center gap-2 bg-white/25 px-4 py-2 text-sm uppercase tracking-wider">
-              <span className="h-2 w-2 rounded-full bg-[--color-primary]" />
-              Salud
-            </span>
-
-            <h1 className="text-4xl md:text-6xl font-semibold leading-tight">
-              Reciclaje seguro para proteger a pacientes, instituciones y el medio ambiente
-            </h1>
-
-            <p className="text-lg md:text-xl leading-relaxed text-white/90 max-w-3xl">
-              Manejo confiable de equipos electrónicos y datos sensibles con procesos de cumplimiento.
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/contacto"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none transition-colors"
-              >
-                Solicitar Cotización
-              </Link>
-              <Link
-                href="/nosotros"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold border-green-800 text-white bg-green-800 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none transition-colors"
-              >
-                Conoce Nuestros Servicios
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero
+        bg={{ type: "image", src: "/images/industrias/GRUPO TREXAN-55-1.jpg", alt: "Industria Salud" }}
+        height="60vh"
+        badgeText="Salud"
+        title="Gestión Segura de Tecnología Médica y Datos Sensibles"
+        subtitle="Protegemos la integridad de su institución mediante el retiro responsable de equipos electrónicos y la destrucción certificada de registros confidenciales, garantizando un entorno hospitalario libre de riesgos y en total cumplimiento normativo."
+      />
 
       {/* INTRO TEXT */}
       <section className="py-16 md:py-20 bg-white">
