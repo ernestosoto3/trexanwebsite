@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import Hero from "../(componentes)/ui/Hero"
+import CTA from "../(componentes)/ui/CTA";
 
 // Centralized image paths for better maintainability
 const IMAGES = {
@@ -506,42 +507,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="relative">
-        <div className="relative h-80 md:h-[360px] overflow-hidden">
-          <Image
-            src={IMAGES.mountains}
-            alt="Paisaje que representa un futuro más limpio"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/55" />
-
-          <div className="absolute inset-0 flex items-center justify-center px-4">
-            <div className="max-w-2xl bg-white/95 px-6 py-8 md:px-10 md:py-10 text-center shadow-xl border border-zinc-200">
-              <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#0d5745]">
-                Da el siguiente paso
-              </p>
-              <h2 className="mt-3 text-xl md:text-2xl font-semibold text-zinc-900">
-                ¿Listo para gestionar tus residuos electrónicos con economía
-                circular real?
-              </h2>
-              <p className="mt-4 text-sm md:text-base text-zinc-600">
-                Conversemos sobre cómo estructurar un esquema de recolección,
-                trazabilidad y valorización alineado a tus procesos, auditorías y
-                objetivos de sostenibilidad.
-              </p>
-
-              <Link
-                href="/contacto"
-                className="mt-6 inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold bg-[#0d5745] text-white hover:bg-[#0a4434] transition-colors"
-              >
-                Solicitar Cotización
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTA/>
     </>
   );
 }

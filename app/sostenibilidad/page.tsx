@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import CountUpDispositivos from "../(componentes)/ui/CountUpDispositivos";
 import Hero from "../(componentes)/ui/Hero";
+import CTA from "../(componentes)/ui/CTA";
 
 // KPIs data
 const kpis = [
@@ -349,38 +350,7 @@ export default function SostenibilidadPage() {
       </section>
 
       {/* FINAL CTA SECTION */}
-      <section className="relative">
-        <div className="relative h-80 md:h-[360px] overflow-hidden">
-          <Image
-            src="/images/industrias/GRUPO TREXAN-31.jpg"
-            alt="Paisaje que representa un futuro más limpio"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/55" />
-          <div className="absolute inset-0 flex items-center justify-center px-4">
-            <div className="max-w-2xl bg-white/95 px-6 py-8 md:px-10 md:py-10 text-center shadow-xl">
-              <p className="text-xs font-semibold tracking-[0.25em] uppercase text-emerald-700">
-                Da el siguiente paso
-              </p>
-              <h2 className="mt-3 text-xl md:text-2xl font-semibold text-zinc-900">
-                ¿Listos para trabajar con trazabilidad y seguridad?
-              </h2>
-              <p className="mt-4 text-sm md:text-base text-zinc-600">
-                Conversemos sobre cómo estructurar un esquema de recolección, 
-                trazabilidad y valorización alineado a tus procesos, auditorías y 
-                objetivos de sostenibilidad.
-              </p>
-              <a
-                href="/contacto"
-                className="mt-8 inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold bg-emerald-700 text-white hover:bg-emerald-800 transition-colors"
-              >
-                Solicitar Cotización
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTA/>
     </main>
   );
 }
