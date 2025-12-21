@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/app/(componentes)/ui/Hero";
 import ContactForm from "../../(componentes)/ui/ContactForm";
+import IntroText from "@/app/(componentes)/ui/IntroText";
 
 export const metadata: Metadata = {
   title: "Reciclaje Electrónico para Tecnología | Seguridad y Circularidad | Recibásicos",
@@ -30,21 +31,14 @@ export default function TecnologiaPage() {
       />
 
       {/* INTRO TEXT */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="section">
-          <div className="text-center max-w-5xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              Retiro seguro de hardware y protección de información crítica
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
-              Para empresas de TI, telecomunicaciones y data centers, Recibásicos ofrece retiro, transporte y reciclaje
-              de hardware, servidores, equipos de red, UPS, baterías, cableado y dispositivos electrónicos. Incluimos
-              destrucción certificada de datos, desmontaje especializado y recuperación de valor mediante refinamiento
-              de materiales.
-            </p>
-          </div>
-        </div>
-      </section>
+      <IntroText>
+        Blindamos la infraestructura crítica de empresas de TI y 
+        Data Centers mediante el retiro seguro de hardware y la 
+        destrucción certificada de información. Nuestro proceso de 
+        reciclaje de servidores, UPS y equipos de red garantiza que 
+        los datos sensibles sean eliminados irreversiblemente mientras 
+        se recupera el valor de los componentes tecnológicos.
+      </IntroText>
 
       {/* QUÉ OFRECEMOS - Grid layout */}
       <section className="py-16 md:py-20 bg-zinc-50">

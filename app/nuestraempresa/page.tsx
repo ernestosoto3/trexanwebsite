@@ -2,6 +2,7 @@ import Button from "../(componentes)/ui/Button";
 import Image from "next/image";
 import Hero from "../(componentes)/ui/Hero"
 import CTA from "../(componentes)/ui/CTA";
+import IntroText from "../(componentes)/ui/IntroText";
 
 export const revalidate = 60;
 
@@ -107,6 +108,7 @@ const SectionHeader = ({
 export default function NosotrosPage() {
   return (
     <main className="min-h-dvh bg-white">
+
       {/* HERO SECTION (New style, same content) */}
       <Hero
         bg={{ type: "image", src: "/images/industrias/GRUPO TREXAN-42.jpg", alt: "Nuestra Empresa" }}
@@ -115,6 +117,14 @@ export default function NosotrosPage() {
         title="Liderando el Futuro de la Valorización Electrónica"
         subtitle="En Recibásicos transformamos desafíos ambientales en oportunidades sostenibles, garantizando trazabilidad total y certificaciones internacionales en cada proceso."
       />
+
+      <IntroText>
+        Integramos ingeniería avanzada y rigor normativo 
+        para resolver la complejidad de los residuos electrónicos. A través 
+        de nuestro modelo operativo, transformamos el desecho industrial en 
+        materias primas secundarias, asegurando que cada etapa del proceso sea 
+        trazable, segura y certificada internacionalmente.
+      </IntroText>
 
       {/* FOUR CORE VERTICALS */}
       <section className="py-16 md:py-20 bg-white">

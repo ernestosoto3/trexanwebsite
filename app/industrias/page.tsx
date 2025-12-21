@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Hero from "../(componentes)/ui/Hero";
 import CTA from "../(componentes)/ui/CTA";
+import IntroText from "../(componentes)/ui/IntroText";
 
 const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
 
@@ -127,6 +128,15 @@ export default function IndustriasPage() {
         title="Soluciones de Gestión a la Medida de Cada Sector"
         subtitle="Adaptamos nuestros procesos de valorización y cumplimiento normativo a las necesidades específicas de la industria automotriz, tecnológica, de salud y más, garantizando eficiencia operativa en todo México."
       />
+
+      <IntroText>
+        Entendemos que cada sector opera bajo regulaciones y desafíos 
+        técnicos distintos. Por ello, hemos diseñado un modelo de 
+        gestión versátil que integra protocolos de seguridad, desmantelamiento 
+        especializado y cumplimiento normativo riguroso, permitiendo que 
+        organizaciones públicas y privadas deleguen la complejidad de sus 
+        residuos electrónicos en manos expertas.
+      </IntroText>
 
       {/* 1. SECTORES (Industry Cards with Image Top) */}
       <section className="py-14 bg-[#f7f7f5]">

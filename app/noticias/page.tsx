@@ -3,6 +3,7 @@ import Image from "next/image";
 import { sanityClient } from "@/lib/sanity";
 import { qNoticias } from "@/lib/queries";
 import Hero from "../(componentes)/ui/Hero";
+import IntroText from "../(componentes)/ui/IntroText";
 import CTA from "../(componentes)/ui/CTA";
 
 
@@ -104,6 +105,7 @@ export default async function NoticiasPage() {
 
   return (
     <main>
+
       {/* HERO */}
       <Hero
         bg={{ type: "image", src: "/images/industrias/main-img-2-1.jpeg", alt: "Noticias" }}
@@ -112,6 +114,14 @@ export default async function NoticiasPage() {
         title="Perspectivas sobre Economía Circular y Gestión de RAEE"
         subtitle="Mantente al tanto de las últimas innovaciones, guías prácticas de cumplimiento y logros que están definiendo el futuro del reciclaje electrónico en México."
       />
+
+      <IntroText>
+        Explora las tendencias y avances que están redefiniendo 
+        la sostenibilidad industrial. Desde logros corporativos 
+        hasta análisis profundos sobre procesos de reciclaje 
+        certificado, te mantenemos al frente de la vanguardia en 
+        economía circular y gestión responsable de electrónicos.
+      </IntroText>
 
       {/* NEWS STYLE CARDS - 6 CLICKABLE */}
       <section className="pt-8 pb-16 md:pt-12 md:pb-20 bg-[#f7f7f5]">

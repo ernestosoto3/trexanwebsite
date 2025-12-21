@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/app/(componentes)/ui/Hero";
 import ContactForm from "../../(componentes)/ui/ContactForm";
+import IntroText from "@/app/(componentes)/ui/IntroText";
 
 export const metadata: Metadata = {
   title: "Reciclaje Electrónico para Electrónica | Recuperación de Valor | Recibásicos",
@@ -30,21 +31,14 @@ export default function ElectronicaPage() {
       />
 
       {/* INTRO TEXT */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="section">
-          <div className="text-center max-w-5xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              Reciclaje avanzado para dispositivos, tarjetas y componentes obsoletos
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
-              Recibásicos gestiona dispositivos, periféricos, tarjetas electrónicas, componentes obsoletos,
-              baterías, cables y metales provenientes de empresas de electrónica y distribución. Nuestro enfoque
-              combina logística eficiente, desmontaje, reciclaje avanzado, refinamiento metálico y destrucción
-              de datos con certificación.
-            </p>
-          </div>
-        </div>
-      </section>
+      <IntroText>
+        Especialistas en la valorización de tarjetas electrónicas, 
+        periféricos y componentes no conformes. Aplicamos procesos 
+        de desmantelamiento y refinación de alto rendimiento para 
+        recuperar metales preciosos, asegurando que la propiedad 
+        intelectual y los materiales sensibles sean gestionados bajo 
+        estrictos protocolos de seguridad y economía circular.
+      </IntroText>
 
       {/* QUÉ OFRECEMOS - Grid layout */}
       <section className="py-16 md:py-20 bg-zinc-50">

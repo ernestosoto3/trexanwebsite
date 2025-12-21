@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "./(componentes)/ui/Hero"
 import CTA from "./(componentes)/ui/CTA";
+import IntroText from "./(componentes)/ui/IntroText";
 
 const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
 
@@ -125,21 +126,12 @@ export default function HomePage() {
       />
 
       {/* TEXTO INTRODUCTORIO */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="section">
-          <div className="text-center max-w-5xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              Recibásicos es líder en acopio y valorización de residuos electrónicos,
-              transformando pasivos ambientales en una economía circular segura.
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
-              Ofrecemos Trazabilidad total y certificaciones globales (R2v3, ISO) que permiten a su empresa
-              proteger su cadena de suministro, asegurar el cumplimiento normativo y avanzar eficazmente hacia
-              sus objetivos de sostenibilidad.
-            </p>
-          </div>
-        </div>
-      </section>
+      <IntroText>
+        Líderes en valorización de residuos electrónicos con trazabilidad total. 
+        Protegemos su cadena de suministro mediante procesos certificados (R2v3, ISO) 
+        que transforman pasivos ambientales en cumplimiento normativo y metas de 
+        sostenibilidad cumplidas.
+      </IntroText>
 
       {/* SERVICES BAND (BACKGROUND IMAGE) - WITH ORANGE STRIP */}
       <section className="relative bg-white overflow-hidden">

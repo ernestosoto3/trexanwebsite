@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/app/(componentes)/ui/Hero";
 import ContactForm from "../../(componentes)/ui/ContactForm";
+import IntroText from "@/app/(componentes)/ui/IntroText";
 
 export const metadata: Metadata = {
   title: "Reciclaje Electrónico para Manufactura | Eficiencia Industrial | Recibásicos",
@@ -28,21 +29,13 @@ export default function ManufacturaPage() {
         subtitle="Liberamos espacio operativo y maximizamos la recuperación de valor en tableros, maquinaria y cableado, mediante una logística especializada diseñada para no interrumpir el ritmo de su producción."
       />
 
-      <section className="py-16 md:py-20 bg-white">
-        <div className="section">
-          <div className="text-center max-w-5xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              Orden, espacio y valor recuperado dentro de tu operación
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
-              Recibásicos apoya a plantas de manufactura en la gestión integral de equipos electrónicos obsoletos,
-              tableros, maquinaria con componentes eléctricos, cableado y materiales metálicos. Ofrecemos recolección,
-              logística, preprocesamiento, separación y recuperación de metales, optimizando espacio, costos y cumplimiento
-              normativo dentro de la operación.
-            </p>
-          </div>
-        </div>
-      </section>
+      <IntroText>
+        Optimizamos el flujo operativo de plantas industriales mediante 
+        la gestión ordenada de excedentes electrónicos, tableros y 
+        maquinaria obsoleta. Liberamos espacio productivo y transformamos 
+        sus residuos en activos recuperados, respaldando sus auditorías 
+        ambientales con documentación técnica y cumplimiento normativo riguroso.
+      </IntroText>
 
       <section className="py-16 md:py-20 bg-zinc-50">
         <div className="section">

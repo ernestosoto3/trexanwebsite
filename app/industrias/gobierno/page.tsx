@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/app/(componentes)/ui/Hero";
+import IntroText from "@/app/(componentes)/ui/IntroText";
 import ContactForm from "../../(componentes)/ui/ContactForm";
 
 export const metadata: Metadata = {
@@ -23,20 +24,14 @@ export default function GobiernoPage() {
       />
 
       {/* INTRO TEXT */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="section">
-          <div className="text-center max-w-5xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              Apoyamos a entidades gubernamentales en el manejo responsable de equipos electrónicos retirados
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
-              Garantizamos destrucción de datos cuando aplica, trazabilidad del proceso y cumplimiento total 
-              con las regulaciones ambientales mexicanas. Trabajamos con cómputo, telecomunicaciones, baterías, 
-              cables, paneles y aparatos institucionales.
-            </p>
-          </div>
-        </div>
-      </section>
+      <IntroText>
+        Proveemos a las instituciones públicas un modelo de baja 
+        de activos electrónicos basado en la transparencia total y 
+        la certeza jurídica. Garantizamos el cumplimiento de las 
+        normativas federales y estatales, proporcionando manifiestos 
+        de disposición final y certificados de destrucción de datos que 
+        aseguran una rendición de cuentas impecable.
+      </IntroText>
 
       {/* QUÉ OFRECEMOS - Grid layout */}
       <section className="py-16 md:py-20 bg-zinc-50">

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/app/(componentes)/ui/Hero";
 import ContactForm from "../../(componentes)/ui/ContactForm";
+import IntroText from "@/app/(componentes)/ui/IntroText";
 
 export const metadata: Metadata = {
   title: "Reciclaje Electrónico para Educación | Sostenibilidad en Campus | Recibásicos",
@@ -30,21 +31,15 @@ export default function EducacionPage() {
       />
 
       {/* INTRO TEXT */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="section">
-          <div className="text-center max-w-5xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              Gestión segura para equipos institucionales y protección de información académica
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
-              Recibásicos apoya a escuelas, universidades y centros educativos a retirar, reciclar o reutilizar equipos
-              electrónicos de aulas, laboratorios y oficinas: computadoras, impresoras, proyectores, routers, baterías y
-              cableado. Ofrecemos recolección, destrucción de datos, reciclaje y recuperación de valor, con enfoque educativo
-              y sostenible.
-            </p>
-          </div>
-        </div>
-      </section>
+      <IntroText>
+        Apoyamos a las instituciones educativas en la 
+        modernización de sus campus mediante el retiro 
+        responsable de equipos de aulas y laboratorios. 
+        Ofrecemos una solución integral que combina la 
+        destrucción de datos académicos con procesos de 
+        reciclaje que refuerzan los objetivos de sostenibilidad 
+        y responsabilidad social de la comunidad educativa.
+      </IntroText>
 
       {/* QUÉ OFRECEMOS - Grid layout */}
       <section className="py-16 md:py-20 bg-zinc-50">

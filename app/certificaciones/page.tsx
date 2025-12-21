@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import CTA from "../(componentes)/ui/CTA";
+import IntroText from "../(componentes)/ui/IntroText";
 import Hero from "../(componentes)/ui/Hero"
 
 const IMAGES = {
@@ -133,15 +134,15 @@ export default function CertificacionesPage() {
       />
 
 
-      <section className="bg-white py-10 md:py-16">
-        <div className="section">
-          <p className="text-center text-xl md:text-2xl leading-relaxed text-gray-600 max-w-6xl mx-auto">
-            En Recibásicos, el cumplimiento no es opcional. Integramos certificaciones
-            internacionales, permisos regulatorios y control documental para
-            garantizar seguridad, trazabilidad y confianza en cada operación.
-          </p>
-        </div>
-      </section>
+      <IntroText>
+        Aseguramos la continuidad y legalidad de su operación 
+        mediante un ecosistema de cumplimiento que va más allá 
+        de lo reglamentario. Al integrar certificaciones 
+        internacionales y permisos específicos ante el SAT y 
+        SEMARNAT, eliminamos las brechas de riesgo en su cadena de 
+        suministro, proporcionando la certeza jurídica necesaria para 
+        auditorías de alta complejidad.
+      </IntroText>
 
       <section className="bg-white py-10 md:py-14">
         <div className="mx-auto max-w-7xl px-4">

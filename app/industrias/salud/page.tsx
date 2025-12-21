@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/app/(componentes)/ui/Hero";
 import ContactForm from "../../(componentes)/ui/ContactForm";
+import IntroText from "@/app/(componentes)/ui/IntroText";
 
 export const metadata: Metadata = {
   title: "Reciclaje Electrónico para Salud | Protección de Datos y Cumplimiento | Recibásicos",
@@ -30,21 +31,14 @@ export default function SaludPage() {
       />
 
       {/* INTRO TEXT */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="section">
-          <div className="text-center max-w-5xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              Manejo seguro de equipos y protección absoluta de información sensible
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
-              Recibásicos atiende a hospitales, clínicas, laboratorios y proveedores del sector salud con soluciones
-              para equipos electrónicos, aparatos médicos obsoletos, computadoras, monitores, baterías y metales.
-              Nos especializamos en destrucción segura de datos sensibles (registros de pacientes), cumplimiento
-              normativo y procesos de reciclaje confiables.
-            </p>
-          </div>
-        </div>
-      </section>
+      <IntroText>
+        Gestionamos el retiro de equipo médico y administrativo 
+        con un enfoque prioritario en la protección de datos 
+        sensibles y el cumplimiento sanitario. Ayudamos a hospitales 
+        y laboratorios a disponer de su tecnología obsoleta de forma 
+        segura, evitando riesgos ambientales y asegurando la 
+        confidencialidad de la información institucional y del paciente.
+      </IntroText>
 
       {/* QUÉ OFRECEMOS - Grid layout */}
       <section className="py-16 md:py-20 bg-zinc-50">

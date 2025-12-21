@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/app/(componentes)/ui/Hero";
 import ContactForm from "../../(componentes)/ui/ContactForm";
+import IntroText from "@/app/(componentes)/ui/IntroText";
 
 export const metadata: Metadata = {
   title: "Reciclaje Electrónico para Retail | Devoluciones y Obsolescencia | Recibásicos",
@@ -30,21 +31,15 @@ export default function RetailPage() {
       />
 
       {/* INTRO TEXT */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="section">
-          <div className="text-center max-w-5xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              Gestión eficiente para equipos de piso, POS, pantallas y devoluciones
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
-              Para cadenas comerciales, tiendas departamentales y retailers, Recibásicos gestiona devoluciones, equipos
-              electrónicos de piso, pantallas, POS, baterías, accesorios y dispositivos dañados. Realizamos recolección,
-              clasificación, reciclaje, recuperación de metales y disposición segura, optimizando espacio y reduciendo
-              desechos.
-            </p>
-          </div>
-        </div>
-      </section>
+      <IntroText>
+        Simplificamos la logística inversa de cadenas 
+        comerciales mediante la gestión eficiente de 
+        devoluciones, equipos de punto de venta y dispositivos 
+        dañados. Transformamos la obsolescencia en inventarios 
+        recuperados, ayudando al sector retail a mantener 
+        almacenes limpios y a fortalecer su reputación como 
+        empresas responsables y circulares.
+      </IntroText>
 
       {/* QUÉ OFRECEMOS - Grid layout */}
       <section className="py-16 md:py-20 bg-zinc-50">

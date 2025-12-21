@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Hero from "@/app/(componentes)/ui/Hero";
 import ContactForm from "../../(componentes)/ui/ContactForm";
+import IntroText from "@/app/(componentes)/ui/IntroText";
 
 export const metadata: Metadata = {
   title: "Reciclaje Electrónico para Automotriz | Movilidad Sostenible | Recibásicos",
@@ -29,21 +30,14 @@ export default function AutomotrizPage() {
       />
 
       {/* INTRO TEXT */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="section">
-          <div className="text-center max-w-5xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              Gestión segura de electrónicos automotrices, módulos y baterías complejas
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-zinc-600">
-              En el sector automotriz —fabricantes, distribuidores, concesionarios y OEMs— Recibásicos gestiona
-              de forma segura y eficiente equipos electrónicos, módulos de control, cableado, sensores, tableros,
-              baterías y componentes eléctricos al final de su vida útil. Nuestro proceso garantiza reciclaje de
-              alto rendimiento, trazabilidad completa y transformación del residuo en valor industrial.
-            </p>
-          </div>
-        </div>
-      </section>
+      <IntroText>
+        Maximizamos la eficiencia en la gestión de scrap electrónico 
+        y componentes complejos para la cadena de suministro automotriz. 
+        Nuestro enfoque se centra en la recuperación de metales de alto 
+        valor y el manejo seguro de módulos de control y baterías, 
+        garantizando la trazabilidad necesaria para cumplir con los estándares 
+        de calidad y sostenibilidad de fabricantes y OEMs.
+      </IntroText>
 
       {/* QUÉ OFRECEMOS - Grid layout */}
       <section className="py-16 md:py-20 bg-zinc-50">

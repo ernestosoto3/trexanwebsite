@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import CountUpDispositivos from "../(componentes)/ui/CountUpDispositivos";
 import Hero from "../(componentes)/ui/Hero";
 import CTA from "../(componentes)/ui/CTA";
+import IntroText from "../(componentes)/ui/IntroText";
 
 // KPIs data
 const kpis = [
@@ -118,18 +119,14 @@ export default function SostenibilidadPage() {
       />
 
       {/*Introduction Statement */}
-
-
-      <section className="bg-white py-10 md:py-16">
-        <div className="section">
-          <p className="text-center text-xl md:text-2xl leading-relaxed text-zinc-600 max-w-5xl mx-auto">
-            Desde el inicio, nuestro compromiso se fundamenta en el ingenio como valor central, 
-            impulsándonos a desarrollar soluciones innovadoras y sostenibles para enfrentar los 
-            desafíos de gestión de residuos de nuestros clientes, siempre con una visión responsable 
-            hacia el planeta.
-          </p>
-        </div>
-      </section>
+      <IntroText>
+        Convertimos los desafíos de residuos electrónicos en 
+        soluciones sustentables que fortalecen la responsabilidad 
+        corporativa de nuestros clientes. A través de un modelo 
+        operativo basado en la recuperación eficiente de materiales, 
+        proporcionamos la evidencia técnica y documental necesaria para 
+        alcanzar metas globales de descarbonización y cumplimiento ambiental.
+      </IntroText>
 
       {/* SUSTAINABILITY AT TREXAN SECTION */}
       <section className="bg-zinc-50 py-0">

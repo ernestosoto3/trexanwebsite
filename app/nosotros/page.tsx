@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import Hero from "../(componentes)/ui/Hero"
 import CTA from "../(componentes)/ui/CTA";
+import IntroText from "../(componentes)/ui/IntroText";
 
 // Centralized image paths for better maintainability
 const IMAGES = {
@@ -71,16 +72,15 @@ export default function NosotrosPage() {
       />
 
       {/* INTRODUCTION */}
-      <section className="bg-white py-10 md:py-16">
-        <div className="section">
-          <p className="text-center text-xl md:text-2xl leading-relaxed text-gray-600 max-w-6xl mx-auto">
-            Recibásicos es el aliado especializado en el manejo responsable de
-            residuos electrónicos en México, integrando experiencia técnica,
-            trazabilidad total y certificaciones internacionales para transformar
-            pasivos ambientales en valor recuperado.
-          </p>
-        </div>
-      </section>
+      <IntroText>
+        Con el respaldo de más de cuatro décadas de experiencia en la 
+        industria metalúrgica, nos hemos consolidado como el brazo 
+        especializado en procesos fríos y gestión de RAEE dentro de 
+        Trexan Recycling Group. Nuestra operación en México combina 
+        ingeniería de precisión y cumplimiento regulatorio para convertir 
+        la complejidad de los residuos electrónicos en una cadena de valor 
+        trazable y de alto rendimiento.
+      </IntroText>      
 
       {/* TWO-COLUMN CONTENT SECTIONS - EDGE TO EDGE */}
       <section className="bg-zinc-50 py-0">
