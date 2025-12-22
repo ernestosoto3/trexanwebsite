@@ -137,8 +137,6 @@ export default function AutomotrizPage() {
 
       <ContactForm
         industry="Automotriz"
-        title="Cuéntanos sobre tus necesidades de reciclaje"
-        subtitle="Completa el formulario y nuestro equipo especializado en automotriz se pondrá en contacto contigo"
       />
     </main>
   );

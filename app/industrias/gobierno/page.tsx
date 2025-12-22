@@ -137,8 +137,6 @@ export default function GobiernoPage() {
       {/* CONTACT FORM - Imported Component */}
       <ContactForm 
         industry="Gobierno"
-        title="Cuéntanos sobre tus necesidades de reciclaje"
-        subtitle="Completa el formulario y nuestro equipo especializado en sector público se pondrá en contacto contigo"
       />
     </main>
   );

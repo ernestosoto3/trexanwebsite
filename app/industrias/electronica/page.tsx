@@ -138,8 +138,6 @@ export default function ElectronicaPage() {
 
       <ContactForm
         industry="Electrónica"
-        title="Cuéntanos sobre tus necesidades de reciclaje"
-        subtitle="Completa el formulario y nuestro equipo especializado en electrónica se pondrá en contacto contigo"
       />
     </main>
   );

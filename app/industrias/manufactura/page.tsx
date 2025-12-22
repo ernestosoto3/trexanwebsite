@@ -133,8 +133,6 @@ export default function ManufacturaPage() {
 
       <ContactForm
         industry="Manufactura"
-        title="Cuéntanos sobre tus necesidades de reciclaje"
-        subtitle="Completa el formulario y nuestro equipo especializado en manufactura se pondrá en contacto contigo"
       />
     </main>
   );

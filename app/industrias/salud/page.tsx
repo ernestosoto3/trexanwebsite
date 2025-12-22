@@ -138,8 +138,6 @@ export default function SaludPage() {
 
       <ContactForm
         industry="Salud"
-        title="Cuéntanos sobre tus necesidades de reciclaje"
-        subtitle="Completa el formulario y nuestro equipo especializado en salud se pondrá en contacto contigo"
       />
     </main>
   );

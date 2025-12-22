@@ -138,8 +138,6 @@ export default function TecnologiaPage() {
 
       <ContactForm
         industry="Tecnología"
-        title="Cuéntanos sobre tus necesidades de reciclaje"
-        subtitle="Completa el formulario y nuestro equipo especializado en tecnología se pondrá en contacto contigo"
       />
     </main>
   );

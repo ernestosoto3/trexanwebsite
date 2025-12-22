@@ -139,8 +139,6 @@ export default function EducacionPage() {
 
       <ContactForm
         industry="Educación"
-        title="Cuéntanos sobre tus necesidades de reciclaje"
-        subtitle="Completa el formulario y nuestro equipo especializado en educación se pondrá en contacto contigo"
       />
     </main>
   );

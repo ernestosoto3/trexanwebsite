@@ -139,8 +139,6 @@ export default function RetailPage() {
 
       <ContactForm
         industry="Retail"
-        title="Cuéntanos sobre tus necesidades de reciclaje"
-        subtitle="Completa el formulario y nuestro equipo especializado en retail se pondrá en contacto contigo"
       />
     </main>
   );
