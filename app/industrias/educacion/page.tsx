@@ -77,7 +77,7 @@ export default function EducacionPage() {
           },
         ]}
         image={{
-          src: "/images/industrias/educacion-content.jpg",
+          src: "/images/industrias/industriaedu2.jpg",
           alt: "Reciclaje tecnológico para instituciones educativas",
         }}
       />

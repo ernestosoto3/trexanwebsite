@@ -17,7 +17,7 @@ const FALLBACK_NEWS = [
     excerpt:
       "Trexan ha sido seleccionada para recibir el Premio Nacional de Sustentabilidad, un reconocimiento anual otorgado a empresas que demuestran excelencia en sostenibilidad.",
     href: "/noticias/trexan-premio-sustentabilidad",
-    image: "/images/noticias/placeholder-1.jpg",
+    image: "/images/industrias/GRUPO TREXAN-53.jpg",
     alt: "Premio de sostenibilidad",
   },
   {
@@ -26,7 +26,7 @@ const FALLBACK_NEWS = [
     excerpt:
       "Los residuos industriales representan más que un desafío de disposición. Son una oportunidad para recuperar valor, fortalecer cumplimiento y elevar desempeño ambiental.",
     href: "/noticias/economia-circular-activos-estrategicos",
-    image: "/images/noticias/placeholder-2.jpg",
+    image: "/images/industrias/GRUPO TREXAN-22.jpg",
     alt: "Economía circular",
   },
   {
@@ -35,36 +35,9 @@ const FALLBACK_NEWS = [
     excerpt:
       "En un entorno competitivo de gestión de residuos electrónicos, el éxito depende también de trazabilidad, comunicación y consistencia en los procesos.",
     href: "/noticias/sector-electronico-ventaja-estrategica",
-    image: "/images/noticias/placeholder-3.jpg",
+    image: "/images/industrias/shaking-hands.jpg",
     alt: "Relaciones con clientes",
-  },
-  {
-    title: "Trazabilidad de Residuos: Cómo Prepararse para Auditorías y Requisitos ESG",
-    date: "Septiembre 18, 2025",
-    excerpt:
-      "La trazabilidad reduce riesgos, facilita auditorías y mejora la visibilidad de KPIs ambientales. Te explicamos cómo estructurar un flujo confiable de evidencia.",
-    href: "/noticias/trazabilidad-auditorias-esg",
-    image: "/images/noticias/placeholder-4.jpg",
-    alt: "Trazabilidad y auditoría",
-  },
-  {
-    title: "Buenas Prácticas en Recolección y Manejo de Residuos Electrónicos",
-    date: "Agosto 27, 2025",
-    excerpt:
-      "Desde clasificación hasta transporte seguro: un marco práctico para mejorar operaciones, reducir incidentes y aumentar la valorización.",
-    href: "/noticias/buenas-practicas-recoleccion-manejo",
-    image: "/images/noticias/placeholder-5.jpg",
-    alt: "Buenas prácticas operacionales",
-  },
-  {
-    title: "Valorización Responsable: De Disposición a Recuperación de Materiales",
-    date: "Julio 9, 2025",
-    excerpt:
-      "Cuando el proceso está bien diseñado, la valorización aumenta, el desperdicio baja y la cadena completa gana eficiencia y reputación.",
-    href: "/noticias/valorizacion-responsable-recuperacion",
-    image: "/images/noticias/placeholder-6.jpg",
-    alt: "Valorización y recuperación",
-  },
+  }
 ];
 
 function formatDateSpanish(input?: string) {

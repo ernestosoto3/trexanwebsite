@@ -77,7 +77,7 @@ export default function AutomotrizPage() {
           },
         ]}
         image={{
-          src: "/images/industrias/automotriz-content.jpg",
+          src: "/images/industrias/industriaauto2.jpg",
           alt: "Reciclaje y recuperación de valor para industria automotriz",
         }}
       />

@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const IMAGE = "/images/industrias/GRUPO TREXAN-74.jpg"; // cámbiala si quieres
-
 export default function NoticiaTrexanPremioPage() {
   return (
     <main className="bg-white">
@@ -45,7 +43,7 @@ export default function NoticiaTrexanPremioPage() {
           <div className="relative w-full overflow-hidden border-zinc-200">
             <div className="relative h-[16rem] md:h-[28rem] w-full">
               <Image
-                src={IMAGE}
+                src="/images/industrias/GRUPO TREXAN-53.jpg"
                 alt="Reconocimiento de sustentabilidad de Trexan"
                 fill
                 className="object-cover"

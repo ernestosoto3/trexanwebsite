@@ -77,7 +77,7 @@ export default function GobiernoPage() {
           },
         ]}
         image={{
-          src: "/images/industrias/gobierno-content.jpg",
+          src: "/images/industrias/industriagobe2.jpeg",
           alt: "Procesos de reciclaje para gobierno",
         }}
       />

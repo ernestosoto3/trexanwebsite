@@ -53,14 +53,14 @@ const serviciosEWR = [
 ];
 
 const processSteps: Array<{ label: string; cls: string }> = [
-  { label: "Manufactura AEE", cls: "bg-orange-600" },
-  { label: "Uso AEE", cls: "bg-red-700" },
-  { label: "Acopio RAEE", cls: "bg-sky-600" },
-  { label: "Transporte", cls: "bg-cyan-600" },
-  { label: "Almacenamiento", cls: "bg-blue-600" },
-  { label: "Tratamiento", cls: "bg-teal-600" },
-  { label: "Reciclaje", cls: "bg-green-600" },
-  { label: "Disposición Final", cls: "bg-green-900" },
+  { label: "Manufactura AEE", cls: "bg-emerald-700" },
+  { label: "Uso AEE", cls: "bg-emerald-700" },
+  { label: "Acopio RAEE", cls: "bg-emerald-700" },
+  { label: "Transporte", cls: "bg-emerald-700" },
+  { label: "Almacenamiento", cls: "bg-emerald-700" },
+  { label: "Tratamiento", cls: "bg-emerald-700" },
+  { label: "Reciclaje", cls: "bg-emerald-700" },
+  { label: "Disposición Final", cls: "bg-emerald-700" },
 ];
 
 function BulletList({ items }: { items: string[] }) {

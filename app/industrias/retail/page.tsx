@@ -77,7 +77,7 @@ export default function RetailPage() {
           },
         ]}
         image={{
-          src: "/images/industrias/retail-content.jpg",
+          src: "/images/industrias/industriaret2.jpg",
           alt: "Gestión de devoluciones y reciclaje para retail",
         }}
       />

@@ -77,7 +77,7 @@ export default function ElectronicaPage() {
           },
         ]}
         image={{
-          src: "/images/industrias/electronica-content.jpg",
+          src: "/images/industrias/industriaelec2.webp",
           alt: "Desmontaje y reciclaje avanzado de electrónica",
         }}
       />

@@ -77,7 +77,7 @@ export default function SaludPage() {
           },
         ]}
         image={{
-          src: "/images/industrias/salud-content.jpg",
+          src: "/images/industrias/industriasalud2.jpg",
           alt: "Reciclaje seguro para sector salud",
         }}
       />

@@ -77,7 +77,7 @@ export default function ManufacturaPage() {
           },
         ]}
         image={{
-          src: "/images/industrias/manufactura-content.jpg",
+          src: "/images/industrias/industriamanu2.jpg",
           alt: "Gestión de residuos electrónicos en manufactura",
         }}
       />

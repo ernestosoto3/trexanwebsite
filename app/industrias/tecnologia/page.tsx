@@ -77,7 +77,7 @@ export default function TecnologiaPage() {
           },
         ]}
         image={{
-          src: "/images/industrias/tecnologia-content.jpg",
+          src: "/images/industrias/industriatech2.jpeg.webp",
           alt: "Reciclaje de infraestructura tecnológica",
         }}
       />
