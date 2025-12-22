@@ -45,18 +45,13 @@ export default function Footer() {
           </h3>
           <ul className="space-y-1.5 text-sm text-zinc-400">
             <li>
-              <Link href="/nosotros" className="hover:text-emerald-400">
-                Nosotros
-              </Link>
-            </li>
-            <li>
-              <Link href="/operaciones" className="hover:text-emerald-400">
-                Operaciones
+              <Link href="/nuestraempresa" className="hover:text-emerald-400">
+                Nuestra Empresa
               </Link>
             </li>
             <li>
               <Link href="/industrias" className="hover:text-emerald-400">
-                Industrias que atendemos
+                Industrias
               </Link>
             </li>
             <li>
@@ -135,7 +130,7 @@ export default function Footer() {
 
           <Link
             href="/contacto"
-            className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-500 transition-colors"
+            className="inline-flex items-center justify-center bg-emerald-700 px-4 py-2 text-sm font-semibold text-white hover:bg-white hover:text-black transition-colors"
           >
             Pide una cotización
           </Link>

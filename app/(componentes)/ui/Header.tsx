@@ -181,7 +181,7 @@ export default function Header() {
                 "transition-all"
               )}
             >
-              <div className="w-48 border border-zinc-200 bg-white shadow-xl p-2">
+              <div className="w-48 bg-white shadow-xl p-2">
                 <Link
                   href="/nosotros"
                   role="menuitem"
@@ -225,7 +225,7 @@ export default function Header() {
                 "transition-all"
               )}
             >
-              <div className="w-56 border border-zinc-200 bg-white shadow-xl p-2">
+              <div className="w-56 bg-white shadow-xl p-2">
                 {industryItems.map((item) => (
                   <Link
                     key={item.slug}
