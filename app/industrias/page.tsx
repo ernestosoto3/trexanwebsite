@@ -16,56 +16,56 @@ const sectores = [
     nombre: "Automotriz",
     descripcion:
       "Gestionamos el reciclaje responsable de componentes electrónicos y baterías para fabricantes, impulsando la movilidad sostenible.",
-    img: "/images/industrias/publico.jpg",
+    img: "/images/industrias/industriaautomotriz.jpg",
     href: "/industrias/automotriz",
   },
   {
     nombre: "Manufactura",
     descripcion:
       "Transformamos los residuos electrónicos de plantas industriales en valor recuperado mediante procesos eficientes y circulares.",
-    img: "/images/industrias/privadas.jpg",
+    img: "/images/industrias/milling.jpg",
     href: "/industrias/manufactura",
   },
   {
     nombre: "Gobierno",
     descripcion:
       "Garantizamos el manejo seguro, trazable y normativo de equipos electrónicos retirados de instituciones públicas.",
-    img: "/images/industrias/educativas.jpg",
+    img: "/images/industrias/texasgobierno.jpg",
     href: "/industrias/gobierno",
   },
   {
     nombre: "Electrónica",
     descripcion:
       "Maximizamos la recuperación de metales y componentes valiosos de dispositivos y tarjetas electrónicas obsoletas.",
-    img: "/images/industrias/sociales.jpg",
+    img: "/images/industrias/GRUPO-TREXAN-14.jpg",
     href: "/industrias/electronica",
   },
   {
     nombre: "Tecnología",
     descripcion:
       "Ofrecemos retiro y reciclaje seguro de hardware con destrucción certificada de datos para empresas de TI y data centers.",
-    img: "/images/industrias/gobierno.jpg",
+    img: "/images/industrias/industriatech.jpg",
     href: "/industrias/tecnologia",
   },
   {
     nombre: "Salud",
     descripcion:
       "Protegemos datos sensibles y reciclamos equipos médicos electrónicos con cumplimiento sanitario y ambiental.",
-    img: "/images/industrias/ambientales.jpg",
+    img: "/images/industrias/GRUPO TREXAN-55-1.jpg",
     href: "/industrias/salud",
   },
   {
     nombre: "Retail",
     descripcion:
       "Convertimos devoluciones y equipos obsoletos del retail en recursos valiosos mediante reciclaje especializado.",
-    img: "/images/industrias/ambientales.jpg",
+    img: "/images/industrias/industriaretail.jpg",
     href: "/industrias/retail",
   },
   {
     nombre: "Educación",
     descripcion:
       "Ayudamos a instituciones educativas a gestionar de forma sostenible sus equipos tecnológicos al final de su vida útil.",
-    img: "/images/industrias/ambientales.jpg",
+    img: "/images/industrias/biblioteca.jpg",
     href: "/industrias/educacion",
   },
 ];

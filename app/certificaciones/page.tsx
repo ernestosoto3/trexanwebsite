@@ -16,9 +16,11 @@ const PARTNER_LOGOS = [
 
 const certificationLogos = [
   { name: "SEMARNAT", src: "/images/certificaciones/semarnat.png" },
-  { name: "ISO 45001", src: "/images/certificaciones/iso-45001.png" },
+  { name: "ISO 14001", src: "/images/certificaciones/iso-14001.jpeg" },
+  { name: "ISO 45001", src: "/images/certificaciones/ISO-45001.png.webp" },
+  { name: "ISO 9001:2015", src: "/images/certificaciones/iso-9001.png"},
   { name: "SE IMMEX", src: "/images/certificaciones/se-immex.png" },
-  { name: "ISO 14001:2015", src: "/images/certificaciones/iso-14001.png" },
+  
   { name: "R2v3 Certified", src: "/images/certificaciones/r2v3.png" },
 ];
 
@@ -76,7 +78,7 @@ function BulletList({ items }: { items: string[] }) {
 
 function ArrowProcessBar({ steps }: { steps: Array<{ label: string; cls: string }> }) {
   return (
-    <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-4">
+    <div className="mt-8 bg-white p-4">
       <div className="hidden md:flex w-full">
         {steps.map((s, idx) => {
           const isLast = idx === steps.length - 1;
@@ -148,15 +150,11 @@ export default function CertificacionesPage() {
         <div className="mx-auto max-w-7xl px-4">
           {/* Header */}
           <div className="text-center">
-            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-zinc-500">
-              RECIBÁSICOS • TREXAN RECYCLING GROUP
-            </p>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold text-zinc-900">
-              Certificaciones y Evidencia Documental
+              Beneficios para Mi Empresa
             </h2>
             <p className="mt-4 text-base md:text-lg text-zinc-600 max-w-3xl mx-auto">
-              Un modelo operativo diseñado para cumplir, documentar y respaldar cada etapa
-              del manejo de residuos electrónicos.
+              al trabajar con Trexan Recycling Group
             </p>
           </div>
 
@@ -164,13 +162,6 @@ export default function CertificacionesPage() {
           <div className="mt-16 max-w-5xl mx-auto">
             {/* CENTER - VERTICAL SECTIONS */}
             <div className="space-y-0">
-              {/* Central Message */}
-              <div className="p-8 text-center mb-8">
-                <p className="text-lg font-bold text-zinc-700">Beneficios para</p>
-                <p className="text-3xl font-bold text-green-600 mt-1">Mi Empresa</p>
-                <p className="text-base text-zinc-600 mt-2">al trabajar con</p>
-                <p className="text-2xl font-bold text-red-600 mt-1">Trexan Recycling Group</p>
-              </div>
 
               {/* Section 1: Comercio Exterior */}
               <div className="flex flex-col items-center">
@@ -321,7 +312,7 @@ export default function CertificacionesPage() {
               Certificaciones y Permisos
             </h3>
 
-            <div className="flex flex-wrap gap-6 items-center justify-center">
+            <div className="flex flex-wrap gap-0 items-center justify-center">
               {certificationLogos.map((logo) => (
                 <div
                   key={logo.name}

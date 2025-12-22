@@ -1,17 +1,13 @@
 import Button from "../(componentes)/ui/Button";
 import Image from "next/image";
-import Hero from "../(componentes)/ui/Hero"
+import Hero from "../(componentes)/ui/Hero";
 import CTA from "../(componentes)/ui/CTA";
-import IntroText from "../(componentes)/ui/IntroText";
 
 export const revalidate = 60;
-
 
 const CORE_VERTICALS = [
   {
     title: "Acopio Integral",
-    description:
-      "Recolección especializada de residuos electrónicos con trazabilidad completa desde el origen.",
     bullets: [
       "Servicios de recolección en sitio",
       "Cadena de custodia documentada",
@@ -20,8 +16,6 @@ const CORE_VERTICALS = [
   },
   {
     title: "Valorización Certificada",
-    description:
-      "Procesamiento con estándares internacionales para maximizar la recuperación de materiales.",
     bullets: [
       "Cumplimiento de normas R2v3 e ISO",
       "Separación y clasificación avanzada",
@@ -30,8 +24,6 @@ const CORE_VERTICALS = [
   },
   {
     title: "Economía Circular",
-    description:
-      "Mantenemos los residuos electrónicos fuera de vertederos, creando valor a partir de materiales recuperados.",
     bullets: [
       "Evitamos disposición en rellenos sanitarios",
       "Generamos materias primas secundarias",
@@ -40,8 +32,6 @@ const CORE_VERTICALS = [
   },
   {
     title: "Gestión Completa",
-    description:
-      "Soluciones integrales adaptadas a las necesidades específicas de cada cliente industrial.",
     bullets: [
       "Consultoría en manejo de residuos",
       "Reportes de cumplimiento normativo",
@@ -81,73 +71,39 @@ const CONTENT_CARDS = [
   },
 ] as const;
 
-const SectionHeader = ({
-  label,
-  title,
-  description,
-}: {
-  label?: string;
-  title: string;
-  description?: string;
-}) => (
-  <div className="text-center space-y-3">
-    {label && (
-      <p className="text-xs font-semibold tracking-[0.25em] uppercase text-emerald-700">
-        {label}
-      </p>
-    )}
-    <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">{title}</h2>
-    {description && (
-      <p className="text-base md:text-lg max-w-3xl mx-auto text-zinc-600">
-        {description}
-      </p>
-    )}
-  </div>
-);
-
 export default function NosotrosPage() {
   return (
-    <main className="min-h-dvh bg-white">
-
-      {/* HERO SECTION (New style, same content) */}
+    <main className="min-h-dvh bg-zinc-50">
+      {/* HERO SECTION */}
       <Hero
-        bg={{ type: "image", src: "/images/industrias/GRUPO TREXAN-42.jpg", alt: "Nuestra Empresa" }}
+        bg={{
+          type: "image",
+          src: "/images/industrias/GRUPO TREXAN-42.jpg",
+          alt: "Nuestra Empresa",
+        }}
         height="60vh"
         badgeText="Nuestra Empresa"
         title="Liderando el Futuro de la Valorización Electrónica"
         subtitle="En Recibásicos transformamos desafíos ambientales en oportunidades sostenibles, garantizando trazabilidad total y certificaciones internacionales en cada proceso."
       />
 
-      <IntroText>
-        Integramos ingeniería avanzada y rigor normativo 
-        para resolver la complejidad de los residuos electrónicos. A través 
-        de nuestro modelo operativo, transformamos el desecho industrial en 
-        materias primas secundarias, asegurando que cada etapa del proceso sea 
-        trazable, segura y certificada internacionalmente.
-      </IntroText>
-
-      {/* FOUR CORE VERTICALS */}
-      <section className="py-16 md:py-20 bg-white">
+      {/* 1) FOUR CORE VERTICALS (NOW RIGHT AFTER HERO) */}
+      <section className="py-16 md:py-20 bg-zinc-50">
         <div className="section">
           <div className="mb-12">
-            <SectionHeader
-              label="Modelo Recibásicos"
-              title="Nuestros Cuatro Pilares Operativos"
-            />
+            <h2 className="text-3xl md:text-4xl font-bold text-black text-left">
+              Nuestros Cuatro Pilares Operativos
+            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {CORE_VERTICALS.map((vertical) => (
               <article
                 key={vertical.title}
-                className="relative bg-white border-t-4 border-orange-600 shadow-md p-6 space-y-4 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
+                className="relative bg-white border-t-4 border-orange-600 shadow-xl p-6 space-y-4 transition-all duration-200 hover:shadow-3xl hover:-translate-y-1"
               >
-                <h3 className="text-xl font-bold text-zinc-900">
-                  {vertical.title}
-                </h3>
-                <p className="text-sm text-zinc-600 leading-relaxed">
-                  {vertical.description}
-                </p>
+                <h3 className="text-xl font-bold text-zinc-900">{vertical.title}</h3>
+
                 <ul className="space-y-2 text-sm text-zinc-700">
                   {vertical.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-2">
@@ -162,14 +118,30 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* MAIN CONTENT CARDS - RESPONSIVE GRID */}
-      <section className="py-16 md:py-20 bg-zinc-50">
+      {/* 2) INTRO TEXT WITH GREEN RECTANGLE (CENTERED + ALIGNED TO TEXT) */}
+      <section className=" bg-zinc-50">
+          <div className=" bg-emerald-700 text-white py-8 md:py-14 px-8 md:px-12 text-center text-xl md:text-2xl leading-relaxed max-w-6xl mx-auto">
+            <h3 className="text-3xl md:text-5xl font-extrabold leading-tight">
+              Comprometidos con la Reducción del Impacto Ambiental
+            </h3>
+
+            <p className="mt-6 text-base md:text-xl leading-relaxed text-white/90 max-w-5xl mx-auto">
+              Integramos ingeniería avanzada y rigor normativo para resolver la complejidad de los
+              residuos electrónicos. A través de nuestro modelo operativo, transformamos el desecho
+              industrial en materias primas secundarias, asegurando que cada etapa del proceso sea
+              trazable, segura y certificada internacionalmente.
+            </p>
+          </div>
+      </section>
+
+      {/* 3) MAIN CONTENT CARDS */}
+      <section className="py-10 md:py-14 bg-zinc-50">
         <div className="section">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {CONTENT_CARDS.map((card) => (
               <article
                 key={card.title}
-                className="bg-white shadow-md overflow-hidden transition-all duration-200 hover:shadow-xl hover:-translate-y-1 flex flex-col h-full"
+                className="bg-white shadow-xl overflow-hidden transition-all duration-200 hover:shadow-3xl hover:-translate-y-1 flex flex-col h-full"
               >
                 <div className="relative h-56 overflow-hidden">
                   <Image
@@ -205,42 +177,8 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* SUSTAINABILITY COMMITMENT SECTION */}
-      <section className="relative overflow-hidden">
-        <div className="relative min-h-[28rem] md:min-h-[32rem] flex items-center justify-center">
-          <div className="absolute inset-0">
-            <Image
-              src="/images/industrias/GRUPO TREXAN-2.jpg"
-              alt="Compromiso con sostenibilidad ambiental"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black/60" />
-          </div>
-
-          <div className="section relative z-10">
-            <div className="bg-emerald-700 backdrop-blur-sm p-8 md:p-12 w-full border border-white/10">
-              <div className="text-center text-white space-y-6 max-w-4xl mx-auto">
-                <p className="text-xs font-semibold tracking-[0.25em] uppercase text-emerald-300">
-                  Contribuimos a la Sostenibilidad
-                </p>
-                <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-                  Recibásicos Ayuda a Alcanzar Objetivos de Sostenibilidad
-                </h2>
-                <p className="text-base md:text-lg leading-relaxed text-white/90">
-                  Proporcionamos soluciones integrales de gestión de residuos que incluyen
-                  reciclaje, recuperación y revalorización de subproductos industriales
-                  electrónicos, con evidencias claras y certificaciones que respaldan cada
-                  operación para proteger la cadena de suministro de nuestros clientes.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA FINAL (copy/paste EXACT as requested) */}
-      <CTA/>
+      {/* CTA FINAL */}
+      <CTA />
     </main>
   );
 }
