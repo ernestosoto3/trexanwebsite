@@ -46,7 +46,7 @@ function ResponsiveImage({
   priority?: boolean;
 }) {
   return (
-    <div className="relative w-full h-64 md:h-auto md:min-h-[400px] overflow-hidden">
+    <div className="relative w-full h-64 md:h-auto md:min-h-100 overflow-hidden">
       <Image
         src={src}
         alt={alt}
@@ -254,7 +254,7 @@ export default function NosotrosPage() {
             <div className="mb-16 text-center">
               <div className="mb-8">
                 {/* Trexan Logo - HERO SIZE */}
-                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-[160px]">
+                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-40">
                   <Image
                     src="/images/partners/trexan.png"
                     alt="Trexan Recycling Group Logo"
@@ -307,7 +307,7 @@ export default function NosotrosPage() {
               {/* Left Column - Recibásicos */}
               <div>
                 {/* Recibásicos Logo - LARGER */}
-                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-[160px]">
+                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-40">
                   <Image
                     src="/images/partners/recibasicos.png"
                     alt="Recibásicos Logo"
@@ -375,7 +375,7 @@ export default function NosotrosPage() {
               {/* Right Column - EWR */}
               <div>
                 {/* EWR Logo - LARGER */}
-                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-[160px]">
+                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-40">
                   <Image
                     src="/images/partners/ewr.png"
                     alt="EWR Logo"

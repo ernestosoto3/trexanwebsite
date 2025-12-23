@@ -138,7 +138,7 @@ export default function HomePage() {
         {/* Orange strip at the top */}
         <div className="absolute top-0 left-0 w-full h-2 bg-orange-600 z-10" />
         <div
-          className="h-[22rem] md:h-[28rem] bg-cover bg-center"
+          className="h-88 md:h-112 bg-cover bg-center"
           style={{ backgroundImage: "url('/images/industrias/GRUPO TREXAN-2.jpg')" }}
           role="img"
           aria-label="Instalaciones de procesamiento de Trexan"
@@ -154,7 +154,7 @@ export default function HomePage() {
 
       {/* VIDEO SECTION WITH TEXT OVERLAY */}
       <section className="relative overflow-hidden">
-        <div className="relative min-h-[26rem] md:min-h-[32rem] flex items-center justify-center">
+        <div className="relative min-h-104 md:min-h-128 flex items-center justify-center">
           {/* Video Background */}
           <div className="absolute inset-0">
             <video autoPlay loop muted playsInline className="h-full w-full object-cover">

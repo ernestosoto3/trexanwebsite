@@ -41,7 +41,7 @@ export default function NoticiaTrexanPremioPage() {
       <section className="pb-10">
         <div className="section">
           <div className="relative w-full overflow-hidden border-zinc-200">
-            <div className="relative h-[16rem] md:h-[28rem] w-full">
+            <div className="relative h-64 md:h-112 w-full">
               <Image
                 src="/images/industrias/GRUPO TREXAN-53.jpg"
                 alt="Reconocimiento de sustentabilidad de Trexan"

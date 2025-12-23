@@ -68,7 +68,7 @@ function BulletList({ items }: { items: string[] }) {
     <ul className="mt-4 space-y-3 text-sm md:text-base text-zinc-700">
       {items.map((t) => (
         <li key={t} className="flex items-start gap-3">
-          <span className="mt-1.5 h-2 w-2 rounded-full bg-zinc-400 flex-shrink-0" />
+          <span className="mt-1.5 h-2 w-2 rounded-full bg-zinc-400 shrink-0" />
           <span className="leading-relaxed">{t}</span>
         </li>
       ))}
@@ -97,13 +97,13 @@ function ArrowProcessBar({ steps }: { steps: Array<{ label: string; cls: string 
               }}
             >
               <div className="px-4 py-4 flex items-center justify-center text-center leading-tight">
-                <span className="relative -translate-x-[6px]">
+                <span className="relative -translate-x-1.5" >
                   {s.label}
                 </span>
               </div>
 
               {!isLast && (
-                <div className="absolute top-0 right-0 h-full w-[2px] bg-white/70" />
+                <div className="absolute top-0 right-0 h-full w-0.5 bg-white/70" />
               )}
             </div>
           );

@@ -150,7 +150,7 @@ export default function NosotrosPage() {
                     fill
                     className="object-cover transition-transform duration-300 hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                 </div>
 
                 <div className="p-6 space-y-4 flex-1 flex flex-col">

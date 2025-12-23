@@ -53,7 +53,7 @@ function ResponsiveImage({
   priority?: boolean;
 }) {
   return (
-    <div className="relative w-full h-64 md:h-auto md:min-h-[400px] overflow-hidden">
+    <div className="relative w-full h-64 md:h-auto md:min-h-100 overflow-hidden">
       <Image
         src={src}
         alt={alt}
@@ -249,7 +249,7 @@ export default function SostenibilidadPage() {
                   className="bg-white border border-emerald-700 p-6 shadow-sm hover:shadow-md transition-shadow duration-200"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-emerald-700 text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                    <div className="shrink-0 w-8 h-8 bg-emerald-700 text-white rounded-full flex items-center justify-center font-semibold text-sm">
                       {index + 1}
                     </div>
                     <p className="text-zinc-700 leading-relaxed pt-1">
