@@ -6,7 +6,7 @@ type IntroTextProps = {
 
 export default function IntroText({ children }: IntroTextProps) {
   return (
-    <section className="bg-white py-8 md:py-14">
+    <section className="bg-zinc-50 py-8 md:py-14">
       <div className="section">
         <p className="text-center text-xl md:text-2xl leading-relaxed text-zinc-600 max-w-6xl mx-auto">
           {children}

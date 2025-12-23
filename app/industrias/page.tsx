@@ -224,7 +224,7 @@ export default function IndustriasPage() {
       </section>
 
       {/* 2. NUESTROS SERVICIOS (Services Cards with Icon Top-Left) */}
-      <section className="py-14 bg-white"> {/* Using a different background color for separation */}
+      <section className="py-14 bg-zinc-50"> 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           {/* Header Block for SERVICIOS */}
@@ -254,7 +254,7 @@ export default function IndustriasPage() {
             {servicios.map((s) => (
               <article
                 key={s.nombre}
-                className="bg-zinc-50 border border-[#e5e7eb] shadow-sm h-full flex flex-col p-6 rounded-lg" // Modified card style for icon placement
+                className="bg-zinc-50 border shadow-sm h-full flex flex-col p-6 rounded-lg" // Modified card style for icon placement
               >
                 {/* Icon and Title */}
                 <div className="flex items-start space-x-4 mb-4">
@@ -282,7 +282,7 @@ export default function IndustriasPage() {
       </section>
       
       {/* BENEFICIOS */}
-      <section className="relative py-16 bg-white overflow-hidden">
+      <section className="relative py-16 bg-zinc-50 overflow-hidden">
         <div
           className="absolute inset-x-0 top-0 h-14 from-[#1a3d2b] via-white to-transparent pointer-events-none"
           aria-hidden

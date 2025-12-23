@@ -36,6 +36,7 @@ function ContentBlock({
 }
 
 // Reusable image container with optimized props
+// Reusable image container with optimized props
 function ResponsiveImage({
   src,
   alt,
@@ -46,7 +47,7 @@ function ResponsiveImage({
   priority?: boolean;
 }) {
   return (
-    <div className="relative w-full h-64 md:h-auto md:min-h-100 overflow-hidden">
+    <div className="relative w-full h-64 md:h-full md:min-h-[360px] overflow-hidden">
       <Image
         src={src}
         alt={alt}
@@ -58,6 +59,7 @@ function ResponsiveImage({
     </div>
   );
 }
+
 
 export default function NosotrosPage() {
   return (
@@ -82,53 +84,62 @@ export default function NosotrosPage() {
         trazable y de alto rendimiento.
       </IntroText>      
 
-      {/* TWO-COLUMN CONTENT SECTIONS - EDGE TO EDGE */}
-      <section className="bg-zinc-50 py-0">
-        <div className="w-full">
-          {/* Row 1: Text Left, Image Right */}
-          <div className="grid md:grid-cols-2">
-            <ContentBlock title="Nuestra Trayectoria">
-              <p>
-                Somos una empresa mexicana especializada en el acopio,
-                recolección, almacenamiento, desmontaje y tratamiento de Residuos
-                de Aparatos Eléctricos y Electrónicos (RAEE).
-              </p>
-              <p>
-                Como parte de Trexan Recycling Group, operamos la etapa de
-                procesos fríos, preparando y clasificando los materiales para su
-                envío a la división EWR, donde se completa la refinación final
-                de metales.
-              </p>
-            </ContentBlock>
+{/* TWO-COLUMN CONTENT SECTIONS - EDGE TO EDGE */}
+<section className="bg-zinc-50 py-0">
+  <div className="w-full">
+    {/* Row 1: Text Left, Image Right */}
+    <div className="grid md:grid-cols-2 md:items-stretch">
+      <ContentBlock title="Nuestra Trayectoria">
+        <p>
+          Somos una empresa mexicana especializada en el acopio,
+          recolección, almacenamiento, desmontaje y tratamiento de Residuos
+          de Aparatos Eléctricos y Electrónicos (RAEE).
+        </p>
+        <p>
+          Como parte de Trexan Recycling Group, operamos la etapa de
+          procesos fríos, preparando y clasificando los materiales para su
+          envío a la división EWR, donde se completa la refinación final
+          de metales.
+        </p>
+      </ContentBlock>
 
-            <ResponsiveImage
-              src={IMAGES.operations}
-              alt="Planta de reciclaje electrónico de Recibásicos"
-            />
-          </div>
+      <ResponsiveImage
+        src={IMAGES.operations}
+        alt="Planta de reciclaje electrónico de Recibásicos"
+      />
+    </div>
 
-          {/* Row 2: Image Left, Text Right */}
-          <div className="grid md:grid-cols-2">
-            <ResponsiveImage
-              src= "/images/industrias/DJI_0410-1.JPG"
-              alt="Operaciones industriales de valorización de metales"
-            />
+    {/* Row 2: Image Left (desktop), Text Right (desktop) — Text first on mobile */}
+    <div className="grid md:grid-cols-2 md:items-stretch">
+      {/* Text first on mobile, second on desktop */}
+      <div className="order-1 md:order-2">
+        <ContentBlock title="Experiencia que Respalda" align="right">
+          <p>
+            Contamos con especialistas con más de 40 años de experiencia
+            acumulada en reciclaje y transformación de metales, desde plantas
+            en México hasta proyectos internacionales.
+          </p>
+          <p>
+            Combinamos ingeniería, cumplimiento regulatorio y economía
+            circular para ofrecer soluciones confiables a industrias que
+            buscan descarbonizar y desmaterializar su cadena de suministro.
+          </p>
+        </ContentBlock>
+      </div>
 
-            <ContentBlock title="Experiencia que Respalda" align="right">
-              <p>
-                Contamos con especialistas con más de 40 años de experiencia
-                acumulada en reciclaje y transformación de metales, desde plantas
-                en México hasta proyectos internacionales.
-              </p>
-              <p>
-                Combinamos ingeniería, cumplimiento regulatorio y economía
-                circular para ofrecer soluciones confiables a industrias que
-                buscan descarbonizar y desmaterializar su cadena de suministro.
-              </p>
-            </ContentBlock>
-          </div>
-        </div>
-      </section>
+      {/* Image second on mobile, first on desktop */}
+      <div className="order-2 md:order-1">
+        <ResponsiveImage
+          src="/images/industrias/DJI_0410-1.JPG"
+          alt="Operaciones industriales de valorización de metales"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
       {/* ENHANCED CIRCULAR ECONOMY SECTION - MATCHING HOME PAGE STYLE */}
       <section className="bg-emerald-700 py-16 md:py-24 text-white">
@@ -289,8 +300,9 @@ export default function NosotrosPage() {
                 href="https://trexan.co/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border-2 border-[#0d5745] text-[#0d5745] px-6 py-3 font-semibold hover:bg-[#0d5745] hover:text-white transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-emerald-700 text-white px-6 py-3 font-semibold hover:bg-white hover:text-black border hover:border-emerald-800 transition-colors"
               >
+
                 Visitar sitio web de Trexan
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -298,8 +310,6 @@ export default function NosotrosPage() {
               </a>
             </div>
 
-            {/* Divider */}
-            <div className="border-t border-zinc-300 mb-16"></div>
 
             {/* Two Column Layout - Recibásicos & EWR */}
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
@@ -361,15 +371,18 @@ export default function NosotrosPage() {
                   </li>
                 </ul>
 
-                <Link
-                  href="/contacto"
-                  className="inline-flex items-center gap-2 border-2 border-[#0d5745] text-[#0d5745] px-6 py-3 font-semibold hover:bg-[#0d5745] hover:text-white transition-all duration-300"
-                >
-                  Conoce más sobre Recibásicos
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
+                <div className="flex justify-center md:justify-start">
+                  <Link
+                    href="/contacto"
+                    className="inline-flex items-center gap-2 bg-emerald-700 text-white px-6 py-3 font-semibold hover:bg-white hover:text-black border hover:border-emerald-800 transition-colors"
+                  >
+                    Conoce más sobre Recibásicos
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </div>
+
               </div>
 
               {/* Right Column - EWR */}
@@ -409,23 +422,24 @@ export default function NosotrosPage() {
                   </p>
                 </div>
 
-                <a
-                  href="https://ewr.com.mx/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border-2 border-[#0d5745] text-[#0d5745] px-6 py-3 font-semibold hover:bg-[#0d5745] hover:text-white transition-all duration-300"
-                >
-                  Visitar sitio web de EWR
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                <div className="flex justify-center md:justify-start">
+                  <a
+                    href="https://ewr.com.mx/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-emerald-700 text-white px-6 py-3 font-semibold hover:bg-white hover:text-black border hover:border-emerald-800 transition-colors"
+                  >
+                    Visitar sitio web de EWR
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
               </div>
-
             </div>
 
             {/* Process Steps - Below Two Columns */}
-            <div className="mt-20 border-t border-zinc-200 pt-16">
+            <div className="mt-20 pt-16">
               <h3 className="text-2xl md:text-3xl font-bold text-center text-zinc-900 mb-12">
                 Nuestro Proceso de 5 Pasos
               </h3>

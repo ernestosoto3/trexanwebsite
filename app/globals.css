@@ -47,11 +47,11 @@
 }
 
 .card-green {
-  @apply rounded-2xl bg-gradient-to-br from-[--color-primary] to-[#15803d] text-white shadow-lg;
+  @apply rounded-2xl bg-linear-to-br from-[--color-primary] to-[#15803d] text-white shadow-lg;
 }
 
 .card-orange {
-  @apply rounded-2xl bg-gradient-to-br from-[--color-secondary] to-[#c2410c] text-white shadow-lg;
+  @apply rounded-2xl bg-linear-to-br from-[--color-secondary] to-[#c2410c] text-white shadow-lg;
 }
 
 /*Utility Classes */

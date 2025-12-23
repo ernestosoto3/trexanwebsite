@@ -3,7 +3,7 @@ import BloquesAprendeMas from "./(componentes)/ui/BloqueAprendeMas";
 import ComoTrabajamosComoAyudamos from "./(componentes)/ui/ComoTrabajamosComoAyudamos";
 import Image from "next/image";
 import Link from "next/link";
-import Hero from "./(componentes)/ui/Hero"
+import Hero from "./(componentes)/ui/Hero";
 import CTA from "./(componentes)/ui/CTA";
 import IntroText from "./(componentes)/ui/IntroText";
 
@@ -47,38 +47,43 @@ const NEWS_CARDS = [
   {
     title: "Trexan Reconocida con Premio de Sustentabilidad Nacional",
     date: "Diciembre 15, 2025",
-    excerpt: "Trexan ha sido seleccionada para recibir el Premio Nacional de Sustentabilidad, un reconocimiento anual otorgado a empresas que demuestran excelencia en prácticas ambientales y economía circular...",
+    excerpt:
+      "Trexan ha sido seleccionada para recibir el Premio Nacional de Sustentabilidad, un reconocimiento anual otorgado a empresas que demuestran excelencia en prácticas ambientales y economía circular...",
     image: "/images/industrias/GRUPO TREXAN-53.jpg",
     alt: "Vista aérea de las instalaciones de reciclaje Trexan con áreas de procesamiento organizadas",
-    href: "/noticias/premio-sustentabilidad-2025"
+    href: "/noticias/premio-sustentabilidad-2025",
   },
   {
-    title: "Transformando Residuos Industriales en Activos Estratégicos: Economía Circular",
+    title:
+      "Transformando Residuos Industriales en Activos Estratégicos: Economía Circular",
     date: "Noviembre 19, 2025",
-    excerpt: "Los residuos industriales representan más que un desafío de disposición. Son una oportunidad sin explotar esperando ser desbloqueada. Las empresas con visión de futuro en manufactura, energía y tecnología...",
+    excerpt:
+      "Los residuos industriales representan más que un desafío de disposición. Son una oportunidad sin explotar esperando ser desbloqueada. Las empresas con visión de futuro en manufactura, energía y tecnología...",
     image: "/images/industrias/GRUPO TREXAN-22.jpg",
     alt: "Línea de procesamiento industrial con maquinaria de trituración y separación de materiales",
-    href: "/noticias/residuos-a-activos-estrategicos"
+    href: "/noticias/residuos-a-activos-estrategicos",
   },
   {
-    title: "Fortaleciendo Relaciones con Clientes del Sector Electrónico: Ventaja Estratégica",
+    title:
+      "Fortaleciendo Relaciones con Clientes del Sector Electrónico: Ventaja Estratégica",
     date: "Octubre 2, 2025",
-    excerpt: "En el mundo competitivo de la gestión de residuos electrónicos, tu éxito depende no solo de lo que recolectas, sino de hacia dónde va. Como fabricante de componentes electrónicos...",
+    excerpt:
+      "En el mundo competitivo de la gestión de residuos electrónicos, tu éxito depende no solo de lo que recolectas, sino de hacia dónde va. Como fabricante de componentes electrónicos...",
     image: "/images/industrias/shaking-hands.jpg",
     alt: "Patio de logística con materiales clasificados y organizados para reciclaje",
-    href: "/noticias/relaciones-sector-electronico"
+    href: "/noticias/relaciones-sector-electronico",
   },
 ] as const;
 
 // Reusable component for consistent styling
-const SectionHeader = ({ 
-  label, 
-  title, 
+const SectionHeader = ({
+  label,
+  title,
   description,
-  align = "center"
-}: { 
-  label?: string; 
-  title: string; 
+  align = "center",
+}: {
+  label?: string;
+  title: string;
   description?: string;
   align?: "left" | "center";
 }) => (
@@ -88,7 +93,9 @@ const SectionHeader = ({
         {label}
       </p>
     )}
-    <h2 className=" text-center text-3xl md:text-4xl font-bold text-zinc-900">{title}</h2>
+    <h2 className=" text-center text-3xl md:text-4xl font-bold text-zinc-900">
+      {title}
+    </h2>
     {description && (
       <p className={`text-base text-center md:text-lg text-zinc-600`}>
         {description}
@@ -98,8 +105,10 @@ const SectionHeader = ({
 );
 
 // Shared button classes as constants
-const PRIMARY_BUTTON_CLASSES = "border-emerald-700 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none";
-const SECONDARY_BUTTON_CLASSES = "border-emerald-300/70 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none";
+const PRIMARY_BUTTON_CLASSES =
+  "border-emerald-700 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none";
+const SECONDARY_BUTTON_CLASSES =
+  "border-emerald-300/70 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none";
 
 export default function HomePage() {
   return (
@@ -120,21 +129,23 @@ export default function HomePage() {
             href: "/nosotros",
             label: "Conoce Nuestros Servicios",
             variant: "primary",
-            className: "bg-emerald-700 border-emerald-700 hover:bg-emerald-800",
+            // ✅ Only hide on small screens (still visible on md+)
+            className:
+              "hidden md:inline-flex bg-emerald-700 border-emerald-700 hover:bg-emerald-800",
           },
         ]}
       />
 
       {/* TEXTO INTRODUCTORIO */}
       <IntroText>
-        Líderes en valorización de residuos electrónicos con trazabilidad total. 
-        Protegemos su cadena de suministro mediante procesos certificados (R2v3, ISO) 
-        que transforman pasivos ambientales en cumplimiento normativo y metas de 
+        Líderes en valorización de residuos electrónicos con trazabilidad total.
+        Protegemos su cadena de suministro mediante procesos certificados (R2v3, ISO)
+        que transforman pasivos ambientales en cumplimiento normativo y metas de
         sostenibilidad cumplidas.
       </IntroText>
 
-      {/* SERVICES BAND (BACKGROUND IMAGE) - WITH ORANGE STRIP */}
-      <section className="relative bg-white overflow-hidden">
+      {/* SERVICES BAND (desktop only) */}
+      <section className="relative bg-white overflow-hidden hidden md:block">
         {/* Orange strip at the top */}
         <div className="absolute top-0 left-0 w-full h-2 bg-orange-600 z-10" />
         <div
@@ -198,11 +209,7 @@ export default function HomePage() {
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
                 Confiados en Diferentes Sectores
               </h2>
-              <Button
-                href="/industrias"
-                variant="primary"
-                className={SECONDARY_BUTTON_CLASSES}
-              >
+              <Button href="/industrias" variant="primary" className={SECONDARY_BUTTON_CLASSES}>
                 Industrias →
               </Button>
             </div>
@@ -218,7 +225,10 @@ export default function HomePage() {
                 <span className="text-base md:text-lg opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition">
                   {item}
                 </span>
-                <span className="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition" aria-hidden="true">
+                <span
+                  className="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition"
+                  aria-hidden="true"
+                >
                   ↗
                 </span>
               </button>
@@ -266,15 +276,15 @@ export default function HomePage() {
             </div>
 
             {/* Button on Right */}
-          <div className="text-left pt-4">
-            <Link
-              href="/noticias"
-              className="inline-flex items-center gap-2 text-emerald-700 font-semibold hover:text-emerald-800 transition-colors"
-            >
-              Ver todas las noticias
-              <span aria-hidden="true">→</span>
-            </Link>
-          </div>
+            <div className="text-left pt-4">
+              <Link
+                href="/noticias"
+                className="inline-flex items-center gap-2 text-emerald-700 font-semibold hover:text-emerald-800 transition-colors"
+              >
+                Ver todas las noticias
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
 
           {/* News Cards Grid */}
@@ -287,7 +297,7 @@ export default function HomePage() {
               >
                 {/* Orange strip at the top */}
                 <div className="absolute top-0 left-0 w-full h-2 bg-orange-600 z-10" />
-                
+
                 {/* Image Section */}
                 <div className="relative h-56 overflow-hidden">
                   <img
@@ -301,9 +311,7 @@ export default function HomePage() {
                 {/* Content Section */}
                 <div className="p-6 space-y-3 flex-1 flex flex-col">
                   {/* Date */}
-                  <time className="text-xs md:text-sm text-emerald-700 font-medium">
-                    {card.date}
-                  </time>
+                  <time className="text-xs md:text-sm text-emerald-700 font-medium">{card.date}</time>
 
                   {/* Title */}
                   <h3 className="text-lg md:text-xl font-semibold text-zinc-900 leading-snug group-hover:text-emerald-700 transition-colors duration-200">
@@ -322,7 +330,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA FINAL */}
-      <CTA/>
+      <CTA />
     </main>
   );
 }

@@ -15,12 +15,11 @@ const PARTNER_LOGOS = [
 ];
 
 const certificationLogos = [
-  { name: "SEMARNAT", src: "/images/certificaciones/semarnat.png" },
   { name: "ISO 14001", src: "/images/certificaciones/iso-14001.jpeg" },
   { name: "ISO 45001", src: "/images/certificaciones/ISO-45001.png.webp" },
   { name: "ISO 9001:2015", src: "/images/certificaciones/iso-9001.png"},
+  { name: "SEMARNAT", src: "/images/certificaciones/semarnat.png" },
   { name: "SE IMMEX", src: "/images/certificaciones/se-immex.png" },
-  
   { name: "R2v3 Certified", src: "/images/certificaciones/r2v3.png" },
 ];
 
@@ -307,28 +306,27 @@ export default function CertificacionesPage() {
             </div>
           </div>
 
-          <div className="mt-10 rounded-2xl bg-white p-6">
+          <div className="mt-10 bg-white p-6">
             <h3 className="text-sm font-semibold tracking-wider uppercase text-zinc-700 mb-6">
               Certificaciones y Permisos
             </h3>
 
-            <div className="flex flex-wrap gap-0 items-center justify-center">
+            {/* 2 columns on mobile, more on desktop */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center">
               {certificationLogos.map((logo) => (
-                <div
-                  key={logo.name}
-                  className="flex items-center justify-center p-4 rounded-xl bg-zinc-50"
-                >
+                <div key={logo.name} className="flex items-center justify-center p-3">
                   <Image
                     src={logo.src}
                     alt={logo.name}
                     width={160}
                     height={80}
-                    className="object-contain max-h-20"
+                    className="object-contain max-h-20 w-auto"
                   />
                 </div>
               ))}
             </div>
           </div>
+
 
           <ArrowProcessBar steps={processSteps} />
         </div>

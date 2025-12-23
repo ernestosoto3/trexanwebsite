@@ -157,14 +157,10 @@ export default function SostenibilidadPage() {
             />
           </div>
 
-          {/* Row 2: Image Left, Text Right */}
+          {/* Row 2: Image Left (desktop), Text Right (desktop) — Text first on mobile */}
           <div className="grid md:grid-cols-2">
-            <ResponsiveImage
-              src="/images/naturaleza/river-mexico.jpg"
-              alt="Compromiso con la sostenibilidad"
-            />
-
-            <div className="flex items-center justify-center px-6 md:px-12 lg:px-16 py-12 md:py-16">
+            {/* Text FIRST on mobile, SECOND on desktop */}
+            <div className="order-1 md:order-2 flex items-center justify-center px-6 md:px-12 lg:px-16 py-12 md:py-16">
               <div className="max-w-lg text-center md:text-right">
                 <h2 className="text-3xl md:text-4xl font-semibold mb-4 md:mb-6">
                   Nuestro Compromiso con la Sostenibilidad
@@ -180,9 +176,18 @@ export default function SostenibilidadPage() {
                 </div>
               </div>
             </div>
+
+            {/* Image SECOND on mobile, FIRST on desktop */}
+            <div className="order-2 md:order-1">
+              <ResponsiveImage
+                src="/images/naturaleza/river-mexico.jpg"
+                alt="Compromiso con la sostenibilidad"
+              />
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* FOUR KEY AREAS SECTION */}
       <section className="py-16 md:py-20 bg-white">

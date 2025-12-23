@@ -16,8 +16,17 @@ export default function CTA() {
 
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="section">
-            <div className="max-w-3xl mx-auto bg-white px-6 py-10 md:px-10 md:py-12 text-center shadow-xl">
-
+            {/* White card */}
+            <div className="
+              mx-auto
+              bg-white
+              text-center
+              shadow-xl
+              px-5 py-8                 /* smaller on mobile */
+              md:px-10 md:py-12         /* unchanged desktop */
+              max-w-sm md:max-w-3xl     /* smaller width on mobile */
+            ">
+              {/* Eyebrow */}
               <p className="text-xs font-semibold tracking-[0.25em] uppercase text-emerald-700">
                 DA EL SIGUIENTE PASO
               </p>
@@ -27,8 +36,8 @@ export default function CTA() {
                 ¿Listos para trabajar con trazabilidad y seguridad?
               </h2>
 
-              {/* Description */}
-              <p className="mt-4 text-sm md:text-base text-zinc-600 leading-relaxed">
+              {/* Description — hidden on mobile */}
+              <p className="hidden md:block mt-4 text-base text-zinc-600 leading-relaxed">
                 Gestión certificada, trazabilidad total y cumplimiento normativo
                 en un solo lugar.
               </p>
@@ -36,7 +45,7 @@ export default function CTA() {
               {/* CTA Button */}
               <Link
                 href="/contacto"
-                className="mt-8 inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold bg-emerald-700 text-white hover:bg-emerald-800 transition-colors"
+                className="mt-6 md:mt-8 inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold bg-emerald-700 text-white hover:bg-emerald-800 transition-colors"
               >
                 Solicitar Cotización
               </Link>
