@@ -24,7 +24,7 @@ export default function RetailPage() {
       <Hero
         bg={{
           type: "image",
-          src: "/images/industrias/industriaretail.jpg",
+          src: "/images/industrias/heroindusretail2.jpg",
           alt: "Industria Retail",
         }}
         height="60vh"
@@ -77,7 +77,7 @@ export default function RetailPage() {
           },
         ]}
         image={{
-          src: "/images/industrias/industriaret2.jpg",
+          src: "/images/industrias/industriaretail3.jpg",
           alt: "Gestión de devoluciones y reciclaje para retail",
         }}
       />

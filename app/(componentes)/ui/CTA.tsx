@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function CTA() {
   return (
     <section className="relative">
-      <div className="relative min-h-[22rem] md:min-h-[28rem] overflow-hidden">
+      <div className="relative min-h-88 md:min-h-112 overflow-hidden">
         <Image
           src="/images/industrias/GRUPO TREXAN-31.jpg"
           alt="Paisaje que representa un futuro más limpio"

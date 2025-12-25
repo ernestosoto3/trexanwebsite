@@ -47,7 +47,7 @@ function ResponsiveImage({
   priority?: boolean;
 }) {
   return (
-    <div className="relative w-full h-64 md:h-full md:min-h-[360px] overflow-hidden">
+    <div className="relative w-full h-64 md:h-full md:min-h-90 overflow-hidden">
       <Image
         src={src}
         alt={alt}
@@ -84,62 +84,372 @@ export default function NosotrosPage() {
         trazable y de alto rendimiento.
       </IntroText>      
 
-{/* TWO-COLUMN CONTENT SECTIONS - EDGE TO EDGE */}
-<section className="bg-zinc-50 py-0">
-  <div className="w-full">
-    {/* Row 1: Text Left, Image Right */}
-    <div className="grid md:grid-cols-2 md:items-stretch">
-      <ContentBlock title="Nuestra Trayectoria">
-        <p>
-          Somos una empresa mexicana especializada en el acopio,
-          recolección, almacenamiento, desmontaje y tratamiento de Residuos
-          de Aparatos Eléctricos y Electrónicos (RAEE).
-        </p>
-        <p>
-          Como parte de Trexan Recycling Group, operamos la etapa de
-          procesos fríos, preparando y clasificando los materiales para su
-          envío a la división EWR, donde se completa la refinación final
-          de metales.
-        </p>
-      </ContentBlock>
+      {/* TWO-COLUMN CONTENT SECTIONS - EDGE TO EDGE */}
+      <section className="bg-zinc-50 py-0">
+        <div className="w-full">
+          {/* Row 1: Text Left, Image Right */}
+          <div className="grid md:grid-cols-2 md:items-stretch">
+            <ContentBlock title="Nuestra Trayectoria">
+              <p>
+                Somos una empresa mexicana especializada en el acopio,
+                recolección, almacenamiento, desmontaje y tratamiento de Residuos
+                de Aparatos Eléctricos y Electrónicos (RAEE).
+              </p>
+              <p>
+                Como parte de Trexan Recycling Group, operamos la etapa de
+                procesos fríos, preparando y clasificando los materiales para su
+                envío a la división EWR, donde se completa la refinación final
+                de metales.
+              </p>
+            </ContentBlock>
 
-      <ResponsiveImage
-        src={IMAGES.operations}
-        alt="Planta de reciclaje electrónico de Recibásicos"
-      />
-    </div>
+            <ResponsiveImage
+              src={IMAGES.operations}
+              alt="Planta de reciclaje electrónico de Recibásicos"
+            />
+          </div>
 
-    {/* Row 2: Image Left (desktop), Text Right (desktop) — Text first on mobile */}
-    <div className="grid md:grid-cols-2 md:items-stretch">
-      {/* Text first on mobile, second on desktop */}
-      <div className="order-1 md:order-2">
-        <ContentBlock title="Experiencia que Respalda" align="right">
-          <p>
-            Contamos con especialistas con más de 40 años de experiencia
-            acumulada en reciclaje y transformación de metales, desde plantas
-            en México hasta proyectos internacionales.
-          </p>
-          <p>
-            Combinamos ingeniería, cumplimiento regulatorio y economía
-            circular para ofrecer soluciones confiables a industrias que
-            buscan descarbonizar y desmaterializar su cadena de suministro.
-          </p>
-        </ContentBlock>
-      </div>
+          {/* Row 2: Image Left (desktop), Text Right (desktop) — Text first on mobile */}
+          <div className="grid md:grid-cols-2 md:items-stretch">
+            {/* Text first on mobile, second on desktop */}
+            <div className="order-1 md:order-2">
+              <ContentBlock title="Experiencia que Respalda" align="right">
+                <p>
+                  Contamos con especialistas con más de 40 años de experiencia
+                  acumulada en reciclaje y transformación de metales, desde plantas
+                  en México hasta proyectos internacionales.
+                </p>
+                <p>
+                  Combinamos ingeniería, cumplimiento regulatorio y economía
+                  circular para ofrecer soluciones confiables a industrias que
+                  buscan descarbonizar y desmaterializar su cadena de suministro.
+                </p>
+              </ContentBlock>
+            </div>
 
-      {/* Image second on mobile, first on desktop */}
-      <div className="order-2 md:order-1">
-        <ResponsiveImage
-          src="/images/industrias/DJI_0410-1.JPG"
-          alt="Operaciones industriales de valorización de metales"
-        />
-      </div>
-    </div>
-  </div>
-</section>
+            {/* Image second on mobile, first on desktop */}
+            <div className="order-2 md:order-1">
+              <ResponsiveImage
+                src="/images/industrias/DJI_0410-1.JPG"
+                alt="Operaciones industriales de valorización de metales"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* ENHANCED HOW WE OPERATE SECTION - NEW TREXAN/RECIBASICOS/EWR SECTION */}
+      <section className="bg-emerald-700 py-16 md:py-24 text-white">
+        <div className="section">
+          <div className="max-w-7xl mx-auto">
 
+            {/* TREXAN FEATURE HEADER */}
+            <div className="mb-16">
+              {/* White strip on top */}
+              <div className="h-2 bg-white" />
 
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 md:p-12 lg:p-14 hover:bg-white/15 transition-all duration-300">
+                <div className="grid lg:grid-cols-12 gap-10 items-center">
+
+                  {/* Left: brand + text */}
+                  <div className="lg:col-span-7">
+                    <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                      <div className="w-44 sm:w-56 md:w-64 max-w-40">
+                        <Image
+                          src="/images/partners/TrexanLogoT.png"
+                          alt="Trexan Recycling Group Logo"
+                          width={800}
+                          height={320}
+                          className="w-full h-auto"
+                          priority
+                        />
+                      </div>
+
+                      <h2 className="text-3xl md:text-5xl font-bold mt-8">
+                        Trexan Recycling Group
+                      </h2>
+
+                      <p className="mt-4 text-lg md:text-xl text-white/90 max-w-2xl">
+                        Un ecosistema integrado que garantiza trazabilidad total desde el acopio hasta la refinación final.
+                      </p>
+
+                      <div className="mt-8 space-y-4 text-base md:text-lg text-white/85 leading-relaxed max-w-2xl">
+                        <p>
+                          Trexan Recycling Group es un conglomerado líder en la gestión integral
+                          de residuos electrónicos en México y Latinoamérica. Con más de 40 años
+                          de experiencia acumulada en la industria del reciclaje y valorización de
+                          metales, operamos bajo los más altos estándares internacionales.
+                        </p>
+                        <p>
+                          Nuestra misión es transformar los pasivos ambientales en recursos valiosos,
+                          integrando tecnología, cumplimiento normativo y economía circular para
+                          ofrecer soluciones completas desde el acopio hasta la refinación final de
+                          metales preciosos.
+                        </p>
+                      </div>
+
+                      <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                        <a
+                          href="https://trexan.co/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 bg-white text-emerald-900 px-6 py-3 font-semibold hover:bg-white/90 border border-white transition-colors"
+                        >
+                          Visitar sitio web de Trexan
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </a>
+
+                        <Link
+                          href="/contacto"
+                          className="inline-flex items-center justify-center gap-2 bg-transparent text-white px-6 py-3 font-semibold border border-white hover:bg-white hover:text-emerald-900 transition-colors"
+                        >
+                          Hablar con un asesor
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right: credibility metrics */}
+                  <div className="lg:col-span-5">
+                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8">
+                      <p className="text-sm uppercase tracking-wider text-white/70 font-semibold">
+                        Escala y credibilidad
+                      </p>
+
+                      <div className="mt-6 grid grid-cols-2 gap-6">
+                        <div className="border border-white/25 p-5">
+                          <p className="text-3xl font-bold text-white">+40</p>
+                          <p className="text-xs uppercase tracking-wide text-white/80 mt-2">
+                            Años de experiencia
+                          </p>
+                        </div>
+
+                        <div className="border border-white/25 p-5">
+                          <p className="text-3xl font-bold text-white">LATAM</p>
+                          <p className="text-xs uppercase tracking-wide text-white/80 mt-2">
+                            Cobertura regional
+                          </p>
+                        </div>
+
+                        <div className="border border-white/25 p-5">
+                          <p className="text-3xl font-bold text-white">R2v3</p>
+                          <p className="text-xs uppercase tracking-wide text-white/80 mt-2">
+                            Procesos auditables
+                          </p>
+                        </div>
+
+                        <div className="border border-white/25 p-5">
+                          <p className="text-3xl font-bold text-white">ISO</p>
+                          <p className="text-xs uppercase tracking-wide text-white/80 mt-2">
+                            Gestión certificada
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 border-t border-white/25 pt-6">
+                        <p className="text-sm text-white/85">
+                          Evidencia documental, trazabilidad y cumplimiento orientado a auditorías ESG.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            {/* INTEGRATED FLOW STRIP */}
+            <div className="mb-14">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-5 md:px-10 md:py-7 hover:bg-white/15 transition-all duration-300">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div className="text-center md:text-left">
+                    <p className="text-sm uppercase tracking-wider text-white/70 font-semibold">
+                      Ecosistema integrado
+                    </p>
+                    <p className="text-white/90 mt-1">
+                      Un flujo completo y trazable, diseñado para máxima recuperación y cumplimiento.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-3">
+                    <span className="border border-white/25 px-4 py-2 text-sm font-semibold text-white bg-white/10">
+                      Acopio & Clasificación
+                    </span>
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                    <span className="border border-white/25 px-4 py-2 text-sm font-semibold text-white bg-white/10">
+                      Procesos Fríos
+                    </span>
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                    <span className="border border-white/25 px-4 py-2 text-sm font-semibold text-white bg-white/10">
+                      Refinación Final
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* TWO PANELS */}
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-12">
+
+              {/* Recibásicos */}
+              <div>
+                {/* White strip on top */}
+                <div className="h-2 bg-white" />
+
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 md:p-10 hover:bg-white/15 transition-all duration-300">
+                  <div className="w-48 sm:w-56 md:w-64 mx-auto max-w-40">
+                    <Image
+                      src="/images/partners/PNG RECIBÁSICOS LETRAS NEGRAS.png"
+                      alt="Recibásicos Logo"
+                      width={600}
+                      height={220}
+                      className="w-full h-auto"
+                    />
+                  </div>
+
+                  <br />
+
+                  <p className="text-sm uppercase tracking-wider text-white/70 mb-2 text-center">
+                    ACOPIO Y PROCESOS FRÍOS
+                  </p>
+
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+                    Recibásicos
+                  </h2>
+
+                  <div className="space-y-4 text-base md:text-lg text-white/85 leading-relaxed mb-6">
+                    <p>
+                      Recibásicos es la división especializada en el acopio, recolección,
+                      almacenamiento, clasificación y desmantelamiento de Residuos de
+                      Aparatos Eléctricos y Electrónicos (RAEE).
+                    </p>
+                    <p className="font-medium text-white">
+                      Nuestra especialidad:
+                    </p>
+                  </div>
+
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-start gap-3">
+                      <span className="text-white font-bold text-lg mt-0.5">•</span>
+                      <span className="text-base text-white/85">
+                        Operamos los procesos fríos de desmantelamiento mecánico,
+                        separación y clasificación de componentes electrónicos sin
+                        procesos térmicos.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-white font-bold text-lg mt-0.5">•</span>
+                      <span className="text-base text-white/85">
+                        Generamos evidencia documental completa respaldada por
+                        certificaciones R2v3, ISO 14001 e ISO 45001 para garantizar
+                        trazabilidad y cumplimiento normativo.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-white font-bold text-lg mt-0.5">•</span>
+                      <span className="text-base text-white/85">
+                        Preparamos concentrados metálicos clasificados y listos para
+                        envío a la siguiente etapa de refinación en EWR.
+                      </span>
+                    </li>
+                  </ul>
+
+                  <div className="flex justify-center md:justify-start">
+                    <Link
+                      href="/contacto"
+                      className="inline-flex items-center gap-2 bg-white text-emerald-900 px-6 py-3 font-semibold hover:bg-white/90 border border-white transition-colors"
+                    >
+                      Conoce más sobre Recibásicos
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* EWR */}
+              <div>
+                {/* White strip on top */}
+                <div className="h-2 bg-white" />
+
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 md:p-10 hover:bg-white/15 transition-all duration-300">
+                  <div className="w-48 sm:w-56 md:w-64 mx-auto max-w-40">
+                    <Image
+                      src="/images/partners/EWR_Logotipo.png"
+                      alt="EWR Logo"
+                      width={600}
+                      height={220}
+                      className="w-full h-auto"
+                    />
+                  </div>
+
+                  <br />
+
+                  <p className="text-sm uppercase tracking-wider text-white/70 mb-2 text-center">
+                    REFINACIÓN Y VALORIZACIÓN FINAL
+                  </p>
+
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+                    EWR - Electronic Waste Recycling
+                  </h2>
+
+                  <div className="space-y-4 text-base md:text-lg text-white/85 leading-relaxed mb-8">
+                    <p>
+                      EWR es la división especializada en la refinación de metales
+                      preciosos y la valorización final de materiales electrónicos.
+                      Completamos el ciclo de economía circular mediante procesos
+                      metalúrgicos de última generación.
+                    </p>
+                    <p>
+                      Recibimos los concentrados metálicos preparados por Recibásicos
+                      y los transformamos en metales refinados de alta pureza listos
+                      para su reintroducción en cadenas productivas globales. Operamos
+                      con tecnología de punta y control de calidad riguroso para
+                      maximizar la recuperación de oro, plata, cobre, paladio y otros
+                      metales valiosos.
+                    </p>
+                  </div>
+
+                  <div className="flex justify-center md:justify-start">
+                    <a
+                      href="https://ewr.com.mx/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-white text-emerald-900 px-6 py-3 font-semibold hover:bg-white/90 border border-white transition-colors"
+                    >
+                      Visitar sitio web de EWR
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ENHANCED CIRCULAR ECONOMY SECTION - MATCHING HOME PAGE STYLE */}
       <section className="bg-emerald-700 py-16 md:py-24 text-white">
@@ -249,270 +559,6 @@ export default function NosotrosPage() {
                   <span className="text-white/90">
                     Operación certificada bajo estándares R2v3 e ISO 14001
                   </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ENHANCED HOW WE OPERATE SECTION - NEW TREXAN/RECIBASICOS/EWR SECTION */}
-      <section className="bg-white py-16 md:py-24">
-        <div className="section">
-          <div className="max-w-7xl mx-auto">
-            
-            {/* TREXAN RECYCLING GROUP - INTRODUCTION PARAGRAPH */}
-            <div className="mb-16 text-center">
-              <div className="mb-8">
-                {/* Trexan Logo - HERO SIZE */}
-                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-40">
-                  <Image
-                    src="/images/partners/trexan.png"
-                    alt="Trexan Recycling Group Logo"
-                    width={800}
-                    height={320}
-                    className="w-full h-auto"
-                    priority
-                  />
-                </div>
-                
-                <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6 mt-8">
-                  Trexan Recycling Group
-                </h2>
-              </div>
-              
-              <div className="max-w-4xl mx-auto space-y-4 text-base md:text-lg text-zinc-700 leading-relaxed mb-8">
-                <p>
-                  Trexan Recycling Group es un conglomerado líder en la gestión integral 
-                  de residuos electrónicos en México y Latinoamérica. Con más de 40 años 
-                  de experiencia acumulada en la industria del reciclaje y valorización de 
-                  metales, operamos bajo los más altos estándares internacionales.
-                </p>
-                <p>
-                  Nuestra misión es transformar los pasivos ambientales en recursos valiosos, 
-                  integrando tecnología, cumplimiento normativo y economía circular para 
-                  ofrecer soluciones completas desde el acopio hasta la refinación final de 
-                  metales preciosos.
-                </p>
-              </div>
-
-              <a
-                href="https://trexan.co/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-emerald-700 text-white px-6 py-3 font-semibold hover:bg-white hover:text-black border hover:border-emerald-800 transition-colors"
-              >
-
-                Visitar sitio web de Trexan
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
-
-
-            {/* Two Column Layout - Recibásicos & EWR */}
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-              
-              {/* Left Column - Recibásicos */}
-              <div>
-                {/* Recibásicos Logo - LARGER */}
-                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-40">
-                  <Image
-                    src="/images/partners/recibasicos.png"
-                    alt="Recibásicos Logo"
-                    width={600}
-                    height={220}
-                    className="w-full h-auto"
-                  />
-                </div>
-                <br></br>
-                <p className="text-sm uppercase tracking-wider text-[#0d5745] mb-2 text-center">
-                  ACOPIO Y PROCESOS FRÍOS
-                </p>
-                <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 text-center">
-                  Recibásicos
-                </h2>
-                
-                <div className="space-y-4 text-base md:text-lg text-zinc-700 leading-relaxed mb-6">
-                  <p>
-                    Recibásicos es la división especializada en el acopio, recolección, 
-                    almacenamiento, clasificación y desmantelamiento de Residuos de 
-                    Aparatos Eléctricos y Electrónicos (RAEE).
-                  </p>
-                  <p className="font-medium text-zinc-900">
-                    Nuestra especialidad:
-                  </p>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#0d5745] font-bold text-lg mt-0.5">•</span>
-                    <span className="text-base text-zinc-700">
-                      Operamos los procesos fríos de desmantelamiento mecánico, 
-                      separación y clasificación de componentes electrónicos sin 
-                      procesos térmicos.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#0d5745] font-bold text-lg mt-0.5">•</span>
-                    <span className="text-base text-zinc-700">
-                      Generamos evidencia documental completa respaldada por 
-                      certificaciones R2v3, ISO 14001 e ISO 45001 para garantizar 
-                      trazabilidad y cumplimiento normativo.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#0d5745] font-bold text-lg mt-0.5">•</span>
-                    <span className="text-base text-zinc-700">
-                      Preparamos concentrados metálicos clasificados y listos para 
-                      envío a la siguiente etapa de refinación en EWR.
-                    </span>
-                  </li>
-                </ul>
-
-                <div className="flex justify-center md:justify-start">
-                  <Link
-                    href="/contacto"
-                    className="inline-flex items-center gap-2 bg-emerald-700 text-white px-6 py-3 font-semibold hover:bg-white hover:text-black border hover:border-emerald-800 transition-colors"
-                  >
-                    Conoce más sobre Recibásicos
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
-                </div>
-
-              </div>
-
-              {/* Right Column - EWR */}
-              <div>
-                {/* EWR Logo - LARGER */}
-                <div className="w-48 sm:w-56 md:w-72 mx-auto max-w-40">
-                  <Image
-                    src="/images/partners/ewr.png"
-                    alt="EWR Logo"
-                    width={600}
-                    height={220}
-                    className="w-full h-auto"
-                  />
-                </div>
-                <br></br>
-                <p className="text-sm uppercase tracking-wider text-[#0d5745] mb-2 text-center">
-                  REFINACIÓN Y VALORIZACIÓN FINAL
-                </p>
-                <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 text-center">
-                  EWR - Electronic Waste Recycling
-                </h2>
-                
-                <div className="space-y-4 text-base md:text-lg text-zinc-700 leading-relaxed mb-8">
-                  <p>
-                    EWR es la división especializada en la refinación de metales 
-                    preciosos y la valorización final de materiales electrónicos. 
-                    Completamos el ciclo de economía circular mediante procesos 
-                    metalúrgicos de última generación.
-                  </p>
-                  <p>
-                    Recibimos los concentrados metálicos preparados por Recibásicos 
-                    y los transformamos en metales refinados de alta pureza listos 
-                    para su reintroducción en cadenas productivas globales. Operamos 
-                    con tecnología de punta y control de calidad riguroso para 
-                    maximizar la recuperación de oro, plata, cobre, paladio y otros 
-                    metales valiosos.
-                  </p>
-                </div>
-
-                <div className="flex justify-center md:justify-start">
-                  <a
-                    href="https://ewr.com.mx/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-emerald-700 text-white px-6 py-3 font-semibold hover:bg-white hover:text-black border hover:border-emerald-800 transition-colors"
-                  >
-                    Visitar sitio web de EWR
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Process Steps - Below Two Columns */}
-            <div className="mt-20 pt-16">
-              <h3 className="text-2xl md:text-3xl font-bold text-center text-zinc-900 mb-12">
-                Nuestro Proceso de 5 Pasos
-              </h3>
-              
-              <div className="grid md:grid-cols-5 gap-8">
-                {/* Step 1 */}
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-[#0d5745] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    1
-                  </div>
-                  <h4 className="font-semibold text-lg mb-2 text-zinc-900">
-                    Acopio y Clasificación
-                  </h4>
-                  <p className="text-sm text-zinc-600">
-                    Recepción con control documental y clasificación por tipo y 
-                    potencial de valorización
-                  </p>
-                </div>
-
-                {/* Step 2 */}
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-[#0d5745] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    2
-                  </div>
-                  <h4 className="font-semibold text-lg mb-2 text-zinc-900">
-                    Transporte Certificado
-                  </h4>
-                  <p className="text-sm text-zinc-600">
-                    Traslado con unidades autorizadas bajo normativa SEMARNAT 
-                    y monitoreo GPS
-                  </p>
-                </div>
-
-                {/* Step 3 */}
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-[#0d5745] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    3
-                  </div>
-                  <h4 className="font-semibold text-lg mb-2 text-zinc-900">
-                    Procesos Fríos
-                  </h4>
-                  <p className="text-sm text-zinc-600">
-                    Desmantelamiento mecánico y separación de componentes sin 
-                    procesos térmicos
-                  </p>
-                </div>
-
-                {/* Step 4 */}
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-[#0d5745] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    4
-                  </div>
-                  <h4 className="font-semibold text-lg mb-2 text-zinc-900">
-                    Concentrados Metálicos
-                  </h4>
-                  <p className="text-sm text-zinc-600">
-                    Producción de concentrados listos para refinación con control 
-                    de calidad
-                  </p>
-                </div>
-
-                {/* Step 5 */}
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-[#0d5745] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    5
-                  </div>
-                  <h4 className="font-semibold text-lg mb-2 text-zinc-900">
-                    Certificación
-                  </h4>
-                  <p className="text-sm text-zinc-600">
-                    Emisión de manifiestos SEMARNAT y certificados para auditorías 
-                    ESG
-                  </p>
                 </div>
               </div>
             </div>

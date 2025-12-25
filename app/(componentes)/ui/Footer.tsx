@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="space-y-4">
           <Link href="/" className="inline-flex items-center gap-3">
             <Image
-              src="/logos/RecisbasicosLogo.png"
+              src="/images/partners/PNG RECIBÁSICOS NO LETRAS.png"
               alt="Logotipo de Recibásicos"
               width={52}
               height={52}

@@ -51,7 +51,7 @@ const CONTENT_CARDS = [
   {
     title: "Sostenibilidad",
     description: "Compromiso ambiental certificado en cada etapa del proceso",
-    image: "/images/naturaleza/river-rafting.jpg",
+    image: "/images/naturaleza/herosostenibilidad2.jpg",
     alt: "Prácticas sostenibles en procesamiento de residuos electrónicos",
     href: "/sostenibilidad",
   },

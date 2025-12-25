@@ -128,7 +128,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/logos/RecisbasicosLogo2.png"
+            src="/images/partners/PNG RECIBÁSICOS NO LETRAS.png"
             alt="Logotipo de Recibásicos"
             width={60}
             height={60}

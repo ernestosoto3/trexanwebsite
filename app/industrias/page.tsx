@@ -58,7 +58,7 @@ const sectores = [
     nombre: "Retail",
     descripcion:
       "Convertimos devoluciones y equipos obsoletos del retail en recursos valiosos mediante reciclaje especializado.",
-    img: "/images/industrias/industriaretail.jpg",
+    img: "/images/industrias/heroindusretail2.jpg",
     href: "/industrias/retail",
   },
   {
@@ -254,7 +254,7 @@ export default function IndustriasPage() {
             {servicios.map((s) => (
               <article
                 key={s.nombre}
-                className="bg-zinc-50 border shadow-sm h-full flex flex-col p-6 rounded-lg" // Modified card style for icon placement
+                className="bg-zinc-50 border border-[#e5e7eb] shadow-sm h-full flex flex-col p-6 rounded-lg" // Modified card style for icon placement
               >
                 {/* Icon and Title */}
                 <div className="flex items-start space-x-4 mb-4">

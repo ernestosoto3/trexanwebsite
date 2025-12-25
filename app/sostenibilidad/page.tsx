@@ -111,7 +111,7 @@ export default function SostenibilidadPage() {
     <main className="min-h-dvh bg-white">
       {/* HERO SECTION */}
       <Hero
-        bg={{ type: "image", src: "/images/naturaleza/river-rafting.jpg", alt: "Sostenibilidad" }}
+        bg={{ type: "image", src: "/images/naturaleza/herosostenibilidad2.jpg", alt: "Sostenibilidad" }}
         height="60vh"
         badgeText="Sostenibilidad"
         title="Impulsando la Economía Circular con Resultados Medibles"
