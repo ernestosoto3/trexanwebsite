@@ -145,192 +145,297 @@ export default function CertificacionesPage() {
         auditorías de alta complejidad.
       </IntroText>
 
-      <section className="bg-white py-10 md:py-14">
-        <div className="mx-auto max-w-7xl px-4">
-          {/* Header */}
-          <div className="text-center">
-            <h2 className="mt-3 text-3xl md:text-4xl font-bold text-zinc-900">
-              Beneficios para Mi Empresa
-            </h2>
-            <p className="mt-4 text-base md:text-lg text-zinc-600 max-w-3xl mx-auto">
-              al trabajar con Trexan Recycling Group
+<section className="relative bg-emerald-700 py-12 md:py-16">
+  <div className="mx-auto max-w-7xl px-4">
+    {/* Header */}
+    <div className="text-center">
+      <h2 className="mt-3 text-3xl md:text-4xl font-bold text-white">
+        Beneficios para Mi Empresa
+      </h2>
+      <p className="mt-4 text-base md:text-lg text-white/85 max-w-3xl mx-auto">
+        al trabajar con Trexan Recycling Group
+      </p>
+    </div>
+
+    {/* Two-column functional layout */}
+    <div className="mt-12 md:mt-16 max-w-6xl mx-auto grid gap-8 lg:grid-cols-[320px_1fr]">
+      {/* LEFT: sticky navigator w/ anchors */}
+      <aside className="lg:sticky lg:top-4 h-fit">
+        <div className="bg-white border border-white/20 shadow-sm">
+          <div className="px-5 py-4 border-b border-zinc-200 flex items-center gap-3">
+            <span className="h-2 w-2 bg-emerald-700" />
+            <p className="text-sm font-semibold tracking-wider uppercase text-zinc-800">
+              ÁREAS
             </p>
           </div>
 
-          {/* VERTICAL SECTIONS WITH ARROWS */}
-          <div className="mt-16 max-w-5xl mx-auto">
-            {/* CENTER - VERTICAL SECTIONS */}
-            <div className="space-y-0">
+          {/* tighter padding + tighter spacing */}
+          <nav className="p-3 space-y-2">
+            {[
+              { n: "01", t: "Área de\nComercio\nExterior", id: "beneficio-01" },
+              { n: "02", t: "Área de\nCompras /\nVentas", id: "beneficio-02" },
+              { n: "03", t: "Área\nLegal\n(Compliance)", id: "beneficio-03" },
+              { n: "04", t: "Área de\nCalidad", id: "beneficio-04" },
+              { n: "05", t: "Área de\nOperaciones /\nProducción", id: "beneficio-05" },
+              { n: "06", t: "Área de\nMedio\nAmbiente", id: "beneficio-06" },
+              { n: "07", t: "Área de\nIT / OT", id: "beneficio-07" },
+              { n: "08", t: "Área de\nFinanzas /\nTesorería /\nContabilidad", id: "beneficio-08" },
+            ].map((x) => (
+              <Link
+                key={x.n}
+                href={`#${x.id}`}
+                className="group flex items-start gap-3 p-3 border border-zinc-200 bg-white hover:bg-zinc-50 transition-colors"
+              >
+                <div className="h-9 w-9 bg-emerald-700 text-white font-bold text-xs flex items-center justify-center shadow-sm">
+                  {x.n}
+                </div>
 
-              {/* Section 1: Comercio Exterior */}
-              <div className="flex flex-col items-center">
-                <div className="w-56 h-56 rounded-full bg-emerald-700 flex items-center justify-center shadow-lg">
-                  <p className="text-white font-bold text-lg text-center leading-tight px-4">Área de<br/>Comercio<br/>Exterior</p>
-                </div>
-                <div className="mt-8 bg-white rounded-xl p-8 w-full text-center">
-                  <p className="text-lg text-zinc-700 leading-relaxed">
-                    <span className="font-bold text-orange-600">AUMENTAR</span> la flexibilidad y <span className="font-bold text-orange-600">GARANTIZAR</span> la Certeza Jurídica de mis operaciones de Comercio Exterior al trabajar con un Reciclador con Prima IMMEX.
-                  </p>
-                  <p className="text-lg text-zinc-700 leading-relaxed mt-4">
-                    <span className="font-bold text-red-600">DISMINUIR</span> el Riesgo de Multas del SAT y Secretaría de Economía (SE) por incumplimiento, errores, omisiones en mis Operaciones de Comercio Exterior.
-                  </p>
-                </div>
-                <div className="my-8">
-                  <svg className="w-10 h-14 text-emerald-700" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(90 12 12)"/>
-                  </svg>
-                </div>
-              </div>
-
-              {/* Section 2: Compras/Ventas */}
-              <div className="flex flex-col items-center">
-                <div className="w-56 h-56 rounded-full bg-emerald-700 flex items-center justify-center shadow-lg">
-                  <p className="text-white font-bold text-lg text-center leading-tight px-4">Área de<br/>Compras /<br/>Ventas</p>
-                </div>
-                <div className="mt-8 bg-white rounded-xl p-8 w-full text-center">
-                  <p className="text-lg text-zinc-700 leading-relaxed">
-                    <span className="font-bold text-orange-600">MAXIMIZAR</span> la Recuperación de VALOR de:
-                  </p>
-                  <p className="mt-4 text-lg text-zinc-700 leading-relaxed">
-                    - mi Desperdicio (Scrap) Electrónico / Materiales Base Cobre (Cu).<br/>
-                    - mis Equipos Electrónicos de IT Obsoletos.<br/>
-                    - mis Equipos Electrónicos Industriales Obsoletos.
+                {/* more compact text */}
+                <div className="min-w-0">
+                  <p className="text-[13px] font-semibold text-zinc-800 leading-snug whitespace-pre-line">
+                    {x.t}
                   </p>
                 </div>
-                <div className="my-8">
-                  <svg className="w-10 h-14 text-emerald-700" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(90 12 12)"/>
-                  </svg>
-                </div>
-              </div>
+              </Link>
+            ))}
+          </nav>
 
-              {/* Section 3: Legal/Compliance */}
-              <div className="flex flex-col items-center">
-                <div className="w-56 h-56 rounded-full bg-emerald-700 flex items-center justify-center shadow-lg">
-                  <p className="text-white font-bold text-lg text-center leading-tight px-4">Área<br/>Legal<br/>(Compliance)</p>
-                </div>
-                <div className="mt-8 bg-white rounded-xl p-8 w-full text-center">
-                  <p className="text-lg text-zinc-700 leading-relaxed">
-                    <span className="font-bold text-orange-600">INCREMENTAR</span> la Seguridad y Certeza Jurídica de todas mis operaciones.
-                  </p>
-                </div>
-                <div className="my-8">
-                  <svg className="w-10 h-14 text-emerald-700" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(90 12 12)"/>
-                  </svg>
-                </div>
-              </div>
-
-              {/* Section 4: Calidad */}
-              <div className="flex flex-col items-center">
-                <div className="w-56 h-56 rounded-full bg-emerald-700 flex items-center justify-center shadow-lg">
-                  <p className="text-white font-bold text-lg text-center leading-tight px-4">Área de<br/>Calidad</p>
-                </div>
-                <div className="mt-8 bg-white rounded-xl p-8 w-full text-center">
-                  <p className="text-lg text-zinc-700 leading-relaxed">
-                    <span className="font-bold text-orange-600">AUMENTAR</span> el Cumplimiento de mis procesos de calidad al trabajar con un Reciclador Certificado en ISO.
-                  </p>
-                </div>
-                <div className="my-8">
-                  <svg className="w-10 h-14 text-emerald-700" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(90 12 12)"/>
-                  </svg>
-                </div>
-              </div>
-
-              {/* Section 5: Operaciones/Producción */}
-              <div className="flex flex-col items-center">
-                <div className="w-56 h-56 rounded-full bg-emerald-700 flex items-center justify-center shadow-lg">
-                  <p className="text-white font-bold text-lg text-center leading-tight px-4">Área de<br/>Operaciones /<br/>Producción</p>
-                </div>
-                <div className="mt-8 bg-white rounded-xl p-8 w-full text-center">
-                  <p className="text-lg text-zinc-700 leading-relaxed">
-                    <span className="font-bold text-orange-600">MAXIMIZAR</span> la Disponibilidad de m2 de Planta Productiva para mis Operaciones de Producción, Manufactura y Almacén al <span className="font-bold text-red-600">REDUCIR</span> el Espacio Ocupado por Scrap y Productos Obsoletos.
-                  </p>
-                </div>
-                <div className="my-8">
-                  <svg className="w-10 h-14 text-emerald-700" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(90 12 12)"/>
-                  </svg>
-                </div>
-              </div>
-
-              {/* Section 6: Medio Ambiente */}
-              <div className="flex flex-col items-center">
-                <div className="w-56 h-56 rounded-full bg-emerald-700 flex items-center justify-center shadow-lg">
-                  <p className="text-white font-bold text-lg text-center leading-tight px-4">Área de<br/>Medio<br/>Ambiente</p>
-                </div>
-                <div className="mt-8 bg-white rounded-xl p-8 w-full text-center">
-                  <p className="text-lg text-zinc-700 leading-relaxed">
-                    <span className="font-bold text-red-600">DISMINUIR</span> el Riesgo de Multas por parte de SEMARNAT por incumplimiento, errores, omisiones en mis Obligaciones Ambientales al trabajar con un Reciclador Internacionalmente Certificado en R2v3 con Permisos de Transporte Ambiental, Permiso Ecológico, Emisión de Manifiestos y Destino Final.
-                  </p>
-                </div>
-                <div className="my-8">
-                  <svg className="w-10 h-14 text-emerald-700" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(90 12 12)"/>
-                  </svg>
-                </div>
-              </div>
-
-              {/* Section 7: IT/OT */}
-              <div className="flex flex-col items-center">
-                <div className="w-56 h-56 rounded-full bg-emerald-700 flex items-center justify-center shadow-lg">
-                  <p className="text-white font-bold text-lg text-center leading-tight px-4">Área de<br/>IT / OT</p>
-                </div>
-                <div className="mt-8 bg-white rounded-xl p-8 w-full text-center">
-                  <p className="text-lg text-zinc-700 leading-relaxed">
-                    <span className="font-bold text-red-600">DISMINUIR</span> el Riesgo de Confidencialidad de mis Datos Digitales al trabajar con un Reciclador que me <span className="font-bold text-orange-600">GARANTIZA</span> la Destrucción Física de los elementos de almacenamiento digital, tales como Discos Duros, Memorias, etc.
-                  </p>
-                </div>
-                <div className="my-8">
-                  <svg className="w-10 h-14 text-emerald-700" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(90 12 12)"/>
-                  </svg>
-                </div>
-              </div>
-
-              {/* Section 8: Finanzas */}
-              <div className="flex flex-col items-center">
-                <div className="w-56 h-56 rounded-full bg-emerald-700 flex items-center justify-center shadow-lg">
-                  <p className="text-white font-bold text-lg text-center leading-tight px-4">Área de<br/>Finanzas /<br/>Tesorería /<br/>Contabilidad</p>
-                </div>
-                <div className="mt-8 bg-white rounded-xl p-8 w-full text-center">
-                  <p className="text-lg text-zinc-700 leading-relaxed">
-                    <span className="font-bold text-orange-600">MAXIMIZAR</span> la Disponibilidad de FLUJO al trabajar con un Reciclador Certificado en IVA / IEPS.
-                  </p>
-                  <p className="text-lg text-zinc-700 leading-relaxed mt-4">
-                    <span className="font-bold text-orange-600">GARANTIZAR</span> la adecuada Baja de Activos de mis Registros Contables.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-10 bg-white p-6">
-            <h3 className="text-sm font-semibold tracking-wider uppercase text-zinc-700 mb-6">
-              Certificaciones y Permisos
-            </h3>
-
-            {/* 2 columns on mobile, more on desktop */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center">
-              {certificationLogos.map((logo) => (
-                <div key={logo.name} className="flex items-center justify-center p-3">
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    width={160}
-                    height={80}
-                    className="object-contain max-h-20 w-auto"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-
-          <ArrowProcessBar steps={processSteps} />
+          {/* REMOVED non-clickable footer block */}
         </div>
-      </section>
+      </aside>
+
+      {/* RIGHT: cards with solid-color rail */}
+      <div className="relative">
+        {/* vertical rail */}
+        <div className="absolute left-0 top-0 h-full w-[2px] bg-white/35" />
+
+        <div className="space-y-6 pl-6">
+          {/* CARD 1 */}
+          <div
+            id="beneficio-01"
+            className="relative bg-white border border-white/20 shadow-sm scroll-mt-4"
+          >
+            <div className="absolute -left-[32px] top-6 h-4 w-4 bg-white shadow-sm" />
+
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200">
+              <span className="text-xs font-bold text-zinc-500">01</span>
+              <div className="h-px flex-1 bg-zinc-200" />
+              <span className="text-xs font-semibold bg-zinc-50 text-zinc-800 px-3 py-1 border border-zinc-200">
+                Cumplimiento &amp; Comercio Exterior
+              </span>
+            </div>
+            <div className="h-1 w-full bg-emerald-700" />
+            <div className="p-6 md:p-7">
+              <p className="text-lg text-zinc-700 leading-relaxed">
+                <span className="font-bold text-orange-600">AUMENTAR</span> la flexibilidad y{" "}
+                <span className="font-bold text-orange-600">GARANTIZAR</span> la Certeza Jurídica
+                de mis operaciones de Comercio Exterior al trabajar con un Reciclador con Prima IMMEX.
+              </p>
+              <p className="text-lg text-zinc-700 leading-relaxed mt-4">
+                <span className="font-bold text-red-600">DISMINUIR</span> el Riesgo de Multas del SAT
+                y Secretaría de Economía (SE) por incumplimiento, errores, omisiones en mis Operaciones
+                de Comercio Exterior.
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 2 */}
+          <div
+            id="beneficio-02"
+            className="relative bg-white border border-white/20 shadow-sm scroll-mt-4"
+          >
+            <div className="absolute -left-[32px] top-6 h-4 w-4 bg-white shadow-sm" />
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200">
+              <span className="text-xs font-bold text-zinc-500">02</span>
+              <div className="h-px flex-1 bg-zinc-200" />
+              <span className="text-xs font-semibold bg-zinc-50 text-zinc-800 px-3 py-1 border border-zinc-200">
+                Valor &amp; Recuperación
+              </span>
+            </div>
+            <div className="h-1 w-full bg-orange-500" />
+            <div className="p-6 md:p-7">
+              <p className="text-lg text-zinc-700 leading-relaxed">
+                <span className="font-bold text-orange-600">MAXIMIZAR</span> la Recuperación de VALOR de:
+              </p>
+              <p className="mt-4 text-lg text-zinc-700 leading-relaxed">
+                - Mi Desperdicio (Scrap) Electrónico / Materiales Base Cobre (Cu).<br />
+                - Mis Equipos Electrónicos de IT Obsoletos.<br />
+                - Mis Equipos Electrónicos Industriales Obsoletos.
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 3 */}
+          <div
+            id="beneficio-03"
+            className="relative bg-white border border-white/20 shadow-sm scroll-mt-4"
+          >
+            <div className="absolute -left-[32px] top-6 h-4 w-4 bg-white shadow-sm" />
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200">
+              <span className="text-xs font-bold text-zinc-500">03</span>
+              <div className="h-px flex-1 bg-zinc-200" />
+              <span className="text-xs font-semibold bg-zinc-50 text-zinc-800 px-3 py-1 border border-zinc-200">
+                Certeza Jurídica
+              </span>
+            </div>
+            <div className="h-1 w-full bg-emerald-700" />
+            <div className="p-6 md:p-7">
+              <p className="text-lg text-zinc-700 leading-relaxed">
+                <span className="font-bold text-orange-600">INCREMENTAR</span> la Seguridad y Certeza Jurídica de todas mis operaciones.
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 4 */}
+          <div
+            id="beneficio-04"
+            className="relative bg-white border border-white/20 shadow-sm scroll-mt-4"
+          >
+            <div className="absolute -left-[32px] top-6 h-4 w-4 bg-white shadow-sm" />
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200">
+              <span className="text-xs font-bold text-zinc-500">04</span>
+              <div className="h-px flex-1 bg-zinc-200" />
+              <span className="text-xs font-semibold bg-zinc-50 text-zinc-800 px-3 py-1 border border-zinc-200">
+                Procesos &amp; ISO
+              </span>
+            </div>
+            <div className="h-1 w-full bg-zinc-700" />
+            <div className="p-6 md:p-7">
+              <p className="text-lg text-zinc-700 leading-relaxed">
+                <span className="font-bold text-orange-600">AUMENTAR</span> el Cumplimiento de mis procesos de calidad al trabajar con un Reciclador Certificado en ISO.
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 5 */}
+          <div
+            id="beneficio-05"
+            className="relative bg-white border border-white/20 shadow-sm scroll-mt-4"
+          >
+            <div className="absolute -left-[32px] top-6 h-4 w-4 bg-white shadow-sm" />
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200">
+              <span className="text-xs font-bold text-zinc-500">05</span>
+              <div className="h-px flex-1 bg-zinc-200" />
+              <span className="text-xs font-semibold bg-zinc-50 text-zinc-800 px-3 py-1 border border-zinc-200">
+                Eficiencia Operativa
+              </span>
+            </div>
+            <div className="h-1 w-full bg-emerald-700" />
+            <div className="p-6 md:p-7">
+              <p className="text-lg text-zinc-700 leading-relaxed">
+                <span className="font-bold text-orange-600">MAXIMIZAR</span> la Disponibilidad de m2 de Planta Productiva para mis Operaciones de Producción, Manufactura y Almacén al{" "}
+                <span className="font-bold text-red-600">REDUCIR</span> el Espacio Ocupado por Scrap y Productos Obsoletos.
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 6 */}
+          <div
+            id="beneficio-06"
+            className="relative bg-white border border-white/20 shadow-sm scroll-mt-4"
+          >
+            <div className="absolute -left-[32px] top-6 h-4 w-4 bg-white shadow-sm" />
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200">
+              <span className="text-xs font-bold text-zinc-500">06</span>
+              <div className="h-px flex-1 bg-zinc-200" />
+              <span className="text-xs font-semibold bg-zinc-50 text-zinc-800 px-3 py-1 border border-zinc-200">
+                SEMARNAT &amp; R2v3
+              </span>
+            </div>
+            <div className="h-1 w-full bg-red-500" />
+            <div className="p-6 md:p-7">
+              <p className="text-lg text-zinc-700 leading-relaxed">
+                <span className="font-bold text-red-600">DISMINUIR</span> el Riesgo de Multas por parte de SEMARNAT por incumplimiento, errores, omisiones en mis Obligaciones Ambientales al trabajar con un Reciclador Internacionalmente Certificado en R2v3 con Permisos de Transporte Ambiental, Permiso Ecológico, Emisión de Manifiestos y Destino Final.
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 7 */}
+          <div
+            id="beneficio-07"
+            className="relative bg-white border border-white/20 shadow-sm scroll-mt-4"
+          >
+            <div className="absolute -left-[32px] top-6 h-4 w-4 bg-white shadow-sm" />
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200">
+              <span className="text-xs font-bold text-zinc-500">07</span>
+              <div className="h-px flex-1 bg-zinc-200" />
+              <span className="text-xs font-semibold bg-zinc-50 text-zinc-800 px-3 py-1 border border-zinc-200">
+                Seguridad de Datos
+              </span>
+            </div>
+            <div className="h-1 w-full bg-orange-500" />
+            <div className="p-6 md:p-7">
+              <p className="text-lg text-zinc-700 leading-relaxed">
+                <span className="font-bold text-red-600">DISMINUIR</span> el Riesgo de Confidencialidad de mis Datos Digitales al trabajar con un Reciclador que me{" "}
+                <span className="font-bold text-orange-600">GARANTIZA</span> la Destrucción Física de los elementos de almacenamiento digital, tales como Discos Duros, Memorias, etc.
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 8 */}
+          <div
+            id="beneficio-08"
+            className="relative bg-white border border-white/20 shadow-sm scroll-mt-4"
+          >
+            <div className="absolute -left-[32px] top-6 h-4 w-4 bg-white shadow-sm" />
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200">
+              <span className="text-xs font-bold text-zinc-500">08</span>
+              <div className="h-px flex-1 bg-zinc-200" />
+              <span className="text-xs font-semibold bg-zinc-50 text-zinc-800 px-3 py-1 border border-zinc-200">
+                Fiscal &amp; Contable
+              </span>
+            </div>
+            <div className="h-1 w-full bg-emerald-700" />
+            <div className="p-6 md:p-7">
+              <p className="text-lg text-zinc-700 leading-relaxed">
+                <span className="font-bold text-orange-600">MAXIMIZAR</span> la Disponibilidad de FLUJO al trabajar con un Reciclador Certificado en IVA / IEPS.
+              </p>
+              <p className="text-lg text-zinc-700 leading-relaxed mt-4">
+                <span className="font-bold text-orange-600">GARANTIZAR</span> la adecuada Baja de Activos de mis Registros Contables.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Logos + process bar (same) */}
+    <div className="mt-12 md:mt-14 max-w-6xl mx-auto bg-white border border-white/20 shadow-sm">
+      <div className="px-6 py-5 border-b border-zinc-200 flex items-center gap-3">
+        <span className="h-2 w-2 bg-emerald-700" />
+        <h3 className="text-sm font-semibold tracking-wider uppercase text-zinc-700">
+          Certificaciones y Permisos
+        </h3>
+      </div>
+
+      <div className="p-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center">
+          {certificationLogos.map((logo) => (
+            <div
+              key={logo.name}
+              className="flex items-center justify-center p-4 bg-white border border-zinc-200 hover:bg-zinc-50 transition-colors duration-200"
+            >
+              <Image
+                src={logo.src}
+                alt={logo.name}
+                width={160}
+                height={80}
+                className="object-contain max-h-20 w-auto"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <ArrowProcessBar steps={processSteps} />
+  </div>
+</section>
+
+
+
+
+
 
       {/* CTA */}
       <CTA/>
