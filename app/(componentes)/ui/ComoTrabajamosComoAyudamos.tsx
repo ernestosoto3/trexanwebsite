@@ -32,7 +32,7 @@ function ComoTrabajamosColumn() {
       {/* Imagen */}
       <div className="relative overflow-hidden border border-white/15">
         <img
-          src="/images/industrias/GRUPO TREXAN-18.jpg"
+          src="/images/industrias/GRUPO TREXAN-36-1.jpg"
           alt="Línea de procesamiento"
           className="w-full h-full object-cover"
         />

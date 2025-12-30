@@ -4,7 +4,6 @@ import { z } from "zod";
 import nodemailer from "nodemailer";
 import { prisma } from "@/lib/prisma";
 
-
 // 1) Validación con Zod (incluye campos nuevos opcionales)
 const ContactSchema = z.object({
   name: z.string().min(1).max(100),
@@ -18,21 +17,22 @@ const ContactSchema = z.object({
 
 // 2) Rate limit básico en memoria (por IP)
 const windowMs = 60 * 1000; // 1 min
-const maxPerWindow = 5;     // 5 req/min/IP
+const maxPerWindow = 5; // 5 req/min/IP
 const hits = new Map<string, number[]>();
 
 function rateLimit(ip: string) {
   const now = Date.now();
-  const arr = (hits.get(ip) ?? []).filter(ts => now - ts < windowMs);
+  const arr = (hits.get(ip) ?? []).filter((ts) => now - ts < windowMs);
   arr.push(now);
   hits.set(ip, arr);
   return arr.length <= maxPerWindow;
 }
 
 export async function POST(req: NextRequest) {
-  // IP a partir de headers comunes de proxy
+  // ✅ FIX: Safely extract IP with proper undefined handling
+  const forwardedFor = req.headers.get("x-forwarded-for");
   const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    (forwardedFor?.split(",")[0]?.trim()) ??
     req.headers.get("x-real-ip") ??
     "0.0.0.0";
 
@@ -48,7 +48,8 @@ export async function POST(req: NextRequest) {
   }
 
   // 4) Honeypot
-  const { name, email, message, website, company, phone, service } = parsed.data;
+  const { name, email, message, website, company, phone, service } =
+    parsed.data;
   if (website && website.trim().length > 0) {
     // Bot: respondemos "ok" para no dar señales
     return NextResponse.json({ ok: true });
@@ -71,8 +72,12 @@ export async function POST(req: NextRequest) {
   } = process.env as Record<string, string | undefined>;
 
   if (
-    SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS &&
-    CONTACT_TO && CONTACT_FROM
+    SMTP_HOST &&
+    SMTP_PORT &&
+    SMTP_USER &&
+    SMTP_PASS &&
+    CONTACT_TO &&
+    CONTACT_FROM
   ) {
     const transporter = nodemailer.createTransport({
       host: SMTP_HOST,

@@ -1,7 +1,21 @@
+import { memo } from "react";
 import Seccion from "./Seccion";
 
-const servicios = [
+// ============================================================================
+// TYPES
+// ============================================================================
+type Service = {
+  id: string; // Unique identifier for React keys
+  titulo: string;
+  bullets: string[];
+};
+
+// ============================================================================
+// DATA - Extracted outside component for better performance
+// ============================================================================
+const SERVICIOS: Service[] = [
   {
+    id: "recoleccion-acopio",
     titulo: "Recolección y Acopio de RAEE",
     bullets: [
       "Gestión integral del acopio, clasificación y recolección.",
@@ -9,6 +23,7 @@ const servicios = [
     ],
   },
   {
+    id: "transporte-ecologico",
     titulo: "Transporte Ecológico",
     bullets: [
       "Traslado seguro con unidades autorizadas y rutas optimizadas.",
@@ -17,6 +32,7 @@ const servicios = [
     ],
   },
   {
+    id: "reciclaje-tratamiento",
     titulo: "Reciclaje y Tratamiento",
     bullets: [
       "Desmantelamiento, trituración y molienda de componentes.",
@@ -25,6 +41,7 @@ const servicios = [
     ],
   },
   {
+    id: "certificacion-cumplimiento",
     titulo: "Certificación y Cumplimiento",
     bullets: [
       "Manifiestos oficiales de Recolección, Transporte y Disposición Final.",
@@ -33,6 +50,7 @@ const servicios = [
     ],
   },
   {
+    id: "asesoria-soporte",
     titulo: "Asesoría y Soporte",
     bullets: [
       "Diagnóstico personalizado de gestión de RAEE.",
@@ -40,35 +58,51 @@ const servicios = [
       "Soporte técnico en acopio, clasificación y valorización.",
     ],
   },
-];
+] as const;
 
-export default function BloquesAprendeMas() {
-  return (
-    <div className="justify-items-center z-50"> {/* Wrapper with high z-index */}
-      <Seccion>
-        <div className="grid md:grid-cols-2 gap-2 ">
-          {servicios.map((s) => (
-            <div
-              key={s.titulo}
-              className="bg-white shadow-sm border border-zinc-200 overflow-hidden flex flex-col"
-            >
-              <div className="p-5 flex flex-col flex-1 bg-white">
-                <h3 className="text-lg font-semibold text-zinc-900">
-                  {s.titulo}
-                </h3>
+// ============================================================================
+// SERVICE CARD COMPONENT - Individual card (could be extracted)
+// ============================================================================
+type ServiceCardProps = {
+  service: Service;
+};
 
-                <ul className="mt-3 list-disc ms-5 space-y-1 text-sm md:text-base">
-                {s.bullets.map((b, i) => (
-                  <li key={i}>{b}</li>
-                ))}
-              </ul>
-
-
-              </div>
-            </div>
-          ))}
-        </div>
-      </Seccion>
+const ServiceCard = memo(({ service }: ServiceCardProps) => (
+  <article className="bg-white shadow-sm border border-zinc-200 overflow-hidden flex flex-col">
+    <div className="p-5 flex flex-col flex-1 bg-white">
+      <h3 className="text-lg font-semibold text-zinc-900">
+        {service.titulo}
+      </h3>
+      <ul className="mt-3 list-disc ml-5 space-y-1 text-sm md:text-base text-zinc-700">
+        {service.bullets.map((bullet, index) => (
+          <li key={`${service.id}-bullet-${index}`}>{bullet}</li>
+        ))}
+      </ul>
     </div>
+  </article>
+));
+
+ServiceCard.displayName = "ServiceCard";
+
+// ============================================================================
+// MAIN COMPONENT - Como Operamos Section
+// ============================================================================
+function ComoOperamosComponent() {
+  return (
+    <Seccion>
+      <div className="grid md:grid-cols-2 gap-2">
+        {SERVICIOS.map((servicio) => (
+          <ServiceCard key={servicio.id} service={servicio} />
+        ))}
+      </div>
+    </Seccion>
   );
 }
+
+// ============================================================================
+// MEMOIZED EXPORT - Prevents unnecessary re-renders
+// ============================================================================
+const ComoOperamos = memo(ComoOperamosComponent);
+ComoOperamos.displayName = "ComoOperamos";
+
+export default ComoOperamos;

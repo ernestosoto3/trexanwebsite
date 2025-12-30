@@ -85,9 +85,9 @@ export default function ContactPage() {
       <Hero
         bg={{
           type: "image",
-          src: "/images/industrias/GRUPO TREXAN-36-1.jpg",
+          src: "/images/industrias/GRUPO TREXAN-18.jpg",
           alt: "Contacto",
-        }}
+        }} 
         height="60vh"
         badgeText="Contacto"
         title="Conecte con Expertos en Valorización"

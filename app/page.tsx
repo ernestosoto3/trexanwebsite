@@ -1,5 +1,5 @@
 import Button from "./(componentes)/ui/Button";
-import BloquesAprendeMas from "./(componentes)/ui/BloqueAprendeMas";
+import ServiceCards from "./(componentes)/ui/ServiceCards";
 import ComoTrabajamosComoAyudamos from "./(componentes)/ui/ComoTrabajamosComoAyudamos";
 import Image from "next/image";
 import Link from "next/link";
@@ -129,7 +129,6 @@ export default function HomePage() {
             href: "/nosotros",
             label: "Conoce Nuestros Servicios",
             variant: "primary",
-            // ✅ Only hide on small screens (still visible on md+)
             className:
               "hidden md:inline-flex bg-emerald-700 border-emerald-700 hover:bg-emerald-800",
           },
@@ -156,10 +155,10 @@ export default function HomePage() {
         />
       </section>
 
-      {/* BloquesAprendeMas (CONTROLLED OVERLAP) */}
+      {/* ServiceCards (CONTROLLED OVERLAP) */}
       <section className="relative md:-mt-64">
         <div className="section">
-          <BloquesAprendeMas />
+          <ServiceCards />
         </div>
       </section>
 
