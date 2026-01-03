@@ -163,7 +163,7 @@ function HeaderComponent() {
   return (
     <header className="border-b border-zinc-200 bg-white">
       {/* Top Strip */}
-      <div className="bg-emerald-900 text-emerald-50 text-xs md:text-sm">
+      <div className="bg-emerald-700 text-emerald-50 text-xs md:text-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2">
           <p className="hidden sm:block">
             {CONTACT_INFO.location} ·{" "}

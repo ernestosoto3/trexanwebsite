@@ -1,43 +1,75 @@
 /* app/globals.css */
 @import "tailwindcss";
 
+/* ============================================================================
+   THEME VARIABLES - CSS Custom Properties
+   ============================================================================ */
 @theme inline {
+  /* Radii */
   --radius-lg: 1rem;
-  --shadow-card: 0 10px 25px rgba(0,0,0,.1);
-
-  /*COLOR PALETTE */
-  --color-primary: #16a34a;      /* Vibrant Green */
-  --color-secondary: #ea580c;    /* Bold Orange */
+  
+  /* Shadows */
+  --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+  
+  /* Color Palette */
+  --color-primary: #16a34a;      /* Vibrant Green (emerald-600) */
+  --color-primary-dark: #15803d; /* Dark Green (emerald-700) */
+  --color-primary-light: #22c55e; /* Light Green (emerald-500) */
+  
+  --color-secondary: #ea580c;    /* Bold Orange (orange-600) */
+  --color-secondary-dark: #c2410c; /* Dark Orange (orange-700) */
+  --color-secondary-light: #f97316; /* Light Orange (orange-500) */
+  
   --color-accent: #f97316;       /* Bright Orange */
-  --color-dark: #171717;         /* Rich Black */
-  --color-grey: #52525b;         /* Grey */
+  
+  --color-dark: #171717;         /* Rich Black (neutral-900) */
+  --color-grey: #52525b;         /* Grey (zinc-600) */
   --color-bg: #f5f5f5;           /* Light Grey Background */
   --color-fg: #0a0a0a;           /* Text Black */
-
+  
+  /* Typography */
   --font-sans: var(--font-geist-sans);
 }
 
-/*Button Styles with New Colors */
-.btn {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition-all duration-300;
+/* ============================================================================
+   BASE STYLES - Global resets and improvements
+   ============================================================================ */
+
+/* Smooth scrolling for anchors */
+html {
+  scroll-behavior: smooth;
 }
 
-.btn-primary {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold;
-  @apply bg-[--color-primary] text-white hover:bg-[#15803d] hover:scale-105 transition-all duration-300;
+/* Better focus visibility for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
-.btn-outline {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold;
-  @apply bg-white text-[--color-dark] ring-2 ring-[--color-primary] hover:bg-[--color-primary] hover:text-white transition-all duration-300;
+/* Remove default button focus on click (but keep for keyboard) */
+button:focus:not(:focus-visible) {
+  outline: none;
 }
 
-.btn-orange {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold;
-  @apply bg-[--color-secondary] text-white hover:bg-[#c2410c] hover:scale-105 transition-all duration-300;
+/* ============================================================================
+   LAYOUT UTILITIES
+   ============================================================================ */
+
+/* Section container - consistent max-width and padding */
+.section {
+  @apply mx-auto w-full max-w-6xl px-6 py-10 md:py-16;
 }
 
-/*  Card Styles with Color */
+/* Kicker/eyebrow text */
+.kicker {
+  @apply text-sm uppercase tracking-widest font-semibold text-[--color-secondary];
+}
+
+/* ============================================================================
+   CARD STYLES - Only keeping actually used ones
+   ============================================================================ */
+
 .card {
   @apply rounded-2xl bg-white ring-1 ring-zinc-200 shadow-lg hover:shadow-xl transition-shadow duration-300;
 }
@@ -46,32 +78,95 @@
   @apply rounded-2xl bg-[--color-dark] text-white ring-1 ring-zinc-700 shadow-lg;
 }
 
-.card-green {
-  @apply rounded-2xl bg-linear-to-br from-[--color-primary] to-[#15803d] text-white shadow-lg;
-}
+/* ============================================================================
+   GRADIENT BACKGROUNDS - Using proper Tailwind syntax
+   ============================================================================ */
 
-.card-orange {
-  @apply rounded-2xl bg-linear-to-br from-[--color-secondary] to-[#c2410c] text-white shadow-lg;
-}
-
-/*Utility Classes */
-.section { 
-  @apply mx-auto w-full max-w-6xl px-6 py-10 md:py-5; 
-}
-
-.kicker { 
-  @apply text-sm uppercase tracking-widest font-semibold text-[--color-secondary]; 
-}
-
-/*  Gradient Backgrounds */
 .gradient-green {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
 }
 
 .gradient-orange {
-  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
 }
 
 .gradient-dark {
-  background: linear-gradient(135deg, #171717 0%, #0a0a0a 100%);
+  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-fg) 100%);
+}
+
+/* ============================================================================
+   UTILITY CLASSES - Additional helpers
+   ============================================================================ */
+
+/* Text gradients */
+.text-gradient-green {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Link hover effect */
+.link-hover {
+  @apply transition-colors duration-200 hover:text-[--color-primary];
+}
+
+/* Image aspect ratios */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* ============================================================================
+   ANIMATIONS - Optional smooth transitions
+   ============================================================================ */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+/* ============================================================================
+   PRINT STYLES - Better printing
+   ============================================================================ */
+
+@media print {
+  /* Hide navigation, footer, and non-essential elements */
+  header,
+  footer,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Ensure good contrast */
+  * {
+    color: #000 !important;
+    background: #fff !important;
+  }
+  
+  /* Show link URLs */
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
 }
