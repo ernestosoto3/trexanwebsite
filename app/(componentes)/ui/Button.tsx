@@ -29,13 +29,13 @@ function ButtonComponent({
 }: ButtonProps) {
   // Base classes for all buttons
   const baseClasses =
-    "inline-flex items-center justify-center px-6 py-3 font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+    "inline-flex items-center justify-center px-4 py-2 font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
   // Variant-specific classes
   const variantClasses = {
     /** Emerald primary → white on hover */
     primary:
-      "bg-[--color-primary] text-white border border-[--color-primary] hover:bg-white hover:text-black hover:border-white focus-visible:ring-[--color-primary] focus-visible:ring-offset-white",
+      "bg-[--color-primary] text-white border border-[--color-primary] hover:bg-emerald-800 hover:text-white hover:border-emerald-800 focus-visible:ring-[--color-primary] focus-visible:ring-offset-white",
 
     /** White outline → white fill */
     outline:

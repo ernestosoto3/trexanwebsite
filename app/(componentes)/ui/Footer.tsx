@@ -1,20 +1,76 @@
 // app/(componentes)/ui/Footer.tsx
+import { memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Button from "./Button";
 
-export default function Footer() {
+// ============================================================================
+// CONSTANTS - Extracted for maintainability
+// ============================================================================
+const LOGO = {
+  src: "/images/partners/PNG RECIBÁSICOS NO LETRAS.png",
+  alt: "Logotipo de Recibásicos",
+  width: 52,
+  height: 52,
+} as const;
+
+const NAVIGATION_LINKS = [
+  { href: "/nuestraempresa", label: "Nuestra Empresa" },
+  { href: "/industrias", label: "Industrias" },
+  { href: "/sostenibilidad", label: "Sostenibilidad" },
+  { href: "/certificaciones", label: "Certificaciones" },
+  { href: "/noticias", label: "Noticias" },
+  { href: "/contacto", label: "Contacto" },
+] as const;
+
+const SOLUTIONS = [
+  "Recolección y acopio de RAEE",
+  "Desmantelamiento y trituración",
+  "Producción de concentrados para fundición",
+  "Transporte ecológico y manifiestos ambientales",
+] as const;
+
+const SOCIAL_LINKS = [
+  { href: "https://www.linkedin.com/company/trexanrecycling/", label: "LinkedIn", external: true },
+  { href: "https://trexan.co", label: "Trexan.co", external: true },
+] as const;
+
+const CONTACT = {
+  company: "Recibásicos S.A. de C.V.",
+  address: "Eje 132 No.120, Zona Industrial del Potosí",
+  postalCode: "C.P. 78395, San Luis Potosí, S.L.P., México",
+  phone: {
+    display: "+52 (444) 829 2422",
+    tel: "+524448292422",
+  },
+  email: "contacto@recibasicos.com",
+} as const;
+
+const LEGAL_LINKS = [
+  { href: "/privacidad", label: "Aviso de privacidad" },
+  { href: "/terminos", label: "Términos de uso" },
+] as const;
+
+// Get current year once (not on every render)
+const CURRENT_YEAR = new Date().getFullYear();
+
+// ============================================================================
+// FOOTER COMPONENT
+// ============================================================================
+function FooterComponent() {
   return (
-    <footer className=" bg-zinc-950 text-zinc-100">
+    <footer className="bg-zinc-950 text-zinc-100">
       <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(0,1.3fr)] items-start">
-        {/* Brand column */}
+        {/* Brand Column */}
         <div className="space-y-4">
           <Link href="/" className="inline-flex items-center gap-3">
             <Image
-              src="/images/partners/PNG RECIBÁSICOS NO LETRAS.png"
-              alt="Logotipo de Recibásicos"
-              width={52}
-              height={52}
+              src={LOGO.src}
+              alt={LOGO.alt}
+              width={LOGO.width}
+              height={LOGO.height}
               className="h-12 w-12"
+              quality={90}
             />
             <div className="flex flex-col leading-tight">
               <span className="text-sm font-semibold tracking-tight uppercase">
@@ -25,132 +81,139 @@ export default function Footer() {
               </span>
             </div>
           </Link>
+
           <p className="max-w-md text-sm text-zinc-400">
             Empresa socialmente sustentable enfocada al acopio, recolección,
             reciclaje y disposición final de residuos de aparatos eléctricos y
             electrónicos (RAEE) en México.
           </p>
+
           <div className="flex items-center gap-3 text-xs text-zinc-500">
-            {/* Aquí luego puedes cambiar por íconos reales de redes */}
-            <span>LinkedIn</span>
-            <span className="h-1 w-1 rounded-full bg-zinc-600" />
-            <span>Trexan.co</span>
+            {SOCIAL_LINKS.map((link, index) => (
+              <div key={link.href} className="flex items-center gap-3">
+                {index > 0 && (
+                  <span className="h-1 w-1 rounded-full bg-zinc-600" />
+                )}
+                <a
+                  href={link.href}
+                  className="hover:text-emerald-400 transition-colors"
+                  {...(link.external && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
+                >
+                  {link.label}
+                </a>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Navigation column */}
+        {/* Navigation Column */}
         <div className="space-y-3">
           <h3 className="text-sm font-semibold tracking-wide text-zinc-200">
             Navegación
           </h3>
           <ul className="space-y-1.5 text-sm text-zinc-400">
-            <li>
-              <Link href="/nuestraempresa" className="hover:text-emerald-400">
-                Nuestra Empresa
-              </Link>
-            </li>
-            <li>
-              <Link href="/industrias" className="hover:text-emerald-400">
-                Industrias
-              </Link>
-            </li>
-            <li>
-              <Link href="/sostenibilidad" className="hover:text-emerald-400">
-                Sostenibilidad
-              </Link>
-            </li>
-            <li>
-              <Link href="/certificaciones" className="hover:text-emerald-400">
-                Certificaciones
-              </Link>
-            </li>
-            <li>
-              <Link href="/noticias" className="hover:text-emerald-400">
-                Noticias
-              </Link>
-            </li>
-            <li>
-              <Link href="/contacto" className="hover:text-emerald-400">
-                Contacto
-              </Link>
-            </li>
+            {NAVIGATION_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:text-emerald-400 transition-colors">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
-        {/* Solutions / value column */}
+        {/* Solutions Column */}
         <div className="space-y-3">
           <h3 className="text-sm font-semibold tracking-wide text-zinc-200">
             Soluciones
           </h3>
           <ul className="space-y-1.5 text-sm text-zinc-400">
-            <li>Recolección y acopio de RAEE</li>
-            <li>Desmantelamiento y trituración</li>
-            <li>Producción de concentrados para fundición</li>
-            <li>Transporte ecológico y manifiestos ambientales</li>
+            {SOLUTIONS.map((solution) => (
+              <li key={solution}>{solution}</li>
+            ))}
           </ul>
           <h4 className="pt-4 text-sm font-semibold tracking-wide text-zinc-200">
             Certificaciones
           </h4>
           <p className="text-sm text-zinc-400">
-              R2v3, ISO 14001, ISO 45001, permisos de SEMARNAT e IMMEX.
+            R2v3, ISO 14001, ISO 45001, permisos de SEMARNAT e IMMEX.
           </p>
         </div>
 
-        {/* Contact column */}
+        {/* Contact Column */}
         <div className="space-y-3">
           <h3 className="text-sm font-semibold tracking-wide text-zinc-200">
             Contacto
           </h3>
           <div className="space-y-1.5 text-sm text-zinc-400">
-            <p className="font-semibold text-zinc-200">Recibásicos S.A. de C.V.</p>
+            <p className="font-semibold text-zinc-200">{CONTACT.company}</p>
             <p>
-              Eje 132 No.120, Zona Industrial del Potosí
+              {CONTACT.address}
               <br />
-              C.P. 78395, San Luis Potosí, S.L.P., México
+              {CONTACT.postalCode}
             </p>
             <p>
               Teléfono:{" "}
               <a
-                href="tel:+524448292422"
-                className="font-medium text-emerald-400 hover:underline"
+                href={`tel:${CONTACT.phone.tel}`}
+                className="font-medium text-emerald-400 hover:underline transition-colors"
               >
-                +52 (444) 829 2422
+                {CONTACT.phone.display}
               </a>
             </p>
             <p>
               Email:{" "}
               <a
-                href="mailto:contacto@recibasicos.com"
-                className="font-medium text-emerald-400 hover:underline"
+                href={`mailto:${CONTACT.email}`}
+                className="font-medium text-emerald-400 hover:underline transition-colors"
               >
-                contacto@recibasicos.com
+                {CONTACT.email}
               </a>
             </p>
           </div>
 
-          <Link
+          <Button
             href="/contacto"
-            className="inline-flex items-center justify-center bg-emerald-700 px-4 py-2 text-sm font-semibold text-white hover:bg-white hover:text-black transition-colors"
+            variant="primary"
+            className="bg-emerald-700 text-white border-emerald-700"
           >
             Pide una cotización
-          </Link>
+          </Button>
         </div>
       </div>
 
-      {/* Bottom bar */}
+      {/* Bottom Bar */}
       <div className="border-t border-zinc-800">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 text-xs text-zinc-500 md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} Recibásicos · Trexan Recycling Group.
-            Todos los derechos reservados.
+            © {CURRENT_YEAR} Recibásicos · Trexan Recycling Group. Todos los
+            derechos reservados.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <span>Aviso de privacidad</span>
-            <span className="h-1 w-1 rounded-full bg-zinc-600" />
-            <span>Términos de uso</span>
+            {LEGAL_LINKS.map((link, index) => (
+              <div key={link.href} className="flex items-center gap-4">
+                {index > 0 && (
+                  <span className="h-1 w-1 rounded-full bg-zinc-600" />
+                )}
+                <Link href={link.href} className="hover:text-emerald-400 transition-colors">
+                  {link.label}
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </footer>
   );
 }
+
+// ============================================================================
+// MEMOIZED EXPORT
+// ============================================================================
+const Footer = memo(FooterComponent);
+Footer.displayName = "Footer";
+
+export default Footer;

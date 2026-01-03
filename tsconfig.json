@@ -4,11 +4,14 @@
     // TARGET & OUTPUT - Modern JavaScript for better performance
     // ========================================================================
     "target": "ES2022",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "bundler",
-    "jsx": "preserve",
-
+    "jsx": "react-jsx",
     // ========================================================================
     // TYPE CHECKING - Strict mode for catching bugs early
     // ========================================================================
@@ -16,7 +19,6 @@
     "noUncheckedIndexedAccess": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-
     // ========================================================================
     // MODULE RESOLUTION - Better imports and JSON support
     // ========================================================================
@@ -24,14 +26,12 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-
     // ========================================================================
     // PERFORMANCE - Skip unnecessary checks, enable incremental builds
     // ========================================================================
     "skipLibCheck": true,
     "noEmit": true,
     "incremental": true,
-
     // ========================================================================
     // NEXT.JS SPECIFIC - Path aliases and plugin
     // ========================================================================
@@ -41,7 +41,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
@@ -49,7 +51,10 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.mts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

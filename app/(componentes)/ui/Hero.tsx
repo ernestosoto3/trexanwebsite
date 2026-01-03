@@ -1,9 +1,13 @@
 "use client";
 
+import { memo } from "react";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import Button from "./Button";
 
+// ============================================================================
+// TYPES
+// ============================================================================
 type HeroButton = {
   href: string;
   label: string;
@@ -17,74 +21,51 @@ type HeroBackground =
       src: string;
       alt?: string;
       priority?: boolean;
-      // Optional: default opacity is handled in Image className below
     }
   | {
       type: "video";
       src: string;
       poster?: string;
+      preload?: "auto" | "metadata" | "none";
     };
 
 type HeroProps = {
-  // Background (optional, but you’ll almost always pass it)
   bg: HeroBackground;
-
-  // Height presets: matches your existing heroes
-  // - "60vh": your image heroes
-  // - "70vh": your favorite video hero default
-  // - "custom": allow fully custom class
   height?: "60vh" | "70vh" | "custom";
-  customHeightClassName?: string; // used when height="custom"
-
-  // Overlay
-  // - "solid": matches bg-black/45 you use on image heroes
-  // - "gradient": matches the video hero overlay
+  customHeightClassName?: string;
   overlayVariant?: "solid" | "gradient";
-  overlayClassName?: string; // full override if needed
-
-  // Content
+  overlayClassName?: string;
   badgeText?: string;
-  badgeDot?: boolean; // default true
+  badgeDot?: boolean;
   title: string;
   subtitle?: ReactNode;
-
-  // Alignment
-  // "left": your standard
-  // "center": full centered hero
   align?: "left" | "center";
-
-  // Sometimes you want the badge centered but text left (you had that)
   badgeAlign?: "inherit" | "left" | "center";
-
-  // Buttons
   buttons?: HeroButton[];
-
-  // Extra escape hatch for one-off tweaks without forking the component
   contentClassName?: string;
 };
 
-export default function Hero({
+// ============================================================================
+// HERO COMPONENT
+// ============================================================================
+function HeroComponent({
   bg,
-
   height = "70vh",
   customHeightClassName = "min-h-[70vh]",
-
   overlayVariant = bg.type === "video" ? "gradient" : "solid",
   overlayClassName,
-
   badgeText,
   badgeDot = true,
   title,
   subtitle,
-
   align = "left",
   badgeAlign = "inherit",
-
   buttons = [],
   contentClassName = "",
 }: HeroProps) {
   const isCenter = align === "center";
 
+  // Height classes
   const heightClass =
     height === "60vh"
       ? "h-[60vh]"
@@ -92,12 +73,14 @@ export default function Hero({
       ? "min-h-[70vh]"
       : customHeightClassName;
 
+  // Overlay classes
   const overlay =
     overlayClassName ??
     (overlayVariant === "gradient"
       ? "bg-gradient-to-b from-black/70 via-black/65 to-black/60"
       : "bg-black/45");
 
+  // Badge alignment
   const badgeRowJustify =
     badgeAlign === "inherit"
       ? isCenter
@@ -117,6 +100,7 @@ export default function Hero({
             loop
             muted
             playsInline
+            preload={bg.preload ?? "auto"}
             poster={bg.poster}
             className="h-full w-full object-cover"
           >
@@ -130,6 +114,7 @@ export default function Hero({
             priority={bg.priority ?? true}
             className="object-cover opacity-70"
             sizes="100vw"
+            quality={85}
           />
         )}
 
@@ -137,27 +122,23 @@ export default function Hero({
       </div>
 
       {/* Content */}
-      <div className={`section relative flex items-center py-16 md:py-20 ${heightClass}`}>
+      <div
+        className={`section relative flex items-center py-16 md:py-20 ${heightClass}`}
+      >
         <div
-          className={[
-            "max-w-4xl space-y-6",
-            isCenter ? "mx-auto text-center" : "",
-            contentClassName,
-          ].join(" ")}
+          className={`max-w-4xl space-y-6 ${isCenter ? "mx-auto text-center" : ""} ${contentClassName}`}
         >
-          {/* Badge (pill) */}
-          {badgeText ? (
+          {/* Badge */}
+          {badgeText && (
             <div className={`flex ${badgeRowJustify}`}>
-              {/* This version keeps the TEXT perfectly centered in the pill,
-                  while the dot sits on the left without shifting centering */}
               <span className="relative inline-flex items-center justify-center bg-white/25 px-6 py-2.5 md:py-3 text-sm uppercase tracking-wider leading-none">
-                {badgeDot ? (
-                  <span className="absolute left-3 top-1/2 h-2 w-2 -translate-y-1/2 bg-[--color-primary]" />
-                ) : null}
+                {badgeDot && (
+                  <span className="absolute left-3 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[--color-primary]" />
+                )}
                 <span className="text-center">{badgeText}</span>
               </span>
             </div>
-          ) : null}
+          )}
 
           {/* Title */}
           <h1 className="text-4xl md:text-6xl font-semibold leading-tight">
@@ -165,29 +146,39 @@ export default function Hero({
           </h1>
 
           {/* Subtitle */}
-          {subtitle ? (
+          {subtitle && (
             <div className="text-base md:text-lg text-white/90 max-w-3xl leading-relaxed">
               {subtitle}
             </div>
-          ) : null}
+          )}
 
           {/* Buttons */}
-          {buttons.length > 0 ? (
-            <div className={`flex flex-wrap gap-4 ${isCenter ? "justify-center" : ""}`}>
-              {buttons.map((b, idx) => (
+          {buttons.length > 0 && (
+            <div
+              className={`flex flex-wrap gap-4 ${isCenter ? "justify-center" : ""}`}
+            >
+              {buttons.map((button) => (
                 <Button
-                  key={`${b.href}-${idx}`}
-                  href={b.href}
-                  variant={b.variant ?? "primary"}
-                  className={b.className ?? ""}
+                  key={button.href}
+                  href={button.href}
+                  variant={button.variant ?? "primary"}
+                  className={button.className ?? ""}
                 >
-                  {b.label}
+                  {button.label}
                 </Button>
               ))}
             </div>
-          ) : null}
+          )}
         </div>
       </div>
     </section>
   );
 }
+
+// ============================================================================
+// MEMOIZED EXPORT
+// ============================================================================
+const Hero = memo(HeroComponent);
+Hero.displayName = "Hero";
+
+export default Hero;
