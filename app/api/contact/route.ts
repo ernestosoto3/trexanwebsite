@@ -13,6 +13,10 @@ const ContactSchema = z.object({
   company: z.string().max(200).optional(),
   phone: z.string().max(50).optional(),
   service: z.enum(["recibasicos", "ewr", "certifications", "other"]).optional(),
+  industry: z.string().max(100).optional(),
+  volume: z.string().max(50).optional(),
+  contactPreference: z.enum(["email", "phone", "whatsapp"]).optional(),
+  privacy: z.boolean().optional(),
 });
 
 // 2) Rate limit básico en memoria (por IP)
@@ -48,18 +52,27 @@ export async function POST(req: NextRequest) {
   }
 
   // 4) Honeypot
-  const { name, email, message, website, company, phone, service } =
-    parsed.data;
+  const { name, email, message, website, company, phone, service, industry, volume, contactPreference, privacy } = parsed.data;
   if (website && website.trim().length > 0) {
     // Bot: respondemos "ok" para no dar señales
     return NextResponse.json({ ok: true });
   }
 
   // 5) Guardado mínimo (ajusta si quieres persistir los extras)
-  await prisma.contactSubmission.create({
-    data: { name, email, message },
-    // Si actualizas el schema de Prisma, aquí puedes añadir: company, phone, service
-  });
+await prisma.contactSubmission.create({
+  data: { 
+    name, 
+    email, 
+    message,
+    company,
+    phone,
+    service,
+    industry,          // ADD
+    volume,            // ADD
+    contactPreference, // ADD
+    privacy,           // ADD
+  },
+});
 
   // 6) Envío de correo si hay SMTP configurado
   const {
