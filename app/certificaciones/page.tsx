@@ -63,9 +63,9 @@ const CERTIFICATION_LOGOS: readonly Logo[] = [
   { name: "ISO 14001", src: "/images/certificaciones/iso-14001.jpeg" },
   { name: "ISO 45001", src: "/images/certificaciones/ISO-45001.png.webp" },
   { name: "ISO 9001:2015", src: "/images/certificaciones/iso-9001.png" },
-  { name: "SEMARNAT", src: "/images/certificaciones/semarnat.png" },
-  { name: "SE IMMEX", src: "/images/certificaciones/se-immex.png" },
-  { name: "R2v3 Certified", src: "/images/certificaciones/r2v3.png" },
+  { name: "SEMARNAT", src: "/images/certificaciones/SEMARNATcert.png" },
+  { name: "SE IMMEX", src: "/images/certificaciones/IMMEX.webp" },
+  { name: "R2v3 Certified", src: "/images/certificaciones/R2V3certified.png" },
 ] as const;
 
 const PROCESS_STEPS: readonly ProcessStep[] = [
@@ -301,7 +301,7 @@ const CertificationLogos = memo(function CertificationLogos() {
       </header>
 
       <div className="p-6">
-        <div className="grid grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 items-center">
           {CERTIFICATION_LOGOS.map((logo) => (
             <div
               key={logo.name}
@@ -314,7 +314,7 @@ const CertificationLogos = memo(function CertificationLogos() {
                 height={160}
                 className="object-contain h-[140px] w-auto max-w-full"
                 loading="lazy"
-                sizes="50vw"
+                sizes="(max-width: 768px) 50vw, 33vw"
               />
             </div>
           ))}
