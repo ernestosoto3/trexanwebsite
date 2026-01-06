@@ -288,12 +288,12 @@ const BenefitCardComponent = memo(function BenefitCardComponent({ card }: Benefi
 
 /**
  * Certification logos grid
- * Memoized as logos don't change
+ * White background with no borders or zinc edges
  */
 const CertificationLogos = memo(function CertificationLogos() {
   return (
-    <div className="mt-12 md:mt-14 max-w-6xl mx-auto bg-white border border-white/20 shadow-sm">
-      <header className="px-6 py-5 border-b border-zinc-200 flex items-center gap-3">
+    <div className="mt-12 md:mt-14 max-w-6xl mx-auto bg-white">
+      <header className="px-6 py-5 flex items-center gap-3">
         <span className="h-2 w-2 bg-emerald-700" aria-hidden="true" />
         <h3 className="text-sm font-semibold tracking-wider uppercase text-zinc-700">
           Certificaciones y Permisos
@@ -301,20 +301,20 @@ const CertificationLogos = memo(function CertificationLogos() {
       </header>
 
       <div className="p-6">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center">
+        <div className="grid grid-cols-2 gap-8 items-center">
           {CERTIFICATION_LOGOS.map((logo) => (
             <div
               key={logo.name}
-              className="flex items-center justify-center p-4 bg-white border border-zinc-200 hover:bg-zinc-50 transition-colors duration-200"
+              className="flex items-center justify-center p-8 bg-white min-h-[200px]"
             >
               <Image
                 src={logo.src}
                 alt={`Certificación ${logo.name}`}
-                width={160}
-                height={80}
-                className="object-contain max-h-20 w-auto"
+                width={320}
+                height={160}
+                className="object-contain h-[140px] w-auto max-w-full"
                 loading="lazy"
-                sizes="(max-width: 768px) 50vw, 33vw"
+                sizes="50vw"
               />
             </div>
           ))}
@@ -334,51 +334,62 @@ interface ArrowProcessBarProps {
 
 const ArrowProcessBar = memo(function ArrowProcessBar({ steps }: ArrowProcessBarProps) {
   return (
-    <div className="mt-8 bg-white p-4">
-      {/* Desktop view with arrow design */}
-      <div className="hidden md:flex w-full" role="list" aria-label="Proceso de reciclaje">
-        {steps.map((step, idx) => {
-          const isLast = idx === steps.length - 1;
+    <div className="mt-12 bg-white">
+      {/* Header */}
+      <header className="px-6 py-5 flex items-center gap-3">
+        <span className="h-2 w-2 bg-emerald-700" aria-hidden="true" />
+        <h3 className="text-sm font-semibold tracking-wider uppercase text-zinc-700">
+          Ciclo de Vida de los Electrónicos
+        </h3>
+      </header>
 
-          const clipPath = isLast
-            ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
-            : "polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%)";
+      {/* Process Bar */}
+      <div className="p-4">
+        {/* Desktop view with arrow design */}
+        <div className="hidden md:flex w-full" role="list" aria-label="Proceso de reciclaje">
+          {steps.map((step, idx) => {
+            const isLast = idx === steps.length - 1;
 
-          return (
+            const clipPath = isLast
+              ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
+              : "polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%)";
+
+            return (
+              <div
+                key={step.label}
+                className={`relative ${step.cls} text-white font-semibold text-sm flex-1`}
+                style={{
+                  clipPath,
+                  WebkitClipPath: clipPath,
+                }}
+                role="listitem"
+              >
+                <div className="px-4 py-4 flex items-center justify-center text-center leading-tight">
+                  <span className="relative -translate-x-1.5">
+                    {step.label}
+                  </span>
+                </div>
+
+                {!isLast && (
+                  <div className="absolute top-0 right-0 h-full w-0.5 bg-white/70" aria-hidden="true" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile view with grid */}
+        <div className="md:hidden grid grid-cols-2 gap-2" role="list" aria-label="Proceso de reciclaje">
+          {steps.map((step) => (
             <div
               key={step.label}
-              className={`relative ${step.cls} text-white font-semibold text-sm flex-1`}
-              style={{
-                clipPath,
-                WebkitClipPath: clipPath,
-              }}
+              className={`${step.cls} text-white font-semibold text-xs rounded-lg px-3 py-3 text-center`}
               role="listitem"
             >
-              <div className="px-4 py-4 flex items-center justify-center text-center leading-tight">
-                <span className="relative -translate-x-1.5">
-                  {step.label}
-                </span>
-              </div>
-
-              {!isLast && (
-                <div className="absolute top-0 right-0 h-full w-0.5 bg-white/70" aria-hidden="true" />
-              )}
+              {step.label}
             </div>
-          );
-        })}
-      </div>
-
-      {/* Mobile view with grid */}
-      <div className="md:hidden grid grid-cols-2 gap-2" role="list" aria-label="Proceso de reciclaje">
-        {steps.map((step) => (
-          <div
-            key={step.label}
-            className={`${step.cls} text-white font-semibold text-xs rounded-lg px-3 py-3 text-center`}
-            role="listitem"
-          >
-            {step.label}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -445,7 +456,12 @@ export default function CertificacionesPage() {
             </div>
           </div>
 
-          {/* Certifications & Process */}
+        </div>
+      </section>
+
+      {/* Certifications & Process - White Background Section */}
+      <section className="relative bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-7xl px-4">
           <CertificationLogos />
           <ArrowProcessBar steps={PROCESS_STEPS} />
         </div>

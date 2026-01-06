@@ -355,12 +355,15 @@ export default function ContactPage() {
         }
 
         setStatus("success");
+        console.log("✅ Status set to success");
         handleReset();
+        console.log("✅ Form reset called");
 
-        // Auto-hide success message after 5 seconds
+        // Auto-hide success message after 10 seconds
         setTimeout(() => {
+          console.log("⏰ Hiding success message");
           setStatus("idle");
-        }, 5000);
+        }, 10000);
       } catch (error) {
         console.error("Form submission error:", error);
         setStatus("error");
@@ -584,7 +587,7 @@ export default function ContactPage() {
                   </label>
                 </div>
 
-                {/* Submit + Status */}
+                {/* Submit Button */}
                 <div className="pt-4">
                   <button
                     type="submit"
@@ -594,38 +597,42 @@ export default function ContactPage() {
                   >
                     {status === "sending" ? "Enviando…" : "Enviar"}
                   </button>
-
-                  {status === "success" && (
-                    <div
-                      className="mt-4 p-4 bg-emerald-50 border border-emerald-200 rounded"
-                      role="alert"
-                      aria-live="polite"
-                    >
-                      <p className="text-sm font-medium text-emerald-700">
-                        ✓ ¡Gracias! Tu mensaje ha sido enviado correctamente. Te
-                        contactaremos pronto.
-                      </p>
-                    </div>
-                  )}
-
-                  {status === "error" && (
-                    <div
-                      className="mt-4 p-4 bg-red-50 border border-red-200 rounded"
-                      role="alert"
-                      aria-live="assertive"
-                    >
-                      <p className="text-sm font-medium text-red-600">
-                        ✕ Hubo un error al enviar el mensaje. Por favor, intenta de
-                        nuevo o contáctanos directamente.
-                      </p>
-                    </div>
-                  )}
                 </div>
               </form>
 
               {/* Contact Info */}
               <ContactInfo />
             </div>
+
+            {/* Success/Error Messages - OUTSIDE grid for full visibility */}
+            {status === "success" && (
+              <div
+                className="mt-6 p-8 bg-green-500 border-4 border-green-700 rounded max-w-6xl"
+                role="alert"
+                aria-live="polite"
+                style={{ fontSize: '24px', fontWeight: 'bold' }}
+              >
+                <p className="text-white text-center">
+                  ✓ ¡MENSAJE ENVIADO EXITOSAMENTE! TE CONTACTAREMOS PRONTO.
+                </p>
+                <p className="text-white text-center text-sm mt-2">
+                  (Si ves esto, el mensaje SÍ está apareciendo)
+                </p>
+              </div>
+            )}
+
+            {status === "error" && (
+              <div
+                className="mt-6 p-4 bg-red-50 border border-red-200 rounded max-w-6xl"
+                role="alert"
+                aria-live="assertive"
+              >
+                <p className="text-red-800 font-medium text-center">
+                  ✕ Hubo un error al enviar el mensaje. Por favor, intenta de
+                  nuevo o contáctanos directamente.
+                </p>
+              </div>
+            )}
 
             {/* Map */}
             <LocationMap />
