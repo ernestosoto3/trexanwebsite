@@ -305,14 +305,14 @@ const CertificationLogos = memo(function CertificationLogos() {
           {CERTIFICATION_LOGOS.map((logo) => (
             <div
               key={logo.name}
-              className="flex items-center justify-center p-8 bg-white min-h-[200px]"
+              className="flex items-center justify-center p-8 bg-white min-h-50"
             >
               <Image
                 src={logo.src}
                 alt={`Certificación ${logo.name}`}
                 width={320}
                 height={160}
-                className="object-contain h-[140px] w-auto max-w-full"
+                className="object-contain h-35 w-auto max-w-full"
                 loading="lazy"
                 sizes="(max-width: 768px) 50vw, 33vw"
               />

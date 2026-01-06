@@ -5,6 +5,9 @@ import ContactForm from "../../(componentes)/ui/ContactForm";
 import FeatureGridSection from "@/app/(componentes)/ui/FeatureGridSection";
 import SplitServiceSection from "@/app/(componentes)/ui/SplitServiceSection";
 
+// ============================================================================
+// METADATA FOR SEO
+// ============================================================================
 export const metadata: Metadata = {
   title: "Reciclaje Electrónico para Manufactura | Eficiencia Industrial | Recibásicos",
   description:
@@ -16,72 +19,121 @@ export const metadata: Metadata = {
     "recuperación de metales",
     "logística industrial",
   ],
+  openGraph: {
+    title: "Reciclaje Electrónico para Manufactura | Recibásicos",
+    description: "Optimización de planta mediante gestión eficiente de scrap electrónico industrial.",
+    images: ["/images/industrias/milling.jpg"],
+  },
 };
 
+// ============================================================================
+// TYPES
+// ============================================================================
+interface FeatureItem {
+  readonly title: string;
+  readonly body: string;
+}
+
+interface ServiceItem {
+  readonly title: string;
+  readonly body: string;
+}
+
+interface ServiceImage {
+  readonly src: string;
+  readonly alt: string;
+}
+
+// ============================================================================
+// CONSTANTS
+// ============================================================================
+const HERO_CONFIG = {
+  bg: {
+    type: "image" as const,
+    src: "/images/industrias/milling.jpg",
+    alt: "Industria Manufactura - Gestión de scrap electrónico industrial",
+  },
+  height: "60vh" as const,
+  badgeText: "Manufactura",
+  title: "Optimización de Planta mediante Gestión de Scrap Electrónico",
+  subtitle:
+    "Liberamos espacio operativo y maximizamos la recuperación de valor en tableros, maquinaria y cableado, mediante una logística especializada diseñada para no interrumpir el ritmo de su producción.",
+} as const;
+
+const INTRO_TEXT = `Optimizamos el flujo operativo de plantas industriales mediante la gestión ordenada de excedentes
+electrónicos, tableros y maquinaria obsoleta. Liberamos espacio productivo y transformamos sus residuos en
+activos recuperados, respaldando sus auditorías ambientales con documentación técnica y cumplimiento
+normativo riguroso.` as const;
+
+const FEATURES: readonly FeatureItem[] = [
+  {
+    title: "Gestión Ordenada de E-Waste",
+    body: "Procesos que reducen desorden y mejoran el control operativo y de inventarios.",
+  },
+  {
+    title: "Recuperación de Valor",
+    body: "Separación y recuperación de metales para transformar desechos en ingresos.",
+  },
+  {
+    title: "Capacidad para Volúmenes Altos",
+    body: "Manejo de materiales complejos y grandes volúmenes con logística especializada.",
+  },
+] as const;
+
+const SERVICES: readonly ServiceItem[] = [
+  {
+    title: "Recolección y Logística",
+    body: "Retiro planificado para no afectar la operación y mantener control de materiales.",
+  },
+  {
+    title: "Separación y Preprocesamiento",
+    body: "Clasificación y desmontaje para recuperación eficiente de metales y componentes.",
+  },
+  {
+    title: "Cumplimiento Normativo",
+    body: "Procesos consistentes para auditorías y control ambiental dentro de planta.",
+  },
+] as const;
+
+const SERVICE_IMAGE: ServiceImage = {
+  src: "/images/industrias/industriamanu2.jpg",
+  alt: "Gestión de residuos electrónicos en manufactura",
+} as const;
+
+// ============================================================================
+// MAIN PAGE COMPONENT
+// ============================================================================
 export default function ManufacturaPage() {
   return (
     <main className="min-h-dvh bg-white">
+      {/* Hero Section */}
       <Hero
-        bg={{
-          type: "image",
-          src: "/images/industrias/milling.jpg",
-          alt: "Industria Manufactura",
-        }}
-        height="60vh"
-        badgeText="Manufactura"
-        title="Optimización de Planta mediante Gestión de Scrap Electrónico"
-        subtitle="Liberamos espacio operativo y maximizamos la recuperación de valor en tableros, maquinaria y cableado, mediante una logística especializada diseñada para no interrumpir el ritmo de su producción."
+        bg={HERO_CONFIG.bg}
+        height={HERO_CONFIG.height}
+        badgeText={HERO_CONFIG.badgeText}
+        title={HERO_CONFIG.title}
+        subtitle={HERO_CONFIG.subtitle}
       />
 
-      <IntroText>
-        Optimizamos el flujo operativo de plantas industriales mediante la gestión ordenada de excedentes
-        electrónicos, tableros y maquinaria obsoleta. Liberamos espacio productivo y transformamos sus residuos en
-        activos recuperados, respaldando sus auditorías ambientales con documentación técnica y cumplimiento
-        normativo riguroso.
-      </IntroText>
+      {/* Intro Text */}
+      <IntroText>{INTRO_TEXT}</IntroText>
 
+      {/* Features Section */}
       <FeatureGridSection
         kicker="Qué Ofrecemos"
         title="Soluciones Especializadas para Manufactura"
-        items={[
-          {
-            title: "Gestión Ordenada de E-Waste",
-            body: "Procesos que reducen desorden y mejoran el control operativo y de inventarios.",
-          },
-          {
-            title: "Recuperación de Valor",
-            body: "Separación y recuperación de metales para transformar desechos en ingresos.",
-          },
-          {
-            title: "Capacidad para Volúmenes Altos",
-            body: "Manejo de materiales complejos y grandes volúmenes con logística especializada.",
-          },
-        ]}
+        items={[...FEATURES]}
       />
 
+      {/* Services Section */}
       <SplitServiceSection
         kicker="Nuestros Servicios"
         title="Gestión integral para optimizar espacio, costos y cumplimiento"
-        items={[
-          {
-            title: "Recolección y Logística",
-            body: "Retiro planificado para no afectar la operación y mantener control de materiales.",
-          },
-          {
-            title: "Separación y Preprocesamiento",
-            body: "Clasificación y desmontaje para recuperación eficiente de metales y componentes.",
-          },
-          {
-            title: "Cumplimiento Normativo",
-            body: "Procesos consistentes para auditorías y control ambiental dentro de planta.",
-          },
-        ]}
-        image={{
-          src: "/images/industrias/industriamanu2.jpg",
-          alt: "Gestión de residuos electrónicos en manufactura",
-        }}
+        items={[...SERVICES]}
+        image={SERVICE_IMAGE}
       />
 
+      {/* Contact Form */}
       <ContactForm industry="Manufactura" />
     </main>
   );

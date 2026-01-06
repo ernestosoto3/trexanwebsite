@@ -1,17 +1,51 @@
 import Link from "next/link";
 import Image from "next/image";
+import { memo } from "react";
+import type { Metadata } from "next";
 import Hero from "../(componentes)/ui/Hero";
 import CTA from "../(componentes)/ui/CTA";
 import IntroText from "../(componentes)/ui/IntroText";
 
-const mountainsImage = "/images/industrias/GRUPO TREXAN-31.jpg";
+// ============================================================================
+// METADATA FOR SEO
+// ============================================================================
+export const metadata: Metadata = {
+  title: "Industrias | Trexan Recycling Group",
+  description: "Soluciones de gestión de residuos electrónicos a la medida para automotriz, manufactura, gobierno, salud, tecnología y más sectores. Cumplimiento normativo en todo México.",
+  keywords: "reciclaje electrónico automotriz, gestión RAEE manufactura, reciclaje gobierno, destrucción datos salud, reciclaje IT empresas",
+  openGraph: {
+    title: "Soluciones por Industria | Trexan Recycling Group",
+    description: "Gestión especializada de residuos electrónicos para cada sector industrial con cumplimiento normativo riguroso.",
+    images: ["/images/industrias/GRUPO TREXAN-47-1.jpg"],
+  },
+};
 
-interface IconProps {
-  name: string; // or a more specific type like 'facebook' | 'twitter' if known
-  color: string;
+// ============================================================================
+// TYPES
+// ============================================================================
+interface Sector {
+  readonly nombre: string;
+  readonly descripcion: string;
+  readonly img: string;
+  readonly href: string;
 }
 
-const sectores = [
+interface Servicio {
+  readonly nombre: string;
+  readonly descripcion: string;
+  readonly iconColor: string;
+  readonly href: string;
+}
+
+interface Beneficio {
+  readonly titulo: string;
+  readonly descripcion: string;
+}
+
+// ============================================================================
+// CONSTANTS
+// ============================================================================
+const SECTORES: readonly Sector[] = [
   {
     nombre: "Automotriz",
     descripcion:
@@ -68,61 +102,243 @@ const sectores = [
     img: "/images/industrias/biblioteca.jpg",
     href: "/industrias/educacion",
   },
-];
+] as const;
 
-
-const servicios = [
+const SERVICIOS: readonly Servicio[] = [
   {
     nombre: "Instituciones Públicas",
     descripcion:
       "Cumplimiento SEMARNAT y SEGAM, reducción de sanciones y manejo certificado de activos.",
-    iconColor: "#3b82f6", // Blue for public
+    iconColor: "#3b82f6",
     href: "/contacto",
   },
   {
     nombre: "Empresas Privadas",
     descripcion:
       "Retiro seguro de scrap y equipo obsoleto con confidencialidad y destrucción certificada.",
-    iconColor: "#10b981", // Emerald for private
+    iconColor: "#10b981",
     href: "/contacto",
   },
   {
     nombre: "Instituciones Educativas",
     descripcion:
       "Acopio responsable de tecnología académica, donación, reciclaje y programas de educación ambiental.",
-    iconColor: "#ef4444", // Red for education
+    iconColor: "#ef4444",
     href: "/contacto",
   },
   {
     nombre: "Fundaciones y Organizaciones Sociales",
     descripcion:
       "Campañas de recolección comunitaria, participación ciudadana y certificación ambiental para proyectos sociales.",
-    iconColor: "#f97316", // Orange for social
+    iconColor: "#f97316",
     href: "/contacto",
   },
   {
     nombre: "Gobiernos Municipales y Estatales",
     descripcion:
       "Planes locales de manejo de RAEE, asesoría técnica y cumplimiento oficial de lineamientos ambientales.",
-    iconColor: "#6366f1", // Indigo for government
+    iconColor: "#6366f1",
     href: "/contacto",
   },
   {
     nombre: "Movimientos Sociales y Ambientales",
     descripcion:
       "Iniciativas de reciclaje inclusivo y formalización de recolectores dentro de cadenas de valor.",
-    iconColor: "#16a34a", // Green for movements
+    iconColor: "#16a34a",
     href: "/contacto",
   },
-];
+] as const;
 
+const BENEFICIOS: readonly Beneficio[] = [
+  {
+    titulo: "Economía circular",
+    descripcion:
+      "Reducimos transporte innecesario y maximizamos la recuperación de materiales.",
+  },
+  {
+    titulo: "Evidencias y certificaciones",
+    descripcion:
+      "R2v3, ISO 14001 e ISO 45001 respaldan cada operación con informes claros.",
+  },
+  {
+    titulo: "Equipo especializado",
+    descripcion:
+      "Cuadrillas capacitadas y equipadas para intervenir en sitios industriales y oficinas.",
+  },
+  {
+    titulo: "Cobertura nacional",
+    descripcion:
+      "Red de centros integrados que agilizan la logística y bajan tiempos de respuesta.",
+  },
+] as const;
 
+// ============================================================================
+// SUB-COMPONENTS (All memoized for performance)
+// ============================================================================
+
+/**
+ * Sector card component
+ * Memoized to prevent unnecessary re-renders
+ */
+interface SectorCardProps {
+  readonly sector: Sector;
+}
+
+const SectorCard = memo(function SectorCard({ sector }: SectorCardProps) {
+  return (
+    <article className="bg-white border border-zinc-200 shadow-sm h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+      {/* Image container */}
+      <div className="relative h-48 overflow-hidden">
+        <Image
+          src={sector.img}
+          alt={`Industria ${sector.nombre}`}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-black/10" aria-hidden="true" />
+      </div>
+
+      {/* Content area */}
+      <div className="p-5 space-y-3 flex-1 flex flex-col">
+        <h3 className="text-xl font-semibold text-zinc-900">
+          {sector.nombre}
+        </h3>
+        <p className="text-base text-zinc-600 leading-relaxed">
+          {sector.descripcion}
+        </p>
+
+        {/* Button area */}
+        <div className="mt-auto pt-4">
+          <Link
+            href={sector.href}
+            className="inline-flex items-center gap-2 border-2 border-emerald-800 text-emerald-800 px-6 py-3 font-semibold hover:bg-emerald-800 hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+            aria-label={`Ver más sobre ${sector.nombre}`}
+          >
+            Ver Más
+            <svg
+              className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+});
+
+/**
+ * Service card component
+ * Memoized to prevent unnecessary re-renders
+ */
+interface ServicioCardProps {
+  readonly servicio: Servicio;
+}
+
+const ServicioCard = memo(function ServicioCard({ servicio }: ServicioCardProps) {
+  return (
+    <article className="bg-white border border-zinc-200 shadow-sm h-full flex flex-col p-6 rounded-lg hover:shadow-lg transition-shadow duration-300">
+      {/* Title */}
+      <div className="flex items-start space-x-4 mb-4">
+        <h3 className="text-xl font-semibold mt-1 text-zinc-900">
+          {servicio.nombre}
+        </h3>
+      </div>
+
+      {/* Description */}
+      <div className="space-y-3 flex-1 flex flex-col">
+        <p className="text-base text-zinc-600 leading-relaxed">
+          {servicio.descripcion}
+        </p>
+      </div>
+    </article>
+  );
+});
+
+/**
+ * Beneficio card component
+ * Memoized to prevent unnecessary re-renders
+ */
+interface BeneficioCardProps {
+  readonly beneficio: Beneficio;
+}
+
+const BeneficioCard = memo(function BeneficioCard({ beneficio }: BeneficioCardProps) {
+  return (
+    <div className="flex gap-4">
+      <div
+        className="shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
+        style={{ backgroundColor: "#166534" }}
+        aria-hidden="true"
+      >
+        ✓
+      </div>
+      <div>
+        <h3 className="font-bold mb-2 text-zinc-900">
+          {beneficio.titulo}
+        </h3>
+        <p className="text-zinc-600 leading-relaxed">
+          {beneficio.descripcion}
+        </p>
+      </div>
+    </div>
+  );
+});
+
+/**
+ * Section header component
+ * Memoized as headers are static
+ */
+interface SectionHeaderProps {
+  readonly badge: string;
+  readonly title: string;
+  readonly description: string;
+}
+
+const SectionHeader = memo(function SectionHeader({
+  badge,
+  title,
+  description,
+}: SectionHeaderProps) {
+  return (
+    <header className="text-center space-y-3">
+      <p className="text-sm uppercase tracking-wider text-emerald-800">
+        {badge}
+      </p>
+      <h2 className="text-4xl font-bold text-zinc-900">
+        {title}
+      </h2>
+      <p className="text-lg max-w-3xl mx-auto text-zinc-600">
+        {description}
+      </p>
+    </header>
+  );
+});
+
+// ============================================================================
+// MAIN PAGE COMPONENT
+// ============================================================================
 export default function IndustriasPage() {
   return (
     <>
-      {/* HERO NOSOTROS */}
+      {/* Hero */}
       <Hero
-        bg={{ type: "image", src: "/images/industrias/GRUPO TREXAN-47-1.jpg", alt: "Industrias" }}
+        bg={{
+          type: "image",
+          src: "/images/industrias/GRUPO TREXAN-47-1.jpg",
+          alt: "Soluciones de gestión de residuos electrónicos para diversas industrias",
+        }}
         height="60vh"
         badgeText="Industrias"
         title="Soluciones de Gestión a la Medida de Cada Sector"
@@ -138,218 +354,63 @@ export default function IndustriasPage() {
         residuos electrónicos en manos expertas.
       </IntroText>
 
-      {/* 1. SECTORES (Industry Cards with Image Top) */}
-      <section className="py-14 bg-[#f7f7f5]">
+      {/* Sectores Section */}
+      <section className="py-14 bg-zinc-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          
-          {/* Header Block for SECTORES */}
-          <div className="text-center space-y-3">
-            <p
-              className="text-sm uppercase tracking-wider"
-              style={{ color: "#166534" }}
-            >
-              Nuestros Sectores
-            </p>
-            <h2
-              className="text-4xl font-bold"
-              style={{ color: "#0a0a0a" }}
-            >
-              Soluciones a la medida de tu industria
-            </h2>
-            <p
-              className="text-lg max-w-3xl mx-auto"
-              style={{ color: "#4b5563" }}
-            >
-              Ofrecemos servicios especializados en gestión de residuos electrónicos para diversos sectores.
-            </p>
-          </div>
+          <SectionHeader
+            badge="Nuestros Sectores"
+            title="Soluciones a la medida de tu industria"
+            description="Ofrecemos servicios especializados en gestión de residuos electrónicos para diversos sectores."
+          />
 
-          {/* Grid for SECTORES */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sectores.map((s) => (
-              <article
-                key={s.nombre}
-                className="bg-white border border-[#e5e7eb] shadow-sm h-full flex flex-col"
-              >
-                {/* Image container: relative height-48 overflow-hidden */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={s.img}
-                    alt={s.nombre}
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/10" />
-                </div>
-                {/* Content area: p-5 space-y-3 flex-1 flex flex-col */}
-                <div className="p-5 space-y-3 flex-1 flex flex-col">
-                  <h3
-                    className="text-xl font-semibold"
-                    style={{ color: "#0a0a0a" }}
-                  >
-                    {s.nombre}
-                  </h3>
-                  <p
-                    className="text-base"
-                    style={{ color: "#4b5563" }}
-                  >
-                    {s.descripcion}
-                  </p>
-                  {/* Button area: mt-auto pt-4 */}
-                  <div className="mt-auto pt-4">
-                    <Link
-                      href={s.href}
-                      className="inline-flex items-center gap-2 border-2 border-[#0d5745] text-[#0d5745] px-6 py-3 font-semibold hover:bg-[#0d5745] hover:text-white transition-all duration-300"
-                    >
-                      Ver Más
-                      <svg
-                        className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-              </article>
+            {SECTORES.map((sector) => (
+              <SectorCard key={sector.nombre} sector={sector} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* 2. NUESTROS SERVICIOS (Services Cards with Icon Top-Left) */}
-      <section className="py-14 bg-zinc-50"> 
+      {/* Servicios Section */}
+      <section className="py-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          
-          {/* Header Block for SERVICIOS */}
-          <div className="text-center space-y-3">
-            <p
-              className="text-sm uppercase tracking-wider"
-              style={{ color: "#166534" }}
-            >
-              Nuestros Servicios
-            </p>
-            <h2
-              className="text-4xl font-bold"
-              style={{ color: "#0a0a0a" }}
-            >
-              Impacto y Alcance Social
-            </h2>
-            <p
-              className="text-lg max-w-3xl mx-auto"
-              style={{ color: "#4b5563" }}
-            >
-              Extendemos nuestros programas de reciclaje a diversas organizaciones que impulsan el desarrollo.
-            </p>
-          </div>
+          <SectionHeader
+            badge="Nuestros Servicios"
+            title="Impacto y Alcance Social"
+            description="Extendemos nuestros programas de reciclaje a diversas organizaciones que impulsan el desarrollo."
+          />
 
-          {/* Grid for SERVICIOS */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"> {/* Using 3 columns for 6 items */}
-            {servicios.map((s) => (
-              <article
-                key={s.nombre}
-                className="bg-zinc-50 border border-[#e5e7eb] shadow-sm h-full flex flex-col p-6 rounded-lg" // Modified card style for icon placement
-              >
-                {/* Icon and Title */}
-                <div className="flex items-start space-x-4 mb-4">
-                    <h3
-                        className="text-xl font-semibold mt-1"
-                        style={{ color: "#0a0a0a" }}
-                    >
-                        {s.nombre}
-                    </h3>
-                </div>
-                
-                {/* Description */}
-                <div className="space-y-3 flex-1 flex flex-col">
-                  <p
-                    className="text-base"
-                    style={{ color: "#4b5563" }}
-                  >
-                    {s.descripcion}
-                  </p>
-                </div>
-              </article>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SERVICIOS.map((servicio) => (
+              <ServicioCard key={servicio.nombre} servicio={servicio} />
             ))}
           </div>
         </div>
       </section>
-      
-      {/* BENEFICIOS */}
+
+      {/* Beneficios Section */}
       <section className="relative py-16 bg-zinc-50 overflow-hidden">
         <div
-          className="absolute inset-x-0 top-0 h-14 from-[#1a3d2b] via-white to-transparent pointer-events-none"
-          aria-hidden
+          className="absolute inset-x-0 top-0 h-14 from-emerald-900 via-white to-transparent pointer-events-none"
+          aria-hidden="true"
         />
         <div className="section relative">
-          <div className="text-center mb-10 space-y-3">
-            <p
-              className="text-sm uppercase tracking-wider"
-              style={{ color: "#166534" }}
-            >
-              Beneficios
-            </p>
-            <h2
-              className="text-4xl font-bold"
-              style={{ color: "#0a0a0a" }}
-            >
-              ¿Por qué las empresas trabajan con nosotros?
-            </h2>
-            <p
-              className="text-lg max-w-3xl mx-auto"
-              style={{ color: "#4b5563" }}
-            >
-              Cumplimos con normativas, cuidamos la seguridad y mantenemos
-              evidencia clara de cada retiro.
-            </p>
-          </div>
+          <SectionHeader
+            badge="Beneficios"
+            title="¿Por qué las empresas trabajan con nosotros?"
+            description="Cumplimos con normativas, cuidamos la seguridad y mantenemos evidencia clara de cada retiro."
+          />
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {[
-              "Economía circular",
-              "Evidencias y certificaciones",
-              "Equipo especializado",
-              "Cobertura nacional",
-            ].map((item, idx) => (
-              <div key={item} className="flex gap-4">
-                <div
-                  className="shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
-                  style={{ backgroundColor: "#166534" }}
-                >
-                  ✓
-                </div>
-                <div>
-                  <h3
-                    className="font-bold mb-2"
-                    style={{ color: "#0a0a0a" }}
-                  >
-                    {item}
-                  </h3>
-                  <p style={{ color: "#4b5563" }}>
-                    {idx === 0 &&
-                      "Reducimos transporte innecesario y maximizamos la recuperación de materiales."}
-                    {idx === 1 &&
-                      "R2v3, ISO 14001 e ISO 45001 respaldan cada operación con informes claros."}
-                    {idx === 2 &&
-                      "Cuadrillas capacitadas y equipadas para intervenir en sitios industriales y oficinas."}
-                    {idx === 3 &&
-                      "Red de centros integrados que agilizan la logística y bajan tiempos de respuesta."}
-                  </p>
-                </div>
-              </div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-10">
+            {BENEFICIOS.map((beneficio) => (
+              <BeneficioCard key={beneficio.titulo} beneficio={beneficio} />
             ))}
           </div>
         </div>
       </section>
-      
-      {/* CTA FINAL */}
-      <CTA/>
+
+      {/* CTA */}
+      <CTA />
     </>
   );
 }
