@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true, // Allow SVG images
     contentDispositionType: "attachment", // Security for SVG downloads
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;", // SVG security
+    qualities: [75, 85, 90], // Fix quality warnings
+    
+    // Allow Sanity CDN images
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/**",
+      },
+    ],
   },
 
   // ============================================================================
@@ -23,6 +33,9 @@ const nextConfig: NextConfig = {
   // PERFORMANCE OPTIMIZATIONS
   // ============================================================================
   reactStrictMode: true, // Catch common bugs early
+
+  // Prevent jsdom externalization (helps with Sanity Studio)
+  serverExternalPackages: ["jsdom"],
 
   // ============================================================================
   // EXPERIMENTAL FEATURES (Performance)
