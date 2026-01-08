@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { memo } from "react";
 import type { Metadata } from "next";
-import { sanityClient } from "@/lib/sanity";
+import { fetchSanity } from "@/lib/sanity";
 import { qNoticias } from "@/lib/queries";
 import Hero from "../(componentes)/ui/Hero";
 import IntroText from "../(componentes)/ui/IntroText";
@@ -221,14 +221,52 @@ const NewsCardComponent = memo(function NewsCardComponent({
 // MAIN PAGE COMPONENT
 // ============================================================================
 export default async function NoticiasPage() {
-  // Fetch news from Sanity with error handling
-  let noticias: SanityNoticia[] = [];
-  try {
-    const fetchedNoticias = await sanityClient.fetch(qNoticias);
-    noticias = Array.isArray(fetchedNoticias) ? fetchedNoticias : [];
-  } catch (error) {
-    console.error("Error fetching noticias from Sanity:", error);
-    // Continue with empty array, will use fallback news
+  // Fetch news from Sanity with safer helper function
+  const noticias = await fetchSanity<SanityNoticia[]>(qNoticias);
+
+  // Handle error state - if fetch failed, use only fallback news
+  if (!noticias) {
+    console.error("Failed to fetch noticias from Sanity, using fallback news only");
+    const NEWS_CARDS = FALLBACK_NEWS;
+
+    return (
+      <main>
+        <Hero
+          bg={HERO_CONFIG.bg}
+          height={HERO_CONFIG.height}
+          badgeText={HERO_CONFIG.badgeText}
+          title={HERO_CONFIG.title}
+          subtitle={HERO_CONFIG.subtitle}
+        />
+        <IntroText>{INTRO_TEXT}</IntroText>
+
+        <section className="pt-8 pb-16 md:pt-12 md:pb-20 bg-zinc-50">
+          <div className="section space-y-10">
+            <header className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div className="space-y-3 text-left flex-1">
+                <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">
+                  Noticias y Actualizaciones
+                </h2>
+                <p className="text-zinc-600 max-w-2xl">
+                  Publicaciones recientes sobre cumplimiento, procesos y resultados para apoyar a tu organización.
+                </p>
+              </div>
+            </header>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {NEWS_CARDS.map((card) => (
+                <NewsCardComponent
+                  key={`${card.title}-${card.date}`}
+                  card={card}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <CTA />
+      </main>
+    );
   }
 
   // Transform Sanity data

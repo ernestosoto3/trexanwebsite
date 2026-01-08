@@ -9,6 +9,7 @@ import Hero from "./(componentes)/ui/Hero";
 import CTA from "./(componentes)/ui/CTA";
 import IntroText from "./(componentes)/ui/IntroText";
 
+
 // ============================================================================
 // METADATA FOR SEO
 // ============================================================================
