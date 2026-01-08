@@ -64,6 +64,7 @@ export interface NoticiaListItem {
  * Query to fetch all noticias (news articles)
  * Ordered by date (newest first)
  * Returns: Array of news articles with basic info
+ * UPDATED: Now includes 'contenido' for excerpt extraction
  */
 export const qNoticias = `*[_type == "noticia"] | order(fecha desc) {
   _id,
@@ -72,6 +73,7 @@ export const qNoticias = `*[_type == "noticia"] | order(fecha desc) {
   fecha,
   resumen,
   excerpt,
+  contenido,
   imagen{
     asset->{
       url
@@ -129,6 +131,7 @@ export const qRecentNoticias = `*[_type == "noticia"] | order(fecha desc) [0...$
   fecha,
   resumen,
   excerpt,
+  contenido,
   imagen{
     asset->{
       url

@@ -1,11 +1,11 @@
 // app/api/contact/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import nodemailer from "nodemailer";
 import { prisma } from "@/lib/prisma";
+import { sendContactFormEmails } from "@/lib/email";
 
 // ============================================================================
-// VALIDATION SCHEMA (service removed)
+// VALIDATION SCHEMA
 // ============================================================================
 const ContactSchema = z.object({
   name: z.string().min(1).max(100),
@@ -39,6 +39,12 @@ function rateLimit(ip: string) {
 // API HANDLER
 // ============================================================================
 export async function POST(req: NextRequest) {
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  
+  if (isDevelopment) {
+    console.log('\n🚀 Contact form submission received');
+  }
+
   try {
     // Extract IP for rate limiting
     const forwardedFor = req.headers.get("x-forwarded-for");
@@ -74,7 +80,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Extract data (service removed)
+    // Extract data
     const {
       name,
       email,
@@ -94,9 +100,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true }); // Silent rejection
     }
 
-    // Save to database (service removed)
+    if (isDevelopment) {
+      console.log('📝 Form data:', { name, email, company, phone });
+    }
+
+    // Save to database
+    let contactSubmission;
     try {
-      await prisma.contactSubmission.create({
+      contactSubmission = await prisma.contactSubmission.create({
         data: {
           name,
           email,
@@ -109,6 +120,10 @@ export async function POST(req: NextRequest) {
           privacy: privacy ?? false,
         },
       });
+
+      if (isDevelopment) {
+        console.log('💾 Saved to database:', contactSubmission.id);
+      }
     } catch (dbError) {
       console.error("Database error:", dbError);
       return NextResponse.json(
@@ -117,59 +132,58 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Send email if SMTP is configured
-    const {
-      SMTP_HOST,
-      SMTP_PORT,
-      SMTP_USER,
-      SMTP_PASS,
-      CONTACT_TO,
-      CONTACT_FROM,
-    } = process.env as Record<string, string | undefined>;
-
-    if (
-      SMTP_HOST &&
-      SMTP_PORT &&
-      SMTP_USER &&
-      SMTP_PASS &&
-      CONTACT_TO &&
-      CONTACT_FROM
-    ) {
-      try {
-        const transporter = nodemailer.createTransport({
-          host: SMTP_HOST,
-          port: Number(SMTP_PORT),
-          secure: Number(SMTP_PORT) === 465,
-          auth: { user: SMTP_USER, pass: SMTP_PASS },
-        });
-
-        // Email body (service removed)
-        const lines = [
-          `Nombre: ${name}`,
-          `Empresa: ${company ?? "-"}`,
-          `Email: ${email}`,
-          `Teléfono: ${phone ?? "-"}`,
-          `Industria: ${industry ?? "-"}`,
-          `Volumen RAEE: ${volume ?? "-"}`,
-          `Preferencia de contacto: ${contactPreference ?? "-"}`,
-          "",
-          "Mensaje:",
-          message,
-        ].join("\n");
-
-        await transporter.sendMail({
-          to: CONTACT_TO,
-          from: CONTACT_FROM,
-          subject: `Nuevo contacto de ${name}`,
-          text: lines,
-        });
-      } catch (emailError) {
-        console.error("Email error:", emailError);
-        // Don't fail the request if email fails - data is already saved
-      }
+    // Send emails with Resend
+    if (isDevelopment) {
+      console.log('📧 Attempting to send emails via Resend...');
     }
 
-    return NextResponse.json({ ok: true });
+    const emailResults = await sendContactFormEmails({
+      name,
+      email,
+      message,
+      company,
+      phone,
+      industry,
+      volume,
+      contactPreference,
+    });
+
+    if (isDevelopment) {
+      console.log('📊 Email results:', {
+        notification: emailResults.notification.success ? '✅ Sent' : '❌ Failed',
+        autoResponse: emailResults.autoResponse.success ? '✅ Sent' : '⚠️  Skipped/Failed',
+      });
+      if (emailResults.notification.error) {
+        console.error('❌ Email error:', emailResults.notification.error);
+      }
+      console.log('✅ Request completed\n');
+    }
+
+    // Return success even if email fails (data is saved)
+    if (!emailResults.notification.success) {
+      console.error('Failed to send notification email:', emailResults.notification.error);
+      return NextResponse.json(
+        { 
+          ok: true,
+          warning: 'Message saved but email notification failed',
+        },
+        { status: 200 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        ok: true,
+        ...(isDevelopment && {
+          devNotes: {
+            notification: emailResults.notification.devNote,
+            autoResponse: emailResults.autoResponse.devNote,
+          }
+        }),
+      },
+      { status: 200 }
+    );
+
   } catch (error) {
     console.error("Unexpected error:", error);
     return NextResponse.json(

@@ -1,5 +1,8 @@
+// prisma/schema.prisma
+
+// Your existing datasource and generator...
 datasource db {
-  provider = "sqlite"
+  provider = "mysql" // or whatever you're using
   url      = env("DATABASE_URL")
 }
 
@@ -8,20 +11,25 @@ generator client {
 }
 
 model ContactSubmission {
-  id                String   @id @default(cuid())
-  name              String
-  email             String
-  message           String
+  id                 String   @id @default(cuid())
+  name               String
+  email              String
+  message            String   @db.Text
+  company            String?
+  phone              String?
+  industry           String?
+  volume             String?
+  contactPreference  String?
+  privacy            Boolean  @default(false)
   
-  company           String?
-  phone             String?
-  industry          String?   
-  volume            String?   
-  contactPreference String?    
-  privacy           Boolean  @default(false) 
+  // Add these email tracking fields:
+  emailSent          Boolean  @default(false)
+  emailSentAt        DateTime?
+  emailError         String?  @db.Text
   
-  createdAt         DateTime @default(now())
-
-}
-
-
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  
+  @@index([email])
+  @@index([createdAt(sort: Desc)])
+  @@map("mainContactSubmission") // Keep your existing table name

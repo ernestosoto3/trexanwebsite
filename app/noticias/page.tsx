@@ -42,12 +42,25 @@ interface NewsCard {
   readonly alt: string;
 }
 
+/**
+ * Sanity Portable Text Block structure
+ */
+interface PortableTextBlock {
+  _type: string;
+  children?: Array<{
+    text?: string;
+    _type?: string;
+  }>;
+  style?: string;
+}
+
 interface SanityNoticia {
   readonly _id: string;
   readonly titulo?: string;
   readonly fecha?: string;
   readonly resumen?: string;
   readonly excerpt?: string;
+  readonly contenido?: PortableTextBlock[] | string; // Can be portable text or string
   readonly slug?: {
     readonly current?: string;
   };
@@ -122,6 +135,10 @@ const FALLBACK_NEWS: readonly NewsCard[] = [
 // ============================================================================
 // UTILITY FUNCTIONS
 // ============================================================================
+
+/**
+ * Formats date to Spanish locale
+ */
 function formatDateSpanish(input?: string): string {
   if (!input) return "";
   const d = new Date(input);
@@ -134,6 +151,77 @@ function formatDateSpanish(input?: string): string {
   });
 }
 
+/**
+ * Extracts plain text excerpt from Sanity Portable Text
+ * Takes first ~180 characters from content blocks
+ */
+function extractExcerptFromContent(
+  content?: PortableTextBlock[] | string,
+  maxLength: number = 180
+): string {
+  // If content is already a string
+  if (typeof content === "string") {
+    const cleanText = content.replace(/\s+/g, " ").trim();
+    if (!cleanText) return "Lee más sobre esta actualización.";
+    
+    if (cleanText.length <= maxLength) return cleanText;
+    
+    const truncated = cleanText.substring(0, maxLength);
+    const lastSpace = truncated.lastIndexOf(" ");
+    return lastSpace > 0 
+      ? truncated.substring(0, lastSpace) + "..."
+      : truncated + "...";
+  }
+
+  // If content is portable text blocks
+  if (!content || !Array.isArray(content) || content.length === 0) {
+    return "Lee más sobre esta actualización.";
+  }
+
+  // Extract all text from all blocks
+  const allText = content
+    .filter((block) => block._type === "block") // Only process text blocks
+    .map((block) => {
+      if (!block.children || !Array.isArray(block.children)) {
+        return "";
+      }
+      // Extract text from all children
+      return block.children
+        .filter((child) => child._type === "span" && child.text)
+        .map((child) => child.text)
+        .join(" ");
+    })
+    .filter(Boolean) // Remove empty strings
+    .join(" ");
+
+  // Clean up whitespace
+  const cleanText = allText.replace(/\s+/g, " ").trim();
+
+  // If no text found, return default
+  if (!cleanText) {
+    return "Lee más sobre esta actualización.";
+  }
+
+  // Truncate to max length and add ellipsis
+  if (cleanText.length <= maxLength) {
+    return cleanText;
+  }
+
+  // Find last complete word before maxLength
+  const truncated = cleanText.substring(0, maxLength);
+  const lastSpace = truncated.lastIndexOf(" ");
+
+  if (lastSpace > 0) {
+    return truncated.substring(0, lastSpace) + "...";
+  }
+
+  return truncated + "...";
+}
+
+/**
+ * Transforms Sanity noticia to NewsCard format
+ * Priority: resumen → excerpt → contenido extraction → fallback
+ */
 function transformSanityNoticia(n: SanityNoticia): NewsCard {
   const href = n?.slug?.current
     ? `/noticias/${n.slug.current}`
@@ -145,11 +233,26 @@ function transformSanityNoticia(n: SanityNoticia): NewsCard {
     n?.imageUrl ||
     "/images/noticias/placeholder-1.jpg";
 
+  // Priority order for excerpt:
+  // 1. resumen field (if exists and has content)
+  // 2. excerpt field (if exists and has content)
+  // 3. Extract from contenido
+  // 4. Fallback message
+  let excerpt = "Lee más sobre esta actualización.";
+  
+  if (n?.resumen && n.resumen.trim()) {
+    excerpt = n.resumen;
+  } else if (n?.excerpt && n.excerpt.trim()) {
+    excerpt = n.excerpt;
+  } else if (n?.contenido) {
+    excerpt = extractExcerptFromContent(n.contenido);
+  }
+
   return {
     title: n?.titulo ?? "Noticia",
     date: formatDateSpanish(n?.fecha),
     dateISO: n?.fecha, // Keep original ISO date for datetime attribute
-    excerpt: n?.resumen ?? n?.excerpt ?? "Lee más sobre esta actualización.",
+    excerpt,
     href,
     image,
     alt: n?.titulo ?? "Noticia",
@@ -269,7 +372,7 @@ export default async function NoticiasPage() {
     );
   }
 
-  // Transform Sanity data
+  // Transform Sanity data (now with excerpt extraction from contenido)
   const fromSanity: NewsCard[] = noticias.map(transformSanityNoticia);
 
   // Combine Sanity news with fallback, limit to 6
