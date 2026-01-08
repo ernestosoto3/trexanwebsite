@@ -10,8 +10,8 @@ const IMAGES = {
   recyclingYard: "/images/industrias/GRUPO TREXAN-73.jpg",
 } as const;
 
-const BUTTON_CLASSES =
-  "w-full border-emerald-300/70 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none" as const;
+// UPDATED: Now only width and rounded-none since variant handles the rest
+const BUTTON_CLASSES = "w-full rounded-none" as const;
 
 // ============================================================================
 // SECTION HEADER COMPONENT
@@ -107,9 +107,13 @@ const ComoTrabajamosColumn = memo(function ComoTrabajamosColumn() {
         respaldada ante auditorías internas o externas.
       </p>
 
-      {/* Button */}
+      {/* Button - UPDATED: Using emerald-inverted variant */}
       <div className="mt-auto pt-2">
-        <Button href="/nosotros" variant="primary" className={BUTTON_CLASSES}>
+        <Button 
+          href="/nosotros" 
+          variant="emerald-inverted" 
+          className={BUTTON_CLASSES}
+        >
           Conoce cómo trabajamos →
         </Button>
       </div>
@@ -160,9 +164,13 @@ const ComoAyudamosColumn = memo(function ComoAyudamosColumn() {
         estándares de seguridad y control documental.
       </p>
 
-      {/* Button */}
+      {/* Button - UPDATED: Using emerald-inverted variant */}
       <div className="mt-auto pt-2">
-        <Button href="/contacto" variant="primary" className={BUTTON_CLASSES}>
+        <Button 
+          href="/contacto" 
+          variant="emerald-inverted" 
+          className={BUTTON_CLASSES}
+        >
           Hablar con un asesor →
         </Button>
       </div>

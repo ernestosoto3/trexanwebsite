@@ -18,7 +18,7 @@ type IntroTextProps = {
 function IntroTextComponent({
   children,
   heading,
-  className = "bg-zinc-50 py-8 md:py-14",
+  className = "bg-zinc-50 py-6 md:py-12",
   textClassName = "text-center text-xl md:text-2xl leading-relaxed text-zinc-600",
   maxWidth = "6xl",
 }: IntroTextProps) {

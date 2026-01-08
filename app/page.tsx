@@ -8,7 +8,8 @@ import ComoTrabajamosComoAyudamos from "./(componentes)/ui/ComoTrabajamosComoAyu
 import Hero from "./(componentes)/ui/Hero";
 import CTA from "./(componentes)/ui/CTA";
 import IntroText from "./(componentes)/ui/IntroText";
-
+import { fetchSanity } from "@/lib/sanity";
+import { qNoticias } from "@/lib/queries";
 
 // ============================================================================
 // METADATA FOR SEO
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 60;
+export const revalidate = 60; // Revalidate every 60 seconds
 
 // ============================================================================
 // TYPES
@@ -47,10 +48,33 @@ interface Feature {
 interface NewsCard {
   readonly title: string;
   readonly date: string;
+  readonly dateISO?: string;
   readonly excerpt: string;
   readonly image: string;
   readonly alt: string;
   readonly href: string;
+}
+
+interface SanityNoticia {
+  readonly _id: string;
+  readonly titulo?: string;
+  readonly fecha?: string;
+  readonly resumen?: string;
+  readonly excerpt?: string;
+  readonly slug?: {
+    readonly current?: string;
+  };
+  readonly imagen?: {
+    readonly asset?: {
+      readonly url?: string;
+    };
+  };
+  readonly image?: {
+    readonly asset?: {
+      readonly url?: string;
+    };
+  };
+  readonly imageUrl?: string;
 }
 
 interface SectionHeaderProps {
@@ -105,10 +129,12 @@ const FEATURES: readonly Feature[] = [
   },
 ] as const;
 
-const NEWS_CARDS: readonly NewsCard[] = [
+// Fallback news - used only if Sanity fetch fails
+const FALLBACK_NEWS: readonly NewsCard[] = [
   {
     title: "Trexan Reconocida con Premio de Sustentabilidad Nacional",
     date: "Diciembre 15, 2025",
+    dateISO: "2025-12-15",
     excerpt:
       "Trexan ha sido seleccionada para recibir el Premio Nacional de Sustentabilidad, un reconocimiento anual otorgado a empresas que demuestran excelencia en prácticas ambientales y economía circular...",
     image: "/images/industrias/GRUPO TREXAN-53.jpg",
@@ -118,6 +144,7 @@ const NEWS_CARDS: readonly NewsCard[] = [
   {
     title: "Transformando Residuos Industriales en Activos Estratégicos: Economía Circular",
     date: "Noviembre 19, 2025",
+    dateISO: "2025-11-19",
     excerpt:
       "Los residuos industriales representan más que un desafío de disposición. Son una oportunidad sin explotar esperando ser desbloqueada. Las empresas con visión de futuro en manufactura, energía y tecnología...",
     image: "/images/industrias/GRUPO TREXAN-22.jpg",
@@ -127,6 +154,7 @@ const NEWS_CARDS: readonly NewsCard[] = [
   {
     title: "Fortaleciendo Relaciones con Clientes del Sector Electrónico: Ventaja Estratégica",
     date: "Octubre 2, 2025",
+    dateISO: "2025-10-02",
     excerpt:
       "En el mundo competitivo de la gestión de residuos electrónicos, tu éxito depende no solo de lo que recolectas, sino de hacia dónde va. Como fabricante de componentes electrónicos...",
     image: "/images/industrias/shaking-hands.jpg",
@@ -161,8 +189,64 @@ Protegemos su cadena de suministro mediante procesos certificados (R2v3, ISO)
 que transforman pasivos ambientales en cumplimiento normativo y metas de
 sostenibilidad cumplidas.` as const;
 
-const SECONDARY_BUTTON_CLASSES =
-  "border-emerald-300/70 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-black rounded-none" as const;
+const SECONDARY_BUTTON_CLASSES = "rounded-none" as const;
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
+
+/**
+ * Converts industry name to URL-safe slug
+ * Examples: "Automotriz" → "automotriz", "Tecnología" → "tecnologia"
+ */
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * Formats date string to Spanish locale
+ */
+function formatDateSpanish(input?: string): string {
+  if (!input) return "";
+  const d = new Date(input);
+  if (Number.isNaN(d.getTime())) return input;
+
+  return d.toLocaleDateString("es-PR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+/**
+ * Transforms Sanity noticia to NewsCard format
+ */
+function transformSanityNoticia(n: SanityNoticia): NewsCard {
+  const href = n?.slug?.current
+    ? `/noticias/${n.slug.current}`
+    : `/noticias/${n._id}`;
+
+  const image =
+    n?.imagen?.asset?.url ||
+    n?.image?.asset?.url ||
+    n?.imageUrl ||
+    "/images/noticias/placeholder-1.jpg";
+
+  return {
+    title: n?.titulo ?? "Noticia",
+    date: formatDateSpanish(n?.fecha),
+    dateISO: n?.fecha,
+    excerpt: n?.resumen ?? n?.excerpt ?? "Lee más sobre esta actualización.",
+    href,
+    image,
+    alt: n?.titulo ?? "Noticia",
+  };
+}
 
 // ============================================================================
 // SUB-COMPONENTS (Memoized for performance)
@@ -208,25 +292,29 @@ const FeatureCard = memo(function FeatureCard({ feature }: FeatureCardProps) {
 });
 
 /**
- * Industry button component
+ * Industry button component - Clickable link to industry pages
  * Memoized to prevent unnecessary re-renders
  */
 const IndustryButton = memo(function IndustryButton({ industry }: IndustryButtonProps) {
+  const slug = slugify(industry);
+  const href = `/industrias/${slug}`;
+
   return (
-    <button
-      className="flex w-full items-center justify-between py-4 text-left group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-700"
+    <Link
+      href={href}
+      className="flex w-full items-center justify-between py-4 text-left group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-700 transition-all duration-200"
       aria-label={`Ver más sobre la industria ${industry}`}
     >
-      <span className="text-base md:text-lg opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition">
+      <span className="text-base md:text-lg opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200">
         {industry}
       </span>
       <span
-        className="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition"
+        className="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200"
         aria-hidden="true"
       >
         ↗
       </span>
-    </button>
+    </Link>
   );
 });
 
@@ -235,6 +323,8 @@ const IndustryButton = memo(function IndustryButton({ industry }: IndustryButton
  * Memoized to prevent unnecessary re-renders
  */
 const NewsCardComponent = memo(function NewsCardComponent({ card }: NewsCardComponentProps) {
+  const dateTimeValue = card.dateISO || undefined;
+
   return (
     <Link
       href={card.href}
@@ -262,7 +352,9 @@ const NewsCardComponent = memo(function NewsCardComponent({ card }: NewsCardComp
 
       {/* Content Section */}
       <div className="p-6 space-y-3 flex-1 flex flex-col">
-        <time className="text-xs md:text-sm text-emerald-700 font-medium">{card.date}</time>
+        <time className="text-xs md:text-sm text-emerald-700 font-medium" dateTime={dateTimeValue}>
+          {card.date}
+        </time>
         <h3 className="text-lg md:text-xl font-semibold text-zinc-900 leading-snug group-hover:text-emerald-700 transition-colors duration-200">
           {card.title}
         </h3>
@@ -277,7 +369,23 @@ const NewsCardComponent = memo(function NewsCardComponent({ card }: NewsCardComp
 // ============================================================================
 // MAIN PAGE COMPONENT
 // ============================================================================
-export default function HomePage() {
+export default async function HomePage() {
+  // Fetch news from Sanity
+  const noticias = await fetchSanity<SanityNoticia[]>(qNoticias);
+
+  // Determine which news to show (latest 3)
+  let NEWS_CARDS: readonly NewsCard[];
+
+  if (!noticias || noticias.length === 0) {
+    // If Sanity fetch fails or returns no results, use fallback
+    console.warn("Using fallback news on homepage");
+    NEWS_CARDS = FALLBACK_NEWS.slice(0, 3);
+  } else {
+    // Transform Sanity news and combine with fallback, then take latest 3
+    const fromSanity = noticias.map(transformSanityNoticia);
+    NEWS_CARDS = [...fromSanity, ...FALLBACK_NEWS].slice(0, 3);
+  }
+
   return (
     <main className="min-h-dvh bg-white">
       {/* Hero Section */}
@@ -351,17 +459,22 @@ export default function HomePage() {
             <p className="text-sm font-medium tracking-[0.2em] uppercase text-emerald-300">
               Industrias
             </p>
-
             <div className="mt-3 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
                 Confiados en Diferentes Sectores
               </h2>
-              <Button href="/industrias" variant="primary" className={SECONDARY_BUTTON_CLASSES}>
+              
+              <Button 
+                href="/industrias" 
+                variant="emerald-inverted"
+                className={SECONDARY_BUTTON_CLASSES}
+              >
                 Industrias →
               </Button>
             </div>
           </div>
 
+          {/* Industries List */}
           <div className="mt-8 border-y border-white/10 divide-y divide-white/10">
             {INDUSTRIES.map((industry) => (
               <IndustryButton key={industry} industry={industry} />
@@ -389,7 +502,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* News Section */}
+      {/* News Section - Now dynamically shows latest 3 from Sanity */}
       <section className="pt-8 pb-16 md:pt-12 md:pb-20 bg-zinc-50">
         <div className="section space-y-10">
           {/* Header */}
@@ -411,10 +524,10 @@ export default function HomePage() {
             </div>
           </header>
 
-          {/* News Cards Grid */}
+          {/* News Cards Grid - Always shows latest 3 */}
           <div className="grid md:grid-cols-3 gap-8">
             {NEWS_CARDS.map((card) => (
-              <NewsCardComponent key={card.title} card={card} />
+              <NewsCardComponent key={`${card.title}-${card.date}`} card={card} />
             ))}
           </div>
         </div>

@@ -8,7 +8,7 @@ import { memo } from "react";
 type ButtonProps = {
   href: string;
   children: ReactNode;
-  variant?: "primary" | "outline" | "orange" | "link";
+  variant?: "primary" | "outline" | "orange" | "link" | "emerald-inverted";
   className?: string;
   disabled?: boolean;
   external?: boolean; // For external links (opens in new tab)
@@ -36,17 +36,22 @@ function ButtonComponent({
     /** Emerald primary → white on hover */
     primary:
       "bg-[--color-primary] text-white border border-[--color-primary] hover:bg-emerald-800 hover:text-white hover:border-emerald-800 focus-visible:ring-[--color-primary] focus-visible:ring-offset-white",
-
+    
     /** White outline → white fill */
     outline:
       "border border-white text-white hover:bg-white hover:text-black focus-visible:ring-white focus-visible:ring-offset-[--color-primary]",
-
+    
     /** Orange → white on hover */
     orange:
       "bg-[--color-secondary] text-white border border-[--color-secondary] hover:bg-white hover:text-black hover:border-white focus-visible:ring-[--color-secondary] focus-visible:ring-offset-white",
-
+    
     /** Text link style (no background/border) */
-    link: "text-emerald-700 hover:text-emerald-800 px-0 py-0 gap-2 focus-visible:ring-emerald-700",
+    link: 
+      "text-emerald-700 hover:text-emerald-800 px-0 py-0 gap-2 focus-visible:ring-emerald-700",
+    
+    /** Emerald with transparent border → white fill with black text on hover */
+    "emerald-inverted":
+      "bg-emerald-700 text-white border border-emerald-300/70 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white focus-visible:ring-emerald-300 focus-visible:ring-offset-emerald-700",
   } as const;
 
   // Disabled state classes
