@@ -1,6 +1,5 @@
 // components/home/HowWeWorkHelpSection.tsx
 import { memo } from "react";
-import Image from "next/image";
 import Button from "./Button";
 
 // ============================================================================
@@ -12,55 +11,57 @@ const IMAGES = {
 } as const;
 
 const BUTTON_CLASSES =
-  "w-full border-emerald-300/70 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none";
+  "w-full border-emerald-300/70 text-white bg-emerald-700 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white rounded-none" as const;
 
 // ============================================================================
 // SECTION HEADER COMPONENT
 // ============================================================================
-type SectionHeaderProps = {
-  label: string;
-  title: string;
-};
+interface SectionHeaderProps {
+  readonly label: string;
+  readonly title: string;
+}
 
-const SectionHeader = memo(({ label, title }: SectionHeaderProps) => (
-  <div className="border-t border-emerald-300/70 pt-4">
-    <p className="text-sm uppercase tracking-[0.2em] text-emerald-300">
-      {label}
-    </p>
-    <h2 className="mt-2 text-2xl md:text-3xl font-semibold">{title}</h2>
-  </div>
-));
+const SectionHeader = memo(function SectionHeader({ label, title }: SectionHeaderProps) {
+  return (
+    <div className="border-t border-emerald-300/70 pt-4">
+      <p className="text-sm uppercase tracking-[0.2em] text-emerald-300">
+        {label}
+      </p>
+      <h2 className="mt-2 text-2xl md:text-3xl font-semibold">{title}</h2>
+    </div>
+  );
+});
 
 SectionHeader.displayName = "SectionHeader";
 
 // ============================================================================
-// IMAGE CONTAINER COMPONENT - Optimized with Next.js Image
+// IMAGE CONTAINER COMPONENT - Fixed to ensure images display
 // ============================================================================
-type ImageContainerProps = {
-  src: string;
-  alt: string;
-};
+interface ImageContainerProps {
+  readonly src: string;
+  readonly alt: string;
+}
 
-const ImageContainer = memo(({ src, alt }: ImageContainerProps) => (
-  <div className="relative overflow-hidden border border-white/15 h-64 md:h-80">
-    <Image
-      src={src}
-      alt={alt}
-      fill
-      className="object-cover"
-      sizes="(max-width: 1024px) 100vw, 50vw"
-      quality={85}
-    />
-    <div className="absolute inset-0 bg-black/10" aria-hidden="true" />
-  </div>
-));
+const ImageContainer = memo(function ImageContainer({ src, alt }: ImageContainerProps) {
+  return (
+    <div className="relative w-full h-64 md:h-80 overflow-hidden border border-white/15">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-black/10" aria-hidden="true" />
+    </div>
+  );
+});
 
 ImageContainer.displayName = "ImageContainer";
 
 // ============================================================================
 // COMO TRABAJAMOS COLUMN
 // ============================================================================
-function ComoTrabajamosColumnComponent() {
+const ComoTrabajamosColumn = memo(function ComoTrabajamosColumn() {
   return (
     <article className="flex flex-col gap-6">
       {/* Header */}
@@ -114,15 +115,14 @@ function ComoTrabajamosColumnComponent() {
       </div>
     </article>
   );
-}
+});
 
-const ComoTrabajamosColumn = memo(ComoTrabajamosColumnComponent);
 ComoTrabajamosColumn.displayName = "ComoTrabajamosColumn";
 
 // ============================================================================
 // COMO AYUDAMOS COLUMN
 // ============================================================================
-function ComoAyudamosColumnComponent() {
+const ComoAyudamosColumn = memo(function ComoAyudamosColumn() {
   return (
     <article className="flex flex-col gap-6">
       {/* Header */}
@@ -168,15 +168,14 @@ function ComoAyudamosColumnComponent() {
       </div>
     </article>
   );
-}
+});
 
-const ComoAyudamosColumn = memo(ComoAyudamosColumnComponent);
 ComoAyudamosColumn.displayName = "ComoAyudamosColumn";
 
 // ============================================================================
 // MAIN COMPONENT - How We Work & Help Section
 // ============================================================================
-function HowWeWorkHelpSectionComponent() {
+const HowWeWorkHelpSection = memo(function HowWeWorkHelpSection() {
   return (
     <section className="py-8 bg-emerald-700 text-white">
       <div className="section">
@@ -187,12 +186,8 @@ function HowWeWorkHelpSectionComponent() {
       </div>
     </section>
   );
-}
+});
 
-// ============================================================================
-// MEMOIZED EXPORT
-// ============================================================================
-const HowWeWorkHelpSection = memo(HowWeWorkHelpSectionComponent);
 HowWeWorkHelpSection.displayName = "HowWeWorkHelpSection";
 
 export default HowWeWorkHelpSection;

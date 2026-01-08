@@ -15,30 +15,28 @@ const inter = Inter({
   variable: "--font-geist-sans", // Keep same variable name
   display: "swap",
   weight: ["400", "500", "600", "700", "800", "900"],
+  preload: true, // Preload font for better performance
 });
 
 // ============================================================================
 // SITE CONFIGURATION
 // ============================================================================
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://recibasicos.com";
-const SITE_NAME = "Recibásicos";
-const SITE_TITLE = "Recibásicos - Reciclaje de Residuos Electrónicos | Trexan Recycling Group";
+const SITE_NAME = "Recibásicos" as const;
+const SITE_TITLE = "Recibásicos - Reciclaje de Residuos Electrónicos | Trexan Recycling Group" as const;
 const SITE_DESCRIPTION =
-  "Líder en acopio y valorización de residuos electrónicos en México. Certificaciones R2v3, ISO 14001 e ISO 45001. Trazabilidad total y cumplimiento normativo garantizado.";
+  "Líder en acopio y valorización de residuos electrónicos en México. Certificaciones R2v3, ISO 14001 e ISO 45001. Trazabilidad total y cumplimiento normativo garantizado." as const;
 
 // ============================================================================
 // METADATA - SEO Optimization
 // ============================================================================
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  
   title: {
     default: SITE_TITLE,
     template: `%s | ${SITE_NAME}`,
   },
-  
   description: SITE_DESCRIPTION,
-  
   keywords: [
     "reciclaje electrónico",
     "RAEE",
@@ -51,12 +49,9 @@ export const metadata: Metadata = {
     "Trexan",
     "México",
   ],
-  
   authors: [{ name: "Recibásicos - Trexan Recycling Group" }],
-  
   creator: "Recibásicos",
   publisher: "Trexan Recycling Group",
-  
   robots: {
     index: true,
     follow: true,
@@ -68,7 +63,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  
   openGraph: {
     type: "website",
     locale: "es_MX",
@@ -85,7 +79,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
@@ -93,17 +86,14 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
     creator: "@trexanrecycling",
   },
-  
   alternates: {
     canonical: "/",
   },
-  
   verification: {
     // Add when you have them:
     // google: "your-google-verification-code",
     // yandex: "your-yandex-verification-code",
   },
-  
   category: "business",
 };
 
@@ -116,24 +106,24 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "047857" },
-    { media: "(prefers-color-scheme: dark)", color: "065F46" },
+    { media: "(prefers-color-scheme: light)", color: "#047857" }, 
+    { media: "(prefers-color-scheme: dark)", color: "#065F46" }, 
   ],
 };
 
 // ============================================================================
 // ROOT LAYOUT
 // ============================================================================
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+interface RootLayoutProps {
+  readonly children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="es" className={inter.variable}>
+    <html lang="es" className={inter.variable} suppressHydrationWarning>
       <body className="antialiased">
         <Header />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Footer />
         <ScrollToTop />
       </body>

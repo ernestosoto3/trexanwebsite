@@ -28,7 +28,7 @@ export function proxy(req: NextRequest) {
     // Decode the Authorization header
     const [scheme, encoded] = auth.split(" ");
     
-    // ✅ FIX: Check if encoded exists before using it
+    // Check if encoded exists before using it
     if (scheme !== "Basic" || !encoded) {
       return new NextResponse("Invalid authorization format", { status: 400 });
     }
