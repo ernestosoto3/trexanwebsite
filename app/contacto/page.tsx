@@ -9,7 +9,7 @@ import IntroText from "../(componentes)/ui/IntroText";
 // TYPES
 // ============================================================================
 interface FormData {
-  name: string; // Changed from fullName to match API
+  name: string;
   email: string;
   phone: string;
   company: string;
@@ -22,19 +22,18 @@ interface FormData {
 }
 
 interface FormErrors {
-  name?: string; // Changed from fullName to match API
+  name?: string;
   email?: string;
   message?: string;
-  privacy?: string;
 }
 
-type FormStatus = "idle" | "sending" | "success" | "error";
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
 // ============================================================================
 // CONSTANTS
 // ============================================================================
 const INITIAL_FORM_DATA: FormData = {
-  name: "", // Changed from fullName to match API
+  name: "",
   email: "",
   phone: "",
   company: "",
@@ -72,6 +71,13 @@ const CONTACT_PREFERENCES = [
   { value: "phone", label: "Teléfono" },
   { value: "whatsapp", label: "WhatsApp" },
 ] as const;
+
+// Shared input classes
+const INPUT_CLASSES =
+  "w-full px-4 py-2.5 border border-zinc-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 outline-none transition-colors";
+
+const ERROR_INPUT_CLASSES =
+  "w-full px-4 py-2.5 border border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-600 outline-none transition-colors";
 
 // ============================================================================
 // VALIDATION HELPERS
@@ -207,7 +213,7 @@ const LocationMap = memo(function LocationMap() {
 
       <div className="h-105 md:h-130">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3880.3237148335484!2d-100.88085848895486!3d22.0732802797664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842aa50060ad87ff%3A0xbaab4d0cea4484df!2sRecib%C3%A1sicos%20SA%20de%20CV!5e1!3m2!1sen!2smx!4v1764013510685!5m2!1sen!2smx"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!3d3880.3237148335484!2d-100.88085848895486!3d22.0732802797664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842aa50060ad87ff%3A0xbaab4d0cea4484df!2sRecib%C3%A1sicos%20SA%20de%20CV!5e1!3m2!1sen!2smx!4v1764013510685!5m2!1sen!2smx"
           width="100%"
           height="100%"
           style={{ border: 0 }}
@@ -221,41 +227,6 @@ const LocationMap = memo(function LocationMap() {
   );
 });
 
-/**
- * Form field wrapper for consistent styling and error display
- */
-interface FieldWrapperProps {
-  label: string;
-  required?: boolean;
-  optional?: boolean;
-  error?: string;
-  children: React.ReactNode;
-}
-
-const FieldWrapper = memo(function FieldWrapper({
-  label,
-  required = false,
-  optional = false,
-  error,
-  children,
-}: FieldWrapperProps) {
-  return (
-    <div>
-      <label className="block text-sm font-medium text-zinc-900 mb-2">
-        {label}{" "}
-        {required && <span className="text-red-500" aria-label="requerido">*</span>}
-        {optional && <span className="text-zinc-400">(opcional)</span>}
-      </label>
-      {children}
-      {error && (
-        <p className="mt-1.5 text-sm text-red-600" role="alert">
-          {error}
-        </p>
-      )}
-    </div>
-  );
-});
-
 // ============================================================================
 // MAIN COMPONENT
 // ============================================================================
@@ -264,20 +235,20 @@ export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   // Memoized values
   const title = "Asegure la trazabilidad de sus activos ahora";
 
   const subtitle = useMemo(() => {
-    const safeIndustry = "su sector";
-    return `Dé el primer paso hacia una disposición final certificada. Proporcione sus detalles y nuestro equipo de cumplimiento para ${safeIndustry} le ayudará a estructurar un esquema de retiro seguro y trazable.`;
+    return "Dé el primer paso hacia una disposición final certificada. Proporcione sus detalles y nuestro equipo de cumplimiento para su sector le ayudará a estructurar un esquema de retiro seguro y trazable.";
   }, []);
 
   // Handlers
   const handleReset = useCallback(() => {
     setFormData(INITIAL_FORM_DATA);
     setErrors({});
-    setStatus("idle");
+    setErrorMessage("");
   }, []);
 
   const handleChange = useCallback(
@@ -291,10 +262,6 @@ export default function ContactPage() {
       if (type === "checkbox") {
         const checked = (e.target as HTMLInputElement).checked;
         setFormData((prev) => ({ ...prev, [name]: checked }));
-        // Clear error when user interacts
-        if (errors[name as keyof FormErrors]) {
-          setErrors((prev) => ({ ...prev, [name]: undefined }));
-        }
       } else {
         setFormData((prev) => ({ ...prev, [name]: value }));
         // Clear error when user types
@@ -320,6 +287,8 @@ export default function ContactPage() {
       const validationErrors = validateForm(formData);
       if (Object.keys(validationErrors).length > 0) {
         setErrors(validationErrors);
+        setErrorMessage("Por favor corrige los errores en el formulario");
+        
         // Focus first error field
         const firstErrorField = Object.keys(validationErrors)[0];
         const element = document.querySelector(
@@ -329,64 +298,71 @@ export default function ContactPage() {
         return;
       }
 
-      setStatus("sending");
+      setStatus("submitting");
       setErrors({});
+      setErrorMessage("");
 
       try {
-        const res = await fetch("/api/contact", {
+        const response = await fetch("/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+            phone: formData.phone || undefined,
+            company: formData.company || undefined,
+            industry: formData.industry || undefined,
+            volume: formData.volume || undefined,
+            contactPreference: formData.contactPreference || undefined,
+            privacy: formData.privacy,
+            website: formData.website, // Honeypot
+          }),
         });
 
-        const data = await res.json();
+        const data = await response.json();
 
-        if (!res.ok) {
-          // Handle specific error cases
-          if (res.status === 429) {
-            throw new Error("Demasiadas solicitudes. Por favor, espera un momento.");
+        if (!response.ok) {
+          if (response.status === 429) {
+            throw new Error(
+              "Demasiadas solicitudes. Por favor, espera un momento antes de intentar nuevamente."
+            );
           }
-          throw new Error(data.error || "Error al enviar el mensaje");
+          throw new Error(
+            data.error || "Error al enviar el formulario. Por favor, inténtalo de nuevo."
+          );
         }
 
-        // Check if API returned ok: true
         if (!data.ok) {
           throw new Error("Error al procesar el mensaje");
         }
 
         setStatus("success");
-        console.log("✅ Status set to success");
         handleReset();
-        console.log("✅ Form reset called");
 
         // Auto-hide success message after 10 seconds
         setTimeout(() => {
-          console.log("⏰ Hiding success message");
           setStatus("idle");
         }, 10000);
       } catch (error) {
         console.error("Form submission error:", error);
         setStatus("error");
-        
-        // Show specific error message if available
-        if (error instanceof Error) {
-          setErrors({ message: error.message });
-        }
+        setErrorMessage(
+          error instanceof Error
+            ? error.message
+            : "Error al enviar el formulario. Por favor, inténtalo de nuevo."
+        );
       }
     },
     [formData, handleReset]
   );
 
-  // Input class with error state - accepts any field name
+  // Input class with error state
   const getInputClass = (fieldName?: keyof FormErrors) => {
-    const baseClass =
-      "w-full px-4 py-2.5 border outline-none transition-colors";
-    const normalClass =
-      "border-zinc-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600";
-    const errorClass = "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-600";
-
-    return `${baseClass} ${fieldName && errors[fieldName] ? errorClass : normalClass}`;
+    return fieldName && errors[fieldName] ? ERROR_INPUT_CLASSES : INPUT_CLASSES;
   };
+
+  const isSubmitting = status === "submitting";
 
   return (
     <main className="bg-white">
@@ -431,70 +407,136 @@ export default function ContactPage() {
                 className="bg-white border border-zinc-200 shadow-sm p-8 md:p-10 space-y-6"
                 aria-label="Formulario de contacto"
               >
-                {/* Nombre Completo */}
-                <FieldWrapper
-                  label="Nombre Completo"
-                  required
-                  error={errors.name}
-                >
+                {/* Honeypot Field (Hidden) */}
+                <div className="absolute -left-2499.75" aria-hidden="true">
+                  <label htmlFor="website">
+                    Website (do not fill)
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      value={formData.website}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      tabIndex={-1}
+                    />
+                  </label>
+                </div>
+
+                {/* Full Name */}
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-zinc-900 mb-2"
+                  >
+                    Nombre Completo <span className="text-red-500" aria-label="requerido">*</span>
+                  </label>
                   <input
                     type="text"
+                    id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    disabled={isSubmitting}
                     className={getInputClass("name")}
+                    minLength={2}
+                    maxLength={100}
                     aria-invalid={!!errors.name}
                     aria-describedby={errors.name ? "name-error" : undefined}
                   />
-                </FieldWrapper>
+                  {errors.name && (
+                    <p id="name-error" className="mt-1.5 text-sm text-red-600" role="alert">
+                      {errors.name}
+                    </p>
+                  )}
+                </div>
 
                 {/* Email */}
-                <FieldWrapper label="Email" required error={errors.email}>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-zinc-900 mb-2"
+                  >
+                    Email <span className="text-red-500" aria-label="requerido">*</span>
+                  </label>
                   <input
-                    type="text"
-                    inputMode="email"
+                    type="email"
+                    id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    autoComplete="email"
+                    disabled={isSubmitting}
                     className={getInputClass("email")}
+                    maxLength={200}
+                    placeholder="correo@ejemplo.com"
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? "email-error" : undefined}
-                    placeholder="correo@ejemplo.com"
                   />
-                </FieldWrapper>
+                  {errors.email && (
+                    <p id="email-error" className="mt-1.5 text-sm text-red-600" role="alert">
+                      {errors.email}
+                    </p>
+                  )}
+                </div>
 
-                {/* Teléfono */}
-                <FieldWrapper label="Teléfono" optional>
+                {/* Phone */}
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-zinc-900 mb-2"
+                  >
+                    Teléfono <span className="text-zinc-400">(opcional)</span>
+                  </label>
                   <input
                     type="tel"
+                    id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className={getInputClass()}
+                    maxLength={50}
                     placeholder="+52 (444) 123 4567"
                   />
-                </FieldWrapper>
+                </div>
 
-                {/* Empresa */}
-                <FieldWrapper label="Empresa / Institución" optional>
+                {/* Company */}
+                <div>
+                  <label
+                    htmlFor="company"
+                    className="block text-sm font-medium text-zinc-900 mb-2"
+                  >
+                    Empresa / Institución{" "}
+                    <span className="text-zinc-400">(opcional)</span>
+                  </label>
                   <input
                     type="text"
+                    id="company"
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className={getInputClass()}
+                    maxLength={200}
                   />
-                </FieldWrapper>
+                </div>
 
-                {/* Industria */}
-                <FieldWrapper label="Industria" optional>
+                {/* Industry */}
+                <div>
+                  <label
+                    htmlFor="industry"
+                    className="block text-sm font-medium text-zinc-900 mb-2"
+                  >
+                    Industria <span className="text-zinc-400">(opcional)</span>
+                  </label>
                   <select
+                    id="industry"
                     name="industry"
                     value={formData.industry}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className={`${getInputClass()} bg-white`}
                   >
                     {INDUSTRIES.map((option) => (
@@ -503,14 +545,23 @@ export default function ContactPage() {
                       </option>
                     ))}
                   </select>
-                </FieldWrapper>
+                </div>
 
-                {/* Volumen RAEE */}
-                <FieldWrapper label="Volumen aproximado de RAEE" optional>
+                {/* Volume */}
+                <div>
+                  <label
+                    htmlFor="volume"
+                    className="block text-sm font-medium text-zinc-900 mb-2"
+                  >
+                    Volumen aproximado de RAEE{" "}
+                    <span className="text-zinc-400">(opcional)</span>
+                  </label>
                   <select
+                    id="volume"
                     name="volume"
                     value={formData.volume}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className={`${getInputClass()} bg-white`}
                   >
                     {VOLUMES.map((option) => (
@@ -519,17 +570,23 @@ export default function ContactPage() {
                       </option>
                     ))}
                   </select>
-                </FieldWrapper>
+                </div>
 
-                {/* Preferencia de contacto */}
-                <FieldWrapper
-                  label="¿Cómo prefieres que te contactemos?"
-                  optional
-                >
+                {/* Contact Preference */}
+                <div>
+                  <label
+                    htmlFor="contactPreference"
+                    className="block text-sm font-medium text-zinc-900 mb-2"
+                  >
+                    ¿Cómo prefieres que te contactemos?{" "}
+                    <span className="text-zinc-400">(opcional)</span>
+                  </label>
                   <select
+                    id="contactPreference"
                     name="contactPreference"
                     value={formData.contactPreference}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className={`${getInputClass()} bg-white`}
                   >
                     {CONTACT_PREFERENCES.map((option) => (
@@ -538,55 +595,55 @@ export default function ContactPage() {
                       </option>
                     ))}
                   </select>
-                </FieldWrapper>
+                </div>
 
-                {/* Mensaje */}
-                <FieldWrapper label="Mensaje" required error={errors.message}>
+                {/* Message */}
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-zinc-900 mb-2"
+                  >
+                    Mensaje <span className="text-red-500" aria-label="requerido">*</span>
+                  </label>
                   <textarea
+                    id="message"
                     name="message"
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    disabled={isSubmitting}
                     placeholder="Cuéntanos más sobre tus necesidades..."
                     className={`${getInputClass("message")} resize-none`}
+                    minLength={10}
+                    maxLength={5000}
                     aria-invalid={!!errors.message}
                     aria-describedby={errors.message ? "message-error" : undefined}
                   />
-                </FieldWrapper>
+                  {errors.message && (
+                    <p id="message-error" className="mt-1.5 text-sm text-red-600" role="alert">
+                      {errors.message}
+                    </p>
+                  )}
+                </div>
 
-                {/* Privacy */}
+                {/* Privacy Checkbox */}
                 <div className="flex items-start gap-3">
                   <input
                     type="checkbox"
-                    name="privacy"
                     id="privacy"
+                    name="privacy"
                     checked={formData.privacy}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className="mt-1 w-4 h-4 text-emerald-600 border-zinc-300 rounded focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2"
                   />
                   <label htmlFor="privacy" className="text-sm text-zinc-600">
                     Acepto recibir comunicaciones de Recibásicos. Estamos
                     comprometidos con tu privacidad. Usaremos la información
-                    proporcionada para contactarte sobre nuestros servicios.
-                    Puedes darte de baja en cualquier momento.{" "}
+                    proporcionada para contactarte sobre nuestros servicios. Puedes
+                    darte de baja en cualquier momento.{" "}
                     <span className="text-zinc-400">(opcional)</span>
-                  </label>
-                </div>
-
-                {/* Honeypot - Hidden from users, visible to bots */}
-                <div className="absolute -left-2499.75" aria-hidden="true">
-                  <label htmlFor="website">
-                    Website (do not fill)
-                    <input
-                      type="text"
-                      name="website"
-                      id="website"
-                      autoComplete="off"
-                      tabIndex={-1}
-                      value={formData.website}
-                      onChange={handleChange}
-                    />
                   </label>
                 </div>
 
@@ -594,11 +651,11 @@ export default function ContactPage() {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    disabled={status === "sending"}
-                    className="px-8 py-3 bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
-                    aria-busy={status === "sending"}
+                    disabled={isSubmitting}
+                    className="px-8 py-3 bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+                    aria-busy={isSubmitting}
                   >
-                    {status === "sending" ? "Enviando…" : "Enviar"}
+                    {isSubmitting ? "Enviando..." : "Enviar"}
                   </button>
                 </div>
               </form>
@@ -607,32 +664,28 @@ export default function ContactPage() {
               <ContactInfo />
             </div>
 
-            {/* Success/Error Messages - OUTSIDE grid for full visibility */}
+            {/* Success Message */}
             {status === "success" && (
               <div
-                className="mt-6 p-8 bg-green-500 border-4 border-green-700 rounded max-w-6xl"
+                className="mt-6 p-4 bg-emerald-50 border border-emerald-200 rounded"
                 role="alert"
                 aria-live="polite"
-                style={{ fontSize: '24px', fontWeight: 'bold' }}
               >
-                <p className="text-white text-center">
-                  ✓ ¡MENSAJE ENVIADO EXITOSAMENTE! TE CONTACTAREMOS PRONTO.
-                </p>
-                <p className="text-white text-center text-sm mt-2">
-                  (Si ves esto, el mensaje SÍ está apareciendo)
+                <p className="text-emerald-800 font-medium text-center">
+                  ✓ ¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.
                 </p>
               </div>
             )}
 
+            {/* Error Message */}
             {status === "error" && (
               <div
-                className="mt-6 p-4 bg-red-50 border border-red-200 rounded max-w-6xl"
+                className="mt-6 p-4 bg-red-50 border border-red-200 rounded"
                 role="alert"
                 aria-live="assertive"
               >
                 <p className="text-red-800 font-medium text-center">
-                  ✕ Hubo un error al enviar el mensaje. Por favor, intenta de
-                  nuevo o contáctanos directamente.
+                  ✕ {errorMessage}
                 </p>
               </div>
             )}
