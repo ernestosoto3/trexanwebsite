@@ -534,7 +534,7 @@ export default async function HomePage() {
       <ComoTrabajamosComoAyudamos />
 
       {/* Industries Section */}
-      <section className="py-8 bg-emerald-700 text-white">
+      <section className="pt-4 pb-8 bg-emerald-700 text-white">
         <div className="section">
           <div className="border-t border-emerald-300/70 pt-6">
             <p className="text-sm font-medium tracking-[0.2em] uppercase text-emerald-300">
@@ -565,7 +565,7 @@ export default async function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="pt-16 pb-8 md:pt-20 md:pb-12 bg-white">
         <div className="section">
           <header className="mb-10">
             <SectionHeader
@@ -584,7 +584,7 @@ export default async function HomePage() {
       </section>
 
       {/* News Section - Now dynamically shows latest 3 from Sanity */}
-      <section className="pt-8 pb-16 md:pt-12 md:pb-20 bg-zinc-50">
+      <section className="pt-4 pb-16 md:pt-8 md:pb-20 bg-zinc-50">
         <div className="section space-y-10">
           {/* Header */}
           <header className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">

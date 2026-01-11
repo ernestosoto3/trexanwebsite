@@ -185,7 +185,7 @@ ComoAyudamosColumn.displayName = "ComoAyudamosColumn";
 // ============================================================================
 const HowWeWorkHelpSection = memo(function HowWeWorkHelpSection() {
   return (
-    <section className="py-8 bg-emerald-700 text-white">
+    <section className="pt-8 pb-4 bg-emerald-700 text-white">
       <div className="section">
         <div className="grid lg:grid-cols-2 gap-12">
           <ComoTrabajamosColumn />
