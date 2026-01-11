@@ -452,14 +452,17 @@ export default function ContactPage() {
                 {/* Email */}
                 <FieldWrapper label="Email" required error={errors.email}>
                   <input
-                    type="email"
+                    type="text"
+                    inputMode="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    autoComplete="email"
                     className={getInputClass("email")}
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? "email-error" : undefined}
+                    placeholder="correo@ejemplo.com"
                   />
                 </FieldWrapper>
 
