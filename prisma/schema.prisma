@@ -1,7 +1,7 @@
 // Prisma Schema for Contact Form Application
-
+// Provider: MySQL (External Hosting)
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -11,25 +11,28 @@ generator client {
 
 model ContactSubmission {
   id                 String    @id @default(cuid())
-  name               String
-  email              String
-  message            String
-  company            String?
-  phone              String?
-  industry           String?
-  volume             String?
-  contactPreference  String?
+  name               String    @db.VarChar(255)
+  email              String    @db.VarChar(255)
+  message            String    @db.Text
+  company            String?   @db.VarChar(255)
+  phone              String?   @db.VarChar(50)
+  industry           String?   @db.VarChar(100)
+  volume             String?   @db.VarChar(100)
+  contactPreference  String?   @db.VarChar(50)
   privacy            Boolean   @default(false)
   
   // Email tracking fields
   emailSent          Boolean   @default(false)
   emailSentAt        DateTime?
-  emailError         String?
+  emailError         String?   @db.Text
   
+  // Timestamps
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   
-  @@index([email])
-  @@index([createdAt(sort: Desc)])
+  // Indexes for performance
+  // Removed email index - will add manually after table creation
+  @@index([createdAt])
+  
   @@map("mainContactSubmission")
 }
