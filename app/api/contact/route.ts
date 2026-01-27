@@ -4,14 +4,11 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { sendContactFormEmails } from "@/lib/email";
 
-// ============================================================================
-// VALIDATION SCHEMA
-// ============================================================================
 const ContactSchema = z.object({
   name: z.string().min(1).max(100),
-  email: z.string().email().max(200),
+  email: z.string().email().max(191), // ← Changed from 200 to 191
   message: z.string().min(1).max(5000),
-  website: z.string().optional(), // honeypot
+  website: z.string().optional(),
   company: z.string().max(200).optional(),
   phone: z.string().max(50).optional(),
   industry: z.string().max(100).optional(),
@@ -20,11 +17,8 @@ const ContactSchema = z.object({
   privacy: z.boolean().optional(),
 });
 
-// ============================================================================
-// RATE LIMITING
-// ============================================================================
-const windowMs = 60 * 1000; // 1 min
-const maxPerWindow = 5; // 5 req/min/IP
+const windowMs = 60 * 1000;
+const maxPerWindow = 5;
 const hits = new Map<string, number[]>();
 
 function rateLimit(ip: string) {
@@ -35,9 +29,6 @@ function rateLimit(ip: string) {
   return arr.length <= maxPerWindow;
 }
 
-// ============================================================================
-// API HANDLER
-// ============================================================================
 export async function POST(req: NextRequest) {
   const isDevelopment = process.env.NODE_ENV === 'development';
   
@@ -46,14 +37,12 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    // Extract IP for rate limiting
     const forwardedFor = req.headers.get("x-forwarded-for");
     const ip =
       forwardedFor?.split(",")[0]?.trim() ??
       req.headers.get("x-real-ip") ??
       "0.0.0.0";
 
-    // Check rate limit
     if (!rateLimit(ip)) {
       return NextResponse.json(
         { ok: false, error: "Too many requests" },
@@ -61,7 +50,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Parse request body
     const body = await req.json().catch(() => null);
     if (!body) {
       return NextResponse.json(
@@ -70,7 +58,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate with Zod
     const parsed = ContactSchema.safeParse(body);
     if (!parsed.success) {
       console.error("Validation error:", parsed.error);
@@ -80,7 +67,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Extract data
     const {
       name,
       email,
@@ -94,10 +80,9 @@ export async function POST(req: NextRequest) {
       privacy,
     } = parsed.data;
 
-    // Honeypot check
     if (website && website.trim().length > 0) {
       console.warn("Honeypot triggered - potential bot");
-      return NextResponse.json({ ok: true }); // Silent rejection
+      return NextResponse.json({ ok: true });
     }
 
     if (isDevelopment) {
@@ -118,6 +103,7 @@ export async function POST(req: NextRequest) {
           volume: volume || null,
           contactPreference: contactPreference || null,
           privacy: privacy ?? false,
+          emailSent: false, // ← ADDED
         },
       });
 
@@ -132,7 +118,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Send emails with Resend
+    // Send emails
     if (isDevelopment) {
       console.log('📧 Attempting to send emails via Resend...');
     }
@@ -148,6 +134,34 @@ export async function POST(req: NextRequest) {
       contactPreference,
     });
 
+    // ← ADDED: Update email status in database
+    try {
+      if (emailResults.notification.success) {
+        await prisma.contactSubmission.update({
+          where: { id: contactSubmission.id },
+          data: {
+            emailSent: true,
+            emailSentAt: new Date(),
+          },
+        });
+      } else {
+        const errorMessage = emailResults.notification.error 
+          ? String(emailResults.notification.error).substring(0, 500)
+          : 'Unknown email error';
+
+        await prisma.contactSubmission.update({
+          where: { id: contactSubmission.id },
+          data: {
+            emailSent: false,
+            emailError: errorMessage,
+          },
+        });
+      }
+    } catch (updateError) {
+      console.error("Failed to update email status:", updateError);
+    }
+    // ← END ADDED
+
     if (isDevelopment) {
       console.log('📊 Email results:', {
         notification: emailResults.notification.success ? '✅ Sent' : '❌ Failed',
@@ -159,7 +173,6 @@ export async function POST(req: NextRequest) {
       console.log('✅ Request completed\n');
     }
 
-    // Return success even if email fails (data is saved)
     if (!emailResults.notification.success) {
       console.error('Failed to send notification email:', emailResults.notification.error);
       return NextResponse.json(
