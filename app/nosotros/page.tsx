@@ -432,7 +432,7 @@ export default function NosotrosPage() {
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 md:p-10 hover:bg-white/15 transition-all duration-300">
                   <div className="w-48 sm:w-56 md:w-64 mx-auto max-w-40">
                     <Image
-                      src="/images/partners/PNG RECIBÁSICOS LETRAS NEGRAS.png"
+                      src="/images/partners/recibasicos-letras-logo.png"
                       alt="Recibásicos Logo"
                       width={600}
                       height={220}

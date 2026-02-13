@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/industrias/layout,_N_T_/industrias/page,_N_T_/industrias"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/industrias/__PAGE__",
+    "/industrias",
+    "/_index",
+    "/_head"
+  ]
+}

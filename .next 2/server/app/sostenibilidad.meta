@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/sostenibilidad/layout,_N_T_/sostenibilidad/page,_N_T_/sostenibilidad"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/sostenibilidad/__PAGE__",
+    "/sostenibilidad",
+    "/_index",
+    "/_head"
+  ]
+}

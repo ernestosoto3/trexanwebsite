@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/industrias/layout,_N_T_/industrias/tecnologia/layout,_N_T_/industrias/tecnologia/page,_N_T_/industrias/tecnologia"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/industrias/tecnologia/__PAGE__",
+    "/industrias/tecnologia",
+    "/industrias",
+    "/_index",
+    "/_head"
+  ]
+}

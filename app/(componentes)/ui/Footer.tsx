@@ -8,7 +8,7 @@ import Button from "./Button";
 // CONSTANTS - Extracted for maintainability
 // ============================================================================
 const LOGO = {
-  src: "/images/partners/PNG RECIBÁSICOS NO LETRAS.png",
+  src: "/images/partners/recibasicos-logo.png",
   alt: "Logotipo de Recibásicos",
   width: 52,
   height: 52,

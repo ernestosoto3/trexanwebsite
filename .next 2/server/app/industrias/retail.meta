@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/industrias/layout,_N_T_/industrias/retail/layout,_N_T_/industrias/retail/page,_N_T_/industrias/retail"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/industrias/retail/__PAGE__",
+    "/industrias/retail",
+    "/industrias",
+    "/_index",
+    "/_head"
+  ]
+}

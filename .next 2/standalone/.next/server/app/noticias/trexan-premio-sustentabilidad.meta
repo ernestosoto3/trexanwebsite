@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/noticias/layout,_N_T_/noticias/trexan-premio-sustentabilidad/layout,_N_T_/noticias/trexan-premio-sustentabilidad/page,_N_T_/noticias/trexan-premio-sustentabilidad"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/noticias/trexan-premio-sustentabilidad/__PAGE__",
+    "/noticias/trexan-premio-sustentabilidad",
+    "/noticias",
+    "/_index",
+    "/_head"
+  ]
+}

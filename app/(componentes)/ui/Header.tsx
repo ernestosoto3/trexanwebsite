@@ -11,7 +11,7 @@ import Button from "./Button";
 // CONSTANTS
 // ============================================================================
 const LOGO = {
-  src: "/images/partners/PNG RECIBÁSICOS NO LETRAS.png",
+  src: "/images/partners/recibasicos-logo.png",
   alt: "Logotipo de Recibásicos",
   width: 60,
   height: 60,

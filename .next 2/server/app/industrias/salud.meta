@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/industrias/layout,_N_T_/industrias/salud/layout,_N_T_/industrias/salud/page,_N_T_/industrias/salud"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/industrias/salud/__PAGE__",
+    "/industrias/salud",
+    "/industrias",
+    "/_index",
+    "/_head"
+  ]
+}
