@@ -58,3 +58,4 @@ next-env.d.ts
 # Database backups (if you create any)
 backup-*.json
 !.env.production
+trexan-production.zip
