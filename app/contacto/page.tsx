@@ -119,6 +119,7 @@ const validateForm = (data: FormData): FormErrors => {
  * Contact information sidebar
  * Memoized as it never changes
  */
+
 const ContactInfo = memo(function ContactInfo() {
   return (
     <aside className="bg-white border border-zinc-200 shadow-sm p-8 md:p-10">
@@ -150,32 +151,17 @@ const ContactInfo = memo(function ContactInfo() {
           </address>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <div className="text-xs uppercase tracking-wide text-zinc-500">
-              Email general
-            </div>
-            <a
-              className="mt-1 inline-block font-medium text-emerald-800 hover:text-emerald-900 underline underline-offset-4 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 rounded"
-              href="mailto:contacto@recibasicos.com"
-              aria-label="Enviar email a contacto@recibasicos.com"
-            >
-              contacto@recibasicos.com
-            </a>
+        <div>
+          <div className="text-xs uppercase tracking-wide text-zinc-500">
+            Email general
           </div>
-
-          <div>
-            <div className="text-xs uppercase tracking-wide text-zinc-500">
-              Teléfono
-            </div>
-            <a
-              className="mt-1 inline-block font-medium text-zinc-900 hover:underline underline-offset-4 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 rounded"
-              href="tel:+524448292422"
-              aria-label="Llamar a +52 444 829 2422"
-            >
-              +52 (444) 829 2422
-            </a>
-          </div>
+          <a
+            className="mt-1 inline-block font-medium text-emerald-800 hover:text-emerald-900 underline underline-offset-4 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 rounded"
+            href="mailto:contacto@recibasicos.com"
+            aria-label="Enviar email a contacto@recibasicos.com"
+          >
+            contacto@recibasicos.com
+          </a>
         </div>
 
         <div>
@@ -187,15 +173,16 @@ const ContactInfo = memo(function ContactInfo() {
             target="_blank"
             rel="noopener noreferrer"
             className="mt-1 inline-block font-medium text-zinc-900 hover:underline underline-offset-4 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 rounded"
-            aria-label="Abrir chat de WhatsApp"
+            aria-label="Escríbenos por WhatsApp"
           >
-            +52 (444) 219 7673
+            +52 (444) 829 2422
           </a>
         </div>
       </div>
     </aside>
   );
 });
+
 
 /**
  * Location map component

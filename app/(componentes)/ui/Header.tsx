@@ -168,10 +168,13 @@ function HeaderComponent() {
           <p className="hidden sm:block">
             {CONTACT_INFO.location} ·{" "}
             <a
-              href={`tel:${CONTACT_INFO.phone.tel}`}
+              href={`https://wa.me/${CONTACT_INFO.phone.tel.replace("+", "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:underline"
+              aria-label="Escríbenos por WhatsApp"
             >
-              {CONTACT_INFO.phone.display}
+              WhatsApp: {CONTACT_INFO.phone.display}
             </a>
           </p>
           <div className="flex flex-1 items-center justify-between sm:justify-end gap-4">

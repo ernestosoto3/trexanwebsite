@@ -179,7 +179,7 @@ const FALLBACK_NEWS: readonly NewsCard[] = [
 const HERO_CONFIG = {
   bg: { type: "video" as const, src: "/videos/solution-video-2.mp4" },
   height: "60vh" as const,
-  badgeText: "Recibasicos - Trexan Recycling Group",
+  badgeText: "Recibásicos - Trexan Recycling Group",
   title: "Soluciones Sustentables para Residuos Electrónicos",
   buttons: [
     {
