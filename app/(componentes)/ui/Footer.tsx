@@ -156,9 +156,11 @@ function FooterComponent() {
               {CONTACT.postalCode}
             </p>
             <p>
-              Teléfono:{" "}
+              WhatsApp:{" "}
               <a
-                href={`tel:${CONTACT.phone.tel}`}
+                href="https://wa.me/524448292422"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="font-medium text-emerald-400 hover:underline transition-colors"
               >
                 {CONTACT.phone.display}

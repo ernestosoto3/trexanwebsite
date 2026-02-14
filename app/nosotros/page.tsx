@@ -78,13 +78,11 @@ const HERO_CONFIG = {
     "Como parte de Trexan Recycling Group, combinamos ingeniería avanzada y cumplimiento normativo para transformar pasivos ambientales en recursos estratégicos para la industria global.",
 } as const;
 
-const INTRO_TEXT = `Con el respaldo de más de cuatro décadas de experiencia en la 
-industria metalúrgica, nos hemos consolidado como el brazo 
-especializado en procesos fríos y gestión de RAEE dentro de 
-Trexan Recycling Group. Nuestra operación en México combina 
-ingeniería de precisión y cumplimiento regulatorio para convertir 
-la complejidad de los residuos electrónicos en una cadena de valor 
-trazable y de alto rendimiento.` as const;
+const INTRO_TEXT = `Con el respaldo de más de cuatro décadas de experiencia en la industria metalúrgica, 
+nos hemos consolidado como el brazo especializado en procesos fríos y gestión de Residuos de
+ Aparatos Eléctricos y Electrónicos (RAEE) dentro de Trexan Recycling Group. Nuestra operación 
+ en México combina ingeniería de precisión y cumplimiento regulatorio para convertir la complejidad 
+ de los residuos electrónicos en una cadena de valor trazable y de alto rendimiento` as const;
 
 const TREXAN_METRICS: readonly MetricData[] = [
   { value: "+40", label: "Años de experiencia" },
@@ -243,8 +241,7 @@ export default function NosotrosPage() {
             <ContentBlock title="Nuestra Trayectoria">
               <p>
                 Somos una empresa mexicana especializada en el acopio,
-                recolección, almacenamiento, desmontaje y tratamiento de Residuos
-                de Aparatos Eléctricos y Electrónicos (RAEE).
+                recolección, almacenamiento, desmontaje y tratamiento de RAEE.
               </p>
               <p>
                 Como parte de Trexan Recycling Group, operamos la etapa de
@@ -430,26 +427,31 @@ export default function NosotrosPage() {
                 <div className="h-2 bg-white" aria-hidden="true" />
 
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 md:p-10 hover:bg-white/15 transition-all duration-300">
-                  <div className="w-48 sm:w-56 md:w-64 mx-auto max-w-40">
-                    <Image
-                      src="/images/partners/recibasicos-letras-logo.png"
-                      alt="Recibásicos Logo"
-                      width={600}
-                      height={220}
-                      className="w-full h-auto"
-                    />
+                  {/* Logo Container with Fixed Height */}
+                  <div className="h-32 flex items-center justify-center mb-8 mt-6">
+                    <div className="w-48 sm:w-56 md:w-64 max-w-full">
+                      <Image
+                        src="/images/partners/recibasicos-letras-logo.png"
+                        alt="Recibásicos Logo"
+                        width={600}
+                        height={220}
+                        className="w-full h-auto"
+                      />
+                    </div>
                   </div>
 
-                  <br />
+                  {/* Title Section */}
+                  <div className="mb-6">
+                    <p className="text-sm uppercase tracking-wider text-white/70 mb-2 text-center">
+                      ACOPIO Y PROCESOS FRÍOS
+                    </p>
 
-                  <p className="text-sm uppercase tracking-wider text-white/70 mb-2 text-center">
-                    ACOPIO Y PROCESOS FRÍOS
-                  </p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-center">
+                      Recibásicos
+                    </h2>
+                  </div>
 
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-                    Recibásicos
-                  </h2>
-
+                  {/* Content */}
                   <div className="space-y-4 text-base md:text-lg text-white/85 leading-relaxed mb-6">
                     <p>
                       Recibásicos es la división especializada en el acopio, recolección,
@@ -506,42 +508,65 @@ export default function NosotrosPage() {
                 <div className="h-2 bg-white" aria-hidden="true" />
 
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 md:p-10 hover:bg-white/15 transition-all duration-300">
-                  <div className="w-48 sm:w-56 md:w-64 mx-auto max-w-40">
-                    <Image
-                      src="/images/partners/EWR_Logotipo.png"
-                      alt="EWR Logo"
-                      width={600}
-                      height={220}
-                      className="w-full h-auto"
-                    />
+                  {/* Logo Container with Fixed Height - Same as Recibásicos */}
+                  <div className="h-32 flex items-center justify-center mb-8 mt-6">
+                    <div className="w-56 sm:w-64 md:w-72 max-w-full">
+                      <Image
+                        src="/images/partners/EWR_Logotipo.png"
+                        alt="EWR Logo"
+                        width={600}
+                        height={220}
+                        className="w-full h-auto"
+                      />
+                    </div>
                   </div>
 
-                  <br />
-
-                  <p className="text-sm uppercase tracking-wider text-white/70 mb-2 text-center">
-                    REFINACIÓN Y VALORIZACIÓN FINAL
-                  </p>
-
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-                    EWR - Electronic Waste Recycling
-                  </h2>
-
-                  <div className="space-y-4 text-base md:text-lg text-white/85 leading-relaxed mb-8">
-                    <p>
-                      EWR es la división especializada en la refinación de metales
-                      preciosos y la valorización final de materiales electrónicos.
-                      Completamos el ciclo de economía circular mediante procesos
-                      metalúrgicos de última generación.
+                  {/* Title Section */}
+                  <div className="mb-6">
+                    <p className="text-sm uppercase tracking-wider text-white/70 mb-2 text-center">
+                      REFINACIÓN Y VALORIZACIÓN FINAL
                     </p>
+
+                    <h2 className="text-3xl md:text-4xl font-bold text-center">
+                      EWR
+                    </h2>
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-4 text-base md:text-lg text-white/85 leading-relaxed mb-6">
                     <p>
-                      Recibimos los concentrados metálicos preparados por Recibásicos
-                      y los transformamos en metales refinados de alta pureza listos
-                      para su reintroducción en cadenas productivas globales. Operamos
-                      con tecnología de punta y control de calidad riguroso para
-                      maximizar la recuperación de oro, plata, cobre, paladio y otros
-                      metales valiosos.
+                      EWR (Electronic Waste Recycling) es la división especializada en refinación de metales 
+                      preciosos y valorización final mediante procesos metalúrgicos de última generación.
+                    </p>
+                    <p className="font-medium text-white">
+                      Nuestras capacidades:
                     </p>
                   </div>
+
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-start gap-3">
+                      <span className="text-white font-bold text-lg mt-0.5" aria-hidden="true">•</span>
+                      <span className="text-base text-white/85">
+                        Procesamiento multimetálico en recuperación de metales preciosos 
+                        (Au, Ag), cobre, estaño, zinc y paladio con más de 70 años de experiencia.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-white font-bold text-lg mt-0.5" aria-hidden="true">•</span>
+                      <span className="text-base text-white/85">
+                        Análisis de laboratorio en instalaciones propias para garantizar 
+                        control de calidad riguroso en materias primas y productos finales.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-white font-bold text-lg mt-0.5" aria-hidden="true">•</span>
+                      <span className="text-base text-white/85">
+                        Cumplimiento total con autoridades federales y estatales 
+                        (SEMARNAT, SEGAM) como disposición final autorizada de residuos 
+                        no ferrosos.
+                      </span>
+                    </li>
+                  </ul>
 
                   <div className="flex justify-center md:justify-start">
                     <a

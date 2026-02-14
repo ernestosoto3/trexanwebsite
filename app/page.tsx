@@ -364,7 +364,7 @@ const SectionHeader = memo(function SectionHeader({
  */
 const FeatureCard = memo(function FeatureCard({ feature }: FeatureCardProps) {
   return (
-    <article className="relative bg-zinc-50 border border-zinc-200 shadow-sm p-6 overflow-hidden transition-shadow duration-200 hover:shadow-md">
+    <article className="relative bg-white border border-zinc-200 shadow-sm p-6 overflow-hidden transition-shadow duration-200 hover:shadow-md">
       <div className="absolute top-0 left-0 w-full h-2 bg-orange-600" aria-hidden="true" />
       <h3 className="mt-3 text-lg font-semibold text-zinc-900">{feature.title}</h3>
       <p className="mt-3 text-sm md:text-base text-zinc-600 leading-relaxed">{feature.desc}</p>
@@ -409,7 +409,7 @@ const NewsCardComponent = memo(function NewsCardComponent({ card }: NewsCardComp
   return (
     <Link
       href={card.href}
-      className="relative group bg-white border border-zinc-200 h-full flex flex-col transition-all duration-300 hover:shadow-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+      className="relative group bg-zinc-50 border border-zinc-200 h-full flex flex-col transition-all duration-300 hover:shadow-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
       aria-label={`Leer más sobre: ${card.title}`}
     >
       {/* Orange strip */}
@@ -468,7 +468,7 @@ export default async function HomePage() {
   }
 
   return (
-    <main className="min-h-dvh bg-white">
+    <main className="min-h-dvh bg-zinc-50">
       {/* Hero Section */}
       <Hero
         bg={HERO_CONFIG.bg}
@@ -565,7 +565,7 @@ export default async function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="pt-16 pb-8 md:pt-20 md:pb-12 bg-white">
+      <section className="pt-16 pb-8 md:pt-20 md:pb-12 bg-zinc-50">
         <div className="section">
           <header className="mb-10">
             <SectionHeader

@@ -372,7 +372,7 @@ export default function IndustriasPage() {
       </section>
 
       {/* Servicios Section */}
-      <section className="py-14 bg-white">
+      <section className="py-14 bg-zinc-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <SectionHeader
             badge="Nuestros Servicios"

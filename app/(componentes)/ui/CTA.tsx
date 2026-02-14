@@ -5,7 +5,7 @@ import Button from "./Button";
 // ============================================================================
 // CONSTANTS
 // ============================================================================
-const HERO_IMAGE = "/images/industrias/GRUPO TREXAN-31.jpg";
+const HERO_IMAGE = "/images/industrias/GRUPO TREXAN-23.jpg";
 
 // ============================================================================
 // CTA COMPONENT - Call to Action Section

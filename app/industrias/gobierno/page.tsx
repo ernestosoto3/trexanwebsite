@@ -87,7 +87,7 @@ const SERVICES: readonly ServiceItem[] = [
   },
   {
     title: "Destrucción Certificada de Datos",
-    body: "Borrado de nivel DoD 5220.22-M o destrucción física de medios con certificados individuales por equipo.",
+    body: "Destrucción física de medios con certificados individuales por equipo.",
   },
   {
     title: "Cumplimiento LGPGIR y NOM",

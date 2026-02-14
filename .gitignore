@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
+/node_modules 2
 /.pnp
 .pnp.*
 .yarn/*
@@ -10,25 +11,33 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
+# Testing
 /coverage
 
-# next.js
+# Next.js
 /.next/
 /out/
+next-env.d.ts
 
-# production
+# Production builds
 /build
+trexan-production.zip
 
-# misc
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Misc
 .DS_Store
 *.pem
 
-# debug
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
 .pnpm-debug.log*
+lerna-debug.log*
 
 # Environment variables - IMPORTANT!
 .env
@@ -37,15 +46,12 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-# Keep the example file for reference
+
+# Keep example files for reference
 !.env.example
 
-# vercel
+# Vercel
 .vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
 
 # Prisma
 /lib/generated/prisma
@@ -55,7 +61,29 @@ next-env.d.ts
 /prisma/dev.db
 /prisma/dev.db-journal
 
-# Database backups (if you create any)
+# Database backups
 backup-*.json
-!.env.production
-trexan-production.zip
+
+# Patches and temporary files
+fix.patch
+package.json.backup
+next.config.ts.backup
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+Thumbs.db
+
+# iCloud files
+*.icloud
+.*.icloud

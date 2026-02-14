@@ -90,7 +90,7 @@ const CORE_VERTICALS: readonly CoreVertical[] = [
     bullets: [
       "Consultoría en manejo de residuos",
       "Reportes de cumplimiento normativo",
-      "Programas de recolección programada",
+      "Programas de recolección planificada",
     ],
   },
 ] as const;

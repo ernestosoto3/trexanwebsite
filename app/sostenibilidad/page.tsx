@@ -121,7 +121,7 @@ const SUSTAINABILITY_AREAS: readonly SustainabilityArea[] = [
     ),
     title: "Personas Inspiradoras",
     description:
-      "Nuestro equipo impulsa nuestra visión de sostenibilidad hacia adelante. Fomentamos una cultura que fomenta el desarrollo de nuevos enfoques y celebra el impacto ambiental positivo de nuestro trabajo.",
+      "Nuestro equipo impulsa nuestra visión de sostenibilidad hacia adelante. Fomentamos una cultura que impulsa el desarrollo de nuevos enfoques y celebra el impacto ambiental positivo de nuestro trabajo.",
   },
 ] as const;
 
