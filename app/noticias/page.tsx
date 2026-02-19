@@ -29,6 +29,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 60;
+
 // ============================================================================
 // TYPES
 // ============================================================================
@@ -325,7 +327,7 @@ const NewsCardComponent = memo(function NewsCardComponent({
 // ============================================================================
 export default async function NoticiasPage() {
   // Fetch news from Sanity with safer helper function
-  const noticias = await fetchSanity<SanityNoticia[]>(qNoticias);
+  const noticias = await fetchSanity<SanityNoticia[]>(qNoticias, undefined, 60);
 
   // Handle error state - if fetch failed, use only fallback news
   if (!noticias) {

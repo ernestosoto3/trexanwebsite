@@ -6,7 +6,7 @@ import { sendContactFormEmails } from "@/lib/email";
 
 const ContactSchema = z.object({
   name: z.string().min(1).max(100),
-  email: z.string().email().max(191), // ← Changed from 200 to 191
+  email: z.string().email().max(191),
   message: z.string().min(1).max(5000),
   website: z.string().optional(),
   company: z.string().max(200).optional(),
@@ -31,7 +31,7 @@ function rateLimit(ip: string) {
 
 export async function POST(req: NextRequest) {
   const isDevelopment = process.env.NODE_ENV === 'development';
-  
+
   if (isDevelopment) {
     console.log('\n🚀 Contact form submission received');
   }
@@ -89,36 +89,30 @@ export async function POST(req: NextRequest) {
       console.log('📝 Form data:', { name, email, company, phone });
     }
 
-    // Save to database
-    let contactSubmission;
-    try {
-      contactSubmission = await prisma.contactSubmission.create({
-        data: {
-          name,
-          email,
-          message,
-          company: company || null,
-          phone: phone || null,
-          industry: industry || null,
-          volume: volume || null,
-          contactPreference: contactPreference || null,
-          privacy: privacy ?? false,
-          emailSent: false, // ← ADDED
-        },
-      });
-
+    // ✅ DB save is now fire-and-forget — a DB failure will NOT block the email
+    prisma.contactSubmission.create({
+      data: {
+        name,
+        email,
+        message,
+        company: company || null,
+        phone: phone || null,
+        industry: industry || null,
+        volume: volume || null,
+        contactPreference: contactPreference || null,
+        privacy: privacy ?? false,
+        emailSent: false,
+      },
+    }).then((submission) => {
       if (isDevelopment) {
-        console.log('💾 Saved to database:', contactSubmission.id);
+        console.log('💾 Saved to database:', submission.id);
       }
-    } catch (dbError) {
-      console.error("Database error:", dbError);
-      return NextResponse.json(
-        { ok: false, error: "Error saving to database" },
-        { status: 500 }
-      );
-    }
+    }).catch((dbError) => {
+      // Log but don't crash — email will still send
+      console.error("⚠️ Database save failed (non-fatal):", dbError.message);
+    });
 
-    // Send emails
+    // Send emails — this always runs now regardless of DB status
     if (isDevelopment) {
       console.log('📧 Attempting to send emails via Resend...');
     }
@@ -134,34 +128,6 @@ export async function POST(req: NextRequest) {
       contactPreference,
     });
 
-    // ← ADDED: Update email status in database
-    try {
-      if (emailResults.notification.success) {
-        await prisma.contactSubmission.update({
-          where: { id: contactSubmission.id },
-          data: {
-            emailSent: true,
-            emailSentAt: new Date(),
-          },
-        });
-      } else {
-        const errorMessage = emailResults.notification.error 
-          ? String(emailResults.notification.error).substring(0, 500)
-          : 'Unknown email error';
-
-        await prisma.contactSubmission.update({
-          where: { id: contactSubmission.id },
-          data: {
-            emailSent: false,
-            emailError: errorMessage,
-          },
-        });
-      }
-    } catch (updateError) {
-      console.error("Failed to update email status:", updateError);
-    }
-    // ← END ADDED
-
     if (isDevelopment) {
       console.log('📊 Email results:', {
         notification: emailResults.notification.success ? '✅ Sent' : '❌ Failed',
@@ -176,7 +142,7 @@ export async function POST(req: NextRequest) {
     if (!emailResults.notification.success) {
       console.error('Failed to send notification email:', emailResults.notification.error);
       return NextResponse.json(
-        { 
+        {
           ok: true,
           warning: 'Message saved but email notification failed',
         },

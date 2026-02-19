@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  icons: {                        
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
+  },
   keywords: [
     "reciclaje electrónico",
     "RAEE",

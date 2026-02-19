@@ -12,7 +12,7 @@ generator client {
 model ContactSubmission {
   id                 String    @id @default(cuid())
   name               String    @db.VarChar(255)
-  email              String    @db.VarChar(255)
+  email              String    @db.VarChar(191)
   message            String    @db.Text
   company            String?   @db.VarChar(255)
   phone              String?   @db.VarChar(50)

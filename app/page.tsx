@@ -452,7 +452,7 @@ const NewsCardComponent = memo(function NewsCardComponent({ card }: NewsCardComp
 // ============================================================================
 export default async function HomePage() {
   // Fetch news from Sanity
-  const noticias = await fetchSanity<SanityNoticia[]>(qNoticias);
+  const noticias = await fetchSanity<SanityNoticia[]>(qNoticias, undefined, 60);
 
   // Determine which news to show (latest 3)
   let NEWS_CARDS: readonly NewsCard[];

@@ -86,4 +86,5 @@ Thumbs.db
 
 # iCloud files
 *.icloud
-.*.icloud
+.*.icloudrecibasicos-v2.zip
+.env.production

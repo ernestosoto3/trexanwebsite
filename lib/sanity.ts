@@ -4,33 +4,17 @@ import { createClient, type ClientConfig } from "@sanity/client";
 // SANITY CLIENT CONFIGURATION
 // ============================================================================
 
-/**
- * Sanity Client Configuration
- * @see https://www.sanity.io/docs/js-client
- */
 const config: ClientConfig = {
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
-  apiVersion: "2025-01-01", // Use current date (YYYY-MM-DD) for API version
-  useCdn: process.env.NODE_ENV === "production", // CDN for production, direct for dev
+  apiVersion: "2025-01-01",
+  useCdn: false,        
   token: process.env.SANITY_API_READ_TOKEN,
-  perspective: "published", // Only fetch published documents
-  
-  // Optional: Reduce response size
+  perspective: "published",
   resultSourceMap: false,
-  
-  // Optional: Configure for better performance
   ignoreBrowserTokenWarning: true,
 };
 
-/**
- * Sanity Client Instance
- * Used for fetching content from Sanity CMS
- * 
- * @example
- * import { sanityClient } from "@/lib/sanity"
- * const data = await sanityClient.fetch(query)
- */
 export const sanityClient = createClient(config);
 
 // ============================================================================
@@ -38,19 +22,24 @@ export const sanityClient = createClient(config);
 // ============================================================================
 
 /**
- * Fetch data from Sanity with error handling
- * @param query - GROQ query string
+ * Fetch data from Sanity with revalidation support
+ * @param query  - GROQ query string
  * @param params - Query parameters (optional)
- * @returns Promise with data or null on error
+ * @param revalidate - Seconds until Next.js revalidates (default: 60s)
  */
 export async function fetchSanity<T = any>(
   query: string,
-  params?: Record<string, any>
+  params?: Record<string, any>,
+  revalidate: number = 60   // ✅ Added — revalidates every 60 seconds by default
 ): Promise<T | null> {
   try {
-    const data = params
-      ? await sanityClient.fetch<T>(query, params)
-      : await sanityClient.fetch<T>(query);
+    const data = await sanityClient.fetch<T>(
+      query,
+      params ?? {},
+      {
+        next: { revalidate },  // ✅ Tells Next.js how long to cache this fetch
+      }
+    );
     return data;
   } catch (error) {
     console.error("Error fetching from Sanity:", error);
@@ -60,7 +49,6 @@ export async function fetchSanity<T = any>(
 
 /**
  * Check if Sanity is properly configured
- * @returns boolean
  */
 export function isSanityConfigured(): boolean {
   return !!(
@@ -70,18 +58,16 @@ export function isSanityConfigured(): boolean {
 }
 
 // ============================================================================
-// SANITY IMAGE URL BUILDER (if needed)
+// SANITY IMAGE URL BUILDER
 // ============================================================================
 
 /**
  * Get Sanity image URL
  * @param source - Sanity image source object
- * @returns Image URL string
- * 
- * @example
- * const imageUrl = getSanityImageUrl(article.imagen)
  */
-export function getSanityImageUrl(source?: { asset?: { url?: string } }): string {
+export function getSanityImageUrl(
+  source?: { asset?: { url?: string } }
+): string {
   return source?.asset?.url || "/images/placeholder.jpg";
 }
 

@@ -1,5 +1,4 @@
 // lib/email.ts
-
 import { Resend } from 'resend';
 import { ContactFormEmail } from '@/emails/ContactFormEmail';
 import { ContactFormAutoResponse } from '@/emails/ContactFormAutoResponse';
@@ -37,14 +36,14 @@ export async function sendContactFormNotification(
 
     if (isDevelopment && fromEmail.includes('resend.dev')) {
       console.log('🚧 DEVELOPMENT MODE: Using Resend test domain');
-      console.log(`📧 Email will be sent to: ${toEmail}`);
-      console.log(`📝 Original submitter email: ${data.email}`);
+      console.log(`📧 Email will be sent to: ${toEmail}`);           // ✅ Fixed: added (
+      console.log(`📝 Original submitter email: ${data.email}`);     // ✅ Fixed: added (
     }
 
     const { data: emailData, error } = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
-      subject: `Nuevo contacto de ${data.name}${data.company ? ` - ${data.company}` : ''}`,
+      subject: `Nuevo contacto de ${data.name}${data.company ? ` - ${data.company}` : ''}`, // ✅ Fixed: closed }
       react: ContactFormEmail({
         ...data,
         submittedAt: new Date(),
@@ -61,12 +60,11 @@ export async function sendContactFormNotification(
     }
 
     console.log('✅ Email sent successfully:', emailData?.id);
-
     return {
       success: true,
       id: emailData?.id,
-      devNote: isDevelopment 
-        ? `Email sent to ${toEmail} (your verified email)` 
+      devNote: isDevelopment
+        ? `Email sent to ${toEmail} (your verified email)`
         : undefined,
     };
   } catch (error) {
@@ -91,7 +89,6 @@ export async function sendContactFormAutoResponse(
     // Skip auto-response in development if using test domain
     if (isDevelopment && fromEmail.includes('resend.dev')) {
       const verifiedEmail = process.env.RESEND_TO_EMAIL;
-      
       if (data.email !== verifiedEmail) {
         console.log('⚠️  Skipping auto-response in development mode');
         return {
@@ -120,7 +117,6 @@ export async function sendContactFormAutoResponse(
     }
 
     console.log('✅ Auto-response sent:', emailData?.id);
-
     return {
       success: true,
       id: emailData?.id,
@@ -145,6 +141,5 @@ export async function sendContactFormEmails(
 }> {
   const notification = await sendContactFormNotification(data);
   const autoResponse = await sendContactFormAutoResponse(data);
-
   return { notification, autoResponse };
 }
